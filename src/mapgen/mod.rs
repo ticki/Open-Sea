@@ -1,3 +1,5 @@
+//! A module for the automatic map generation
+
 use super::noise::{Brownian2, Seed, open_simplex2};
 
 // Probably really buggy code...
