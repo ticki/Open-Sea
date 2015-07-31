@@ -11,6 +11,8 @@ use glutin_window::GlutinWindow as Window;
 use opengl_graphics::OpenGL;
 
 mod mapgen;
+mod traits;
+mod models;
 
 
 const TITLE: &'static str = "Open Sea";
