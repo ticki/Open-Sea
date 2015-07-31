@@ -1,11 +1,11 @@
-// TODO what is this?: // use super::graphics::*;
-
 /// A view
 pub trait View {
   /// Render the view.
   fn render<G: Graphics>(&self, gl: &G);
 
-  fn start(&mut self);
-  fn end(&mut self);
+  /// Call this on start of view
+  fn start(&mut self) {}
+  /// Call this on end of view
+  fn end(&mut self) {}
 }
 
