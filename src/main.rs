@@ -39,7 +39,8 @@ fn main() {
                 use graphics::*;
                 gl.draw(args.viewport(), |_, gl| {
                     clear([1.0, 1.0, 1.0, 1.0], gl);
-                    renderer::render(&gl);
+                    // TODO uncomment:
+                    // renderer::render(&gl);
                 });
             },
 

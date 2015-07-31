@@ -1,9 +1,10 @@
 //! Traits for the game
 
-mod view;
+pub mod view;
 mod map;
 
-pub use self::view::*;
+pub use self::view::View;
+// TODO uncomment:
 pub use self::map::*;
 
 
@@ -20,6 +21,7 @@ pub trait Positioned {
 }
 
 /// The direction of a given object
+#[derive(Clone, Copy)]
 pub enum Dir {
   Left,
   Right,
@@ -38,21 +40,24 @@ pub trait Movable: Positioned {
   fn set_dir(&mut self, new_dir: Dir);
   /// Move the object
   fn move_obj(&mut self, mov_x: i64, mov_y: i64) {
-    self.set_x(self.get_x() + mov_x);
-    self.set_y(self.get_y() + mov_y);
+    let x = self.get_x();
+    let y = self.get_y();
+    self.set_x(x + mov_x);
+    self.set_y(y + mov_y);
   }
   /// Take a step in the current direction
   fn take_step(&mut self) {
+    let dir = self.get_dir();
     self.move_obj(
 
-      match self.get_dir() {
+      match dir {
         Dir::Left => 1,
         Dir::Right => -1,
         Dir::Up => 0,
         Dir::Down => 0,
       },
 
-      match self.get_dir() {
+      match dir {
         Dir::Left => 0,
         Dir::Right => 0,
         Dir::Up => 1,

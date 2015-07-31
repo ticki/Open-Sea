@@ -1,6 +1,14 @@
 // Todo: Add tile metadata
 
-use models::*;
+// TODO: uncomment
+// use models::*;
+
+
+// TODO remove
+struct Player;
+// TODO also remove; I stubbed this out because it doesn't exist yet
+struct Object;
+
 
 /// The tiles
 pub enum Tile {
@@ -8,14 +16,16 @@ pub enum Tile {
   Grass,
 }
 
+
 /// A map
 pub struct Map<'a> {
   objects: Vec<Object>,
   player: &'a Player,
-  tile_map: &TileMap,
+  tile_map: &'a TileMap,
 }
 
+
 /// A tiled map
-trait TileMap {
+pub trait TileMap {
   fn get_tile(&self, x: i64, i64) -> Tile;
 }

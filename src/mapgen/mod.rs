@@ -1,7 +1,11 @@
 //! A module for the automatic map generation
 
 use noise::{Brownian2, Seed, open_simplex2};
-use traits::*;
+
+// TODO pick:
+// use traits::*;
+// use traits::{Map, Tile, TileMap};
+use traits::{Tile, TileMap};
 
 // Probably really buggy code...
 
@@ -10,13 +14,15 @@ pub struct MapGenerator<'a> {
   seed: &'a Seed,
 }
 
-pub impl<'a> MapGenerator<'a> {
+impl<'a> MapGenerator<'a> {
   /// Creates a new map
-  fn new(seed: &'a Seed) -> Map<'a> {
-    Map {
-      seed: seed,
-    }
-  }
+  // TODO uncomment. commented out because Map initialization doesn't match definition,
+  // but we don't have everything we need to initialize it yet
+  // fn new(seed: &'a Seed) -> Map<'a> {
+  //   Map {
+  //     seed: seed,
+  //   }
+  // }
 
   // TODO: Add some sort of cache
 
@@ -28,12 +34,13 @@ pub impl<'a> MapGenerator<'a> {
 
   /// Get overlay value (used for customizing the noise)
   fn get_overlay_value(&self, x: i64, y: i64) -> f64 {
+    // TODO
     // Stuff here
     1.0
   }
 }
 
-impl TileMap for MapGenerator {
+impl<'a> TileMap for MapGenerator<'a> {
 
   // Add foreground/background
   /// Get the tile at a given point

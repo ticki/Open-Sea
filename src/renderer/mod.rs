@@ -1,6 +1,8 @@
-use graphics::*;
+use opengl_graphics::GlGraphics;
+
 use traits::View;
 
-pub fn render(gl: Graphics, view: View) {
-  view.render();
+
+pub fn render<V: View>(gl: GlGraphics, view: V) {
+  view.render(&gl);
 }

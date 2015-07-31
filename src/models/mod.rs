@@ -1,4 +1,5 @@
-use traits;
-
 mod player;
-pub use self::player::*;
+
+pub use self::player::Player;
+
+use traits;
