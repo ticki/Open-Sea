@@ -1,3 +1,5 @@
+mod view;
+pub use view::*;
 mod map;
 pub use map::*;
 

@@ -1,8 +1,5 @@
 use super::graphics::*;
-
-pub mod view;
-
-pub use view::*;
+use super::traits::View;
 
 pub fn render(gl: Graphics, view: View) {
   view.render();

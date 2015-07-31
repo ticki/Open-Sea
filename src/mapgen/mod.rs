@@ -5,8 +5,6 @@ use super::traits::*;
 
 // Probably really buggy code...
 
-// TODO: Make the map gen output a `Map`
-
 /// A map
 pub struct MapGenerator<'a> {
   seed: &'a Seed,
@@ -35,7 +33,7 @@ pub impl<'a> MapGenerator<'a> {
   }
 }
 
-impl TileMap for MapGenerator
+impl TileMap for MapGenerator {
 
   // Add foreground/background
   /// Get the tile at a given point
