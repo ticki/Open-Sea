@@ -1,6 +1,7 @@
 //! A module for the automatic map generation
 
 use super::noise::{Brownian2, Seed, open_simplex2};
+use super::traits::*;
 
 // Probably really buggy code...
 
@@ -32,6 +33,9 @@ pub impl<'a> MapGenerator<'a> {
     // Stuff here
     1.0
   }
+}
+
+impl TileMap for MapGenerator
 
   // Add foreground/background
   /// Get the tile at a given point
