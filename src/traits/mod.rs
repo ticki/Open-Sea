@@ -1,3 +1,6 @@
+mod map;
+pub use map::*;
+
 //! Traits for the game
 
 /// A trait for positioned objects

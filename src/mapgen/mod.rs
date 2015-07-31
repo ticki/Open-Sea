@@ -4,20 +4,14 @@ use super::noise::{Brownian2, Seed, open_simplex2};
 
 // Probably really buggy code...
 
-// Should be in some json file in the future
-
-/// A tile
-pub enum Tile {
-  Water,
-  Grass,
-}
+// TODO: Make the map gen output a `Map`
 
 /// A map
-pub struct Map<'a> {
+pub struct MapGenerator<'a> {
   seed: &'a Seed,
 }
 
-pub impl<'a> Map<'a> {
+pub impl<'a> MapGenerator<'a> {
   /// Creates a new map
   fn new(seed: &'a Seed) -> Map<'a> {
     Map {
