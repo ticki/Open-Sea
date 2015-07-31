@@ -1,6 +1,6 @@
 // Todo: Add tile metadata
 
-use super::models::*;
+use models::*;
 
 /// The tiles
 pub enum Tile {
@@ -9,7 +9,7 @@ pub enum Tile {
 }
 
 /// A map
-struct Map<'a> {
+pub struct Map<'a> {
   objects: Vec<Object>,
   player: &'a Player,
   tile_map: &TileMap,

@@ -1,11 +1,11 @@
-use super::graphics::*;
+// TODO what is this?: // use super::graphics::*;
 
 /// A view
-trait View {
+pub trait View {
   /// Render the view.
-  pub fn render<G: Graphics>(&self, gl: &G)
+  fn render<G: Graphics>(&self, gl: &G);
 
-  pub fn start(&mut self);
-  pub fn end(&mut self);
+  fn start(&mut self);
+  fn end(&mut self);
 }
 

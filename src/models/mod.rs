@@ -1,4 +1,4 @@
-use super::traits;
+use traits;
 
-pub mod player;
-pub use player::*;
+mod player;
+pub use self::player::*;

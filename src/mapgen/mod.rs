@@ -1,7 +1,7 @@
 //! A module for the automatic map generation
 
-use super::noise::{Brownian2, Seed, open_simplex2};
-use super::traits::*;
+use noise::{Brownian2, Seed, open_simplex2};
+use traits::*;
 
 // Probably really buggy code...
 

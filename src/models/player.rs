@@ -1,4 +1,4 @@
-use super::traits::*;
+use traits::*;
 
 /// A player
 pub struct Player {

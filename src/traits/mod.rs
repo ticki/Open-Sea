@@ -1,9 +1,11 @@
-mod view;
-pub use view::*;
-mod map;
-pub use map::*;
-
 //! Traits for the game
+
+mod view;
+mod map;
+
+pub use self::view::*;
+pub use self::map::*;
+
 
 /// A trait for positioned objects
 pub trait Positioned {
