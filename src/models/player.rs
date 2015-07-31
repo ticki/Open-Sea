@@ -2,6 +2,7 @@ mod traits;
 
 use traits::*;
 
+/// A player
 struct Player {
   x: i64,
   y: i64,
@@ -23,7 +24,7 @@ impl Positioned for Player {
   }
 }
 
-impl Moving for Player {
+impl Movable for Player {
   fn get_dir(&self) -> Dir {
     self.dir
   }
