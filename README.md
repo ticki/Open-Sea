@@ -1,11 +1,10 @@
 ## Open Sea ##
 
-Open Sea "is" a retro-style game, coded in Rust, using Piston. Sail the Open Sea, explore the world, and play together with your friends. Open Sea aims to combine RPG and sandbox genre.
+**Open Sea** is a sandbox RPG written in Rust using the Piston library. Sail the open sea, explore
+the world, and play together with your friends.
 
-#### Contribute! ####
 
-Open an issue, fork the repo, send a PR. Contribution are very much appreciated.
 
-#### Todo ####
+#### Contribute ####
 
-* Just get it up'n'running
+Open an issue, or fork the repo and send a pull request. Contributions are much appreciated.
