@@ -9,17 +9,16 @@ use piston::input::{ Button, Input, Key };
 use glutin_window::GlutinWindow as Window;
 use opengl_graphics::OpenGL;
 
+mod mapgen;
+
 
 const TITLE: &'static str = "Open Sea";
-
 
 fn main() {
     let gl_context = OpenGL::_2_1;
 
-    let window =
-        Window::new
-            ( gl_context
-            , WindowSettings::new(TITLE, [800, 600]).exit_on_esc(true) );
+    let window = Window::new(gl_context,
+                             WindowSettings::new(TITLE, [800, 600]).exit_on_esc(true));
 
     // This is the object used for drawing
     let mut gl = opengl_graphics::GlGraphics::new(gl_context);
