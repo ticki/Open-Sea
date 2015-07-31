@@ -30,19 +30,4 @@ impl Moving for Player {
   fn set_direction(&self, new_dir: Dir) -> Dir {
     self.dir = new_dir;
   }
-  fn take_step(&mut self) -> i64 {
-    self.x += match self.dir {
-      Dir::Left => 1,
-      Dir::Right => -1,
-      Dir::Up => 0,
-      Dir::Down => 0,
-    };
-
-    self.y += match self.dir {
-      Dir::Left => 0,
-      Dir::Right => 0,
-      Dir::Up => 1,
-      Dir::Down => -1,
-    };
-  }
 }
