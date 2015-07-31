@@ -13,6 +13,7 @@ use opengl_graphics::OpenGL;
 mod mapgen;
 mod traits;
 mod models;
+mod renderer;
 
 
 const TITLE: &'static str = "Open Sea";
@@ -37,7 +38,8 @@ fn main() {
             Event::Render(args) => {
                 use graphics::*;
                 gl.draw(args.viewport(), |_, gl| {
-                    clear([1.0, 1.0, 1.0, 1.0], gl)
+                    clear([1.0, 1.0, 1.0, 1.0], gl);
+                    renderer::render(&gl);
                 });
             },
 

@@ -1,7 +1,7 @@
 //! Traits for the game
 
 /// A trait for positioned objects
-trait Positioned {
+pub trait Positioned {
   /// Get the x coordinate
   fn get_x(&self) -> i64;
   /// Get the y coordinate
@@ -13,7 +13,7 @@ trait Positioned {
 }
 
 /// The direction of a given object
-enum Dir {
+pub enum Dir {
   Left,
   Right,
   Up,
@@ -24,19 +24,19 @@ enum Dir {
 // TODO: Make drawable trait
 
 // A movable object
-trait Movable: Positioned {
+pub trait Movable: Positioned {
   /// Get the direction
   fn get_dir(&self) -> Dir;
   /// Set the direction
   fn set_dir(&mut self, new_dir: Dir);
   /// Move the object
-  fn move(&mut self, mov_x: i64, mov_y: i64) {
+  fn move_obj(&mut self, mov_x: i64, mov_y: i64) {
     self.set_x(self.get_x() + mov_x);
     self.set_y(self.get_y() + mov_y);
   }
   /// Take a step in the current direction
   fn take_step(&mut self) {
-    self.move(
+    self.move_obj(
 
       match self.get_dir() {
         Dir::Left => 1,

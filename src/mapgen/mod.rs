@@ -7,17 +7,17 @@ use super::noise::{Brownian2, Seed, open_simplex2};
 // Should be in some json file in the future
 
 /// A tile
-enum Tile {
+pub enum Tile {
   Water,
   Grass,
 }
 
 /// A map
-struct Map<'a> {
+pub struct Map<'a> {
   seed: &'a Seed,
 }
 
-impl<'a> Map<'a> {
+pub impl<'a> Map<'a> {
   /// Creates a new map
   fn new(seed: &'a Seed) -> Map<'a> {
     Map {
