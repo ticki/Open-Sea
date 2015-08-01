@@ -4,10 +4,11 @@ extern crate glutin_window;
 extern crate opengl_graphics;
 extern crate noise;
 
+use std::path::Path;
+
 use piston::window::WindowSettings;
 use piston::event::{ Event, Events };
 use piston::input::{ Button, Input, Key };
-use std::path::Path;
 
 use glutin_window::GlutinWindow as Window;
 use opengl_graphics::{OpenGL, GlGraphics, Texture};
@@ -37,7 +38,7 @@ fn main() {
   // Create the image object and attach a square Rectangle object inside.
   let image = Image::new().rect(square(100.0, 10.0, 200.0));
   // A texture to use with the image
-  let texture = Texture::from_path(Path::new("/home/adam/Programming/Open-Sea/assets/stamos.png")).unwrap();
+  let texture = Texture::from_path(Path::new("./assets/stamos.png")).unwrap();
 
   // This is the object used for drawing
   let mut gl = GlGraphics::new(gl_context);
