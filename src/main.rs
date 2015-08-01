@@ -10,10 +10,11 @@ use piston::input::{ Button, Input, Key };
 use glutin_window::GlutinWindow as Window;
 use opengl_graphics::OpenGL;
 
-mod mapgen;
-mod traits;
-mod models;
-mod renderer;
+// Why pub? Because that makes the docs work.
+pub mod mapgen;
+pub mod traits;
+pub mod models;
+pub mod renderer;
 
 use traits::*;
 
