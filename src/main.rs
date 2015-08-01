@@ -7,8 +7,13 @@ extern crate noise;
 use piston::window::WindowSettings;
 use piston::event::{ Event, Events };
 use piston::input::{ Button, Input, Key };
+use std::path::Path;
+
 use glutin_window::GlutinWindow as Window;
-use opengl_graphics::OpenGL;
+use opengl_graphics::{OpenGL, GlGraphics, Texture};
+
+use graphics::Image;
+use graphics::rectangle::square;
 
 // Why pub? Because that makes the docs work.
 pub mod mapgen;
@@ -22,7 +27,6 @@ use traits::*;
 const TITLE: &'static str = "Open Sea";
 
 fn main() {
-
   let view = renderer::GameView::new();
 
   let gl_context = OpenGL::_2_1;
@@ -30,8 +34,13 @@ fn main() {
   let window = Window::new(gl_context,
                WindowSettings::new(TITLE, [800, 600]).exit_on_esc(true));
 
+  // Create the image object and attach a square Rectangle object inside.
+  let image = Image::new().rect(square(100.0, 10.0, 200.0));
+  // A texture to use with the image
+  let texture = Texture::from_path(Path::new("/home/adam/Programming/Open-Sea/assets/stamos.png")).unwrap();
+
   // This is the object used for drawing
-  let mut gl = opengl_graphics::GlGraphics::new(gl_context);
+  let mut gl = GlGraphics::new(gl_context);
 
   for event in window.events() {
     match event {
@@ -43,9 +52,12 @@ fn main() {
 
       Event::Render(args) => {
         use graphics::*;
-        gl.draw(args.viewport(), |_, gl| {
+        gl.draw(args.viewport(), |c, gl| {
           clear([1.0, 1.0, 1.0, 1.0], gl);
+
           renderer::render(gl, &view);
+          
+          image.draw(&texture, default_draw_state(), c.transform, gl);
         });
       },
 
