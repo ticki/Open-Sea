@@ -16,7 +16,7 @@ pub struct MapGenerator<'a> {
 
 impl<'a> MapGenerator<'a> {
   /// Creates a new map
-  fn new(seed: &'a Seed) -> MapGenerator<'a> {
+  pub fn new(seed: &'a Seed) -> MapGenerator<'a> {
      MapGenerator {
        seed: seed,
      }
