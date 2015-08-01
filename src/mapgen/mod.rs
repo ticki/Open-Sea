@@ -16,13 +16,11 @@ pub struct MapGenerator<'a> {
 
 impl<'a> MapGenerator<'a> {
   /// Creates a new map
-  // TODO uncomment. commented out because Map initialization doesn't match definition,
-  // but we don't have everything we need to initialize it yet
-  // fn new(seed: &'a Seed) -> Map<'a> {
-  //   Map {
-  //     seed: seed,
-  //   }
-  // }
+  fn new(seed: &'a Seed) -> MapGenerator<'a> {
+     MapGenerator {
+       seed: seed,
+     }
+   }
 
   // TODO: Add some sort of cache
 
