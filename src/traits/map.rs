@@ -28,5 +28,6 @@ pub struct Map<'a> {
 
 /// A tiled map
 pub trait TileMap {
+  /// Get the tile of a given field
   fn get_tile(&self, x: i64, i64) -> Tile;
 }
