@@ -4,7 +4,6 @@ pub mod view;
 mod map;
 
 pub use self::view::View;
-// TODO uncomment:
 pub use self::map::*;
 
 

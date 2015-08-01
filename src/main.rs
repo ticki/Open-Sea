@@ -15,36 +15,40 @@ mod traits;
 mod models;
 mod renderer;
 
+use traits::*;
+
 
 const TITLE: &'static str = "Open Sea";
 
 fn main() {
-    let gl_context = OpenGL::_2_1;
 
-    let window = Window::new(gl_context,
-                             WindowSettings::new(TITLE, [800, 600]).exit_on_esc(true));
+  let view = renderer::GameView::new();
 
-    // This is the object used for drawing
-    let mut gl = opengl_graphics::GlGraphics::new(gl_context);
+  let gl_context = OpenGL::_2_1;
 
-    for event in window.events() {
-        match event {
-            Event::Input(Input::Press(Button::Keyboard(Key::Return))) =>
-                println!("Return pressed!"),
+  let window = Window::new(gl_context,
+               WindowSettings::new(TITLE, [800, 600]).exit_on_esc(true));
 
-            Event::Input(Input::Release(Button::Keyboard(Key::Return))) =>
-                println!("Return released!"),
+  // This is the object used for drawing
+  let mut gl = opengl_graphics::GlGraphics::new(gl_context);
 
-            Event::Render(args) => {
-                use graphics::*;
-                gl.draw(args.viewport(), |_, gl| {
-                    clear([1.0, 1.0, 1.0, 1.0], gl);
-                    // TODO uncomment:
-                    // renderer::render(&gl);
-                });
-            },
+  for event in window.events() {
+    match event {
+      Event::Input(Input::Press(Button::Keyboard(Key::Return))) =>
+        println!("Return pressed!"),
 
-            _ => {}
-        }
+      Event::Input(Input::Release(Button::Keyboard(Key::Return))) =>
+        println!("Return released!"),
+
+      Event::Render(args) => {
+        use graphics::*;
+        gl.draw(args.viewport(), |_, gl| {
+          clear([1.0, 1.0, 1.0, 1.0], gl);
+          renderer::render(gl, &view);
+        });
+      },
+
+      _ => {}
     }
+  }
 }
