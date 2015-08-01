@@ -47,7 +47,7 @@ impl<'a> TileMap for MapGenerator<'a> {
   fn get_tile(&self, x: i64, y: i64) -> Tile {
     let val = (self.get_noise_value(x, y) + self.get_overlay_value(x, y)) / 2.0;
 
-    if(val > 0.9) {
+    if val > 0.9 {
       Tile::Grass
     } else {
       Tile::Water

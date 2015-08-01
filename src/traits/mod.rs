@@ -20,6 +20,7 @@ pub trait Positioned {
   fn set_y(&mut self, new_y: i64);
 }
 
+// TODO: Isn't a trait should be moved.
 /// The direction of a given object
 #[derive(Clone, Copy)]
 pub enum Dir {

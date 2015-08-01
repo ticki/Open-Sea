@@ -10,6 +10,7 @@ struct Player;
 struct Object;
 
 
+// TODO: Isn't a trait should be moved.
 /// The tiles
 pub enum Tile {
   Water,
