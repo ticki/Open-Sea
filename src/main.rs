@@ -24,6 +24,8 @@ pub mod renderer;
 
 use core::*;
 
+use renderer::Renderer;
+
 
 const TITLE: &'static str = "Open Sea";
 
@@ -42,6 +44,7 @@ fn main() {
 
   // This is the object used for drawing
   let mut gl = GlGraphics::new(gl_context);
+  let renderer = Renderer::new();
 
   for event in window.events() {
     match event {
@@ -56,7 +59,7 @@ fn main() {
         gl.draw(args.viewport(), |c, gl| {
           clear([1.0, 1.0, 1.0, 1.0], gl);
 
-          view.render(gl);
+          view.render(&args, gl, &renderer);
 
           image.draw(&texture, default_draw_state(), c.transform, gl);
         });

@@ -1,6 +1,10 @@
+use piston::event::RenderArgs;
+
 use opengl_graphics::GlGraphics;
 
 use core::View;
+
+use renderer::Renderer;
 
 
 /// The in-game view
@@ -13,5 +17,7 @@ impl GameView {
 }
 
 impl View for GameView {
-  fn render(&self, gl: &mut GlGraphics) {}
+  fn render(&self, args: &RenderArgs, gl: &mut GlGraphics, renderer: &Renderer) {
+    renderer.draw_text(args, gl, "Test");
+  }
 }
