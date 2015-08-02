@@ -1,5 +1,7 @@
 //! Traits for the game
 
+// TODO: Rename to core
+
 pub mod view;
 mod map;
 

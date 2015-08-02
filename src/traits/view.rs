@@ -6,9 +6,9 @@ pub trait View {
   /// Render the view.
   fn render(&self, gl: &mut GlGraphics);
 
-  /// Call this on start of view
+  /// This gets called when the view starts
   fn start(&mut self) {}
-  /// Call this on end of view
+  /// This gets called when the view ends
   fn end(&mut self) {}
 }
 

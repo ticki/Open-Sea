@@ -4,7 +4,7 @@ use opengl_graphics::GlGraphics;
 
 use traits::View;
 
-
+// The renderer function
 pub fn render<V: View>(gl: &mut GlGraphics, view: &V) {
   view.render(gl);
 }

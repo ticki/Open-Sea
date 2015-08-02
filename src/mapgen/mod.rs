@@ -1,4 +1,4 @@
-//! A module for the automatic map generation
+//! The module for the automatic map generation
 
 use noise::{Brownian2, Seed, open_simplex2};
 
