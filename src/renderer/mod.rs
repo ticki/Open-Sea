@@ -72,18 +72,12 @@ impl CharacterCache for Font {
     // unsupported characters (FONT_UNKNOWN_GLYPH_CHAR's glyph)
     if code >= FONT_CHARS_IN_COL * FONT_CHARS_IN_ROW {
       let unknown_glyph_code = FONT_UNKNOWN_GLYPH_CHAR as u32;
-      let glyph: &Character<Self::Texture>;
-      match self.cache.get(&unknown_glyph_code) {
-        Some(_glyph) => glyph = _glyph,
-        None => {
-          glyph = &self.create_character(unknown_glyph_code);
-          self.cache.insert(unknown_glyph_code, *glyph);
-        }
+      if let None = self.cache.get(&unknown_glyph_code) {
+        self.cache.insert(unknown_glyph_code, self.create_character(unknown_glyph_code));
       }
-      self.cache.insert(code, *glyph);
       return &self.cache[&unknown_glyph_code];
     }
-    // Else cache the actual glyph
+    // Otherwise, cache the actual glyph
     self.cache.insert(code, self.create_character(code));
     // And return it
     &self.cache[&code]
