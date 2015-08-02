@@ -3,9 +3,9 @@
 use noise::{Brownian2, Seed, open_simplex2};
 
 // TODO pick:
-// use traits::*;
-// use traits::{Map, Tile, TileMap};
-use traits::{Tile, TileMap};
+// use core::*;
+// use core::{Map, Tile, TileMap};
+use core::{Block, Tile, TileMap};
 
 // Probably really buggy code...
 
@@ -71,13 +71,14 @@ impl<'a> TileMap for MapGenerator<'a> {
 
   // Add foreground/background
   /// Get the tile at a given point
-  fn get_tile(&self, x: i64, y: i64) -> Tile {
+  fn get_tile(&self, x: i64, y: i64) -> Block {
     let val = (self.get_noise_value(x, y) + self.get_overlay_value(x, y)) / 2.0;
 
+    // Temporary map gen. Proof of concept.
     if val > 0.9 {
-      Tile::Grass
+      Block::new(Tile::Water, Tile::Grass, Tile::Tree)
     } else {
-      Tile::Water
+      Block::new(Tile::Water, Tile::None, Tile::None)
     }
   }
 }

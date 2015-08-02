@@ -4,4 +4,4 @@ mod player;
 
 pub use self::player::Player;
 
-use traits;
+use core;

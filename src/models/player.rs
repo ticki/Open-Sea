@@ -1,4 +1,4 @@
-use traits::*;
+use core::*;
 
 /// A player
 pub struct Player {

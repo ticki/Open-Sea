@@ -18,11 +18,11 @@ use graphics::rectangle::square;
 
 // Why pub? Because that makes the docs work.
 pub mod mapgen;
-pub mod traits;
+pub mod core;
 pub mod models;
 pub mod renderer;
 
-use traits::*;
+use core::*;
 
 
 const TITLE: &'static str = "Open Sea";
@@ -57,7 +57,7 @@ fn main() {
           clear([1.0, 1.0, 1.0, 1.0], gl);
 
           renderer::render(gl, &view);
-          
+
           image.draw(&texture, default_draw_state(), c.transform, gl);
         });
       },
