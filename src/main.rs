@@ -28,7 +28,7 @@ use core::*;
 const TITLE: &'static str = "Open Sea";
 
 fn main() {
-  let view = renderer::GameView::new();
+  let view = core::GameView::new();
 
   let gl_context = OpenGL::_2_1;
 
@@ -56,7 +56,7 @@ fn main() {
         gl.draw(args.viewport(), |c, gl| {
           clear([1.0, 1.0, 1.0, 1.0], gl);
 
-          renderer::render(gl, &view);
+          view.render(gl);
 
           image.draw(&texture, default_draw_state(), c.transform, gl);
         });

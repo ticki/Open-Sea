@@ -1,8 +1,10 @@
 //! Traits, structs, and other objects for the game
 
+mod game_view;
 pub mod view;
 mod map;
 
+pub use self::game_view::GameView;
 pub use self::view::View;
 pub use self::map::*;
 
