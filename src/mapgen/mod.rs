@@ -22,10 +22,12 @@ pub struct MapGenerator<'a> {
 enum BChunkType {
   /// Reserved for history, empty per default, but gets opened as the game is played. Manually designed.
   History,
-  // Automatic map generated chunk
+  /// Automatic map generated chunk
   Auto,
-  // Manually random generated chunk
+  /// Manually random generated chunk
   Manually,
+  /// Empty chunck
+  Empty,
 }
 
 // TODO: Find out how to prevent double islands (manually generated islands)
@@ -52,12 +54,20 @@ impl<'a> MapGenerator<'a> {
     (((x as f64) / 64.0).floor() as i64, ((y as f64) / 64.0).floor() as i64)
   }
 
-  /* TODO: Finish this:
-  fn get_bchunk_type(x: i64, y: i64) -> BChunkType {
+  /// Get the chunk type of the big chunk at (x, y)
+  fn get_bchunk_type(&self, x: i64, y: i64) -> BChunkType {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
-    noise.apply(&self.seed, &[x as f64, y as f64])
+    let noise_val = noise.apply(&self.seed, &[x as f64, y as f64]);
+    if noise_val > 0.3 {
+      BChunkType::Empty // Too many too few? 
+    } else if noise_val > 0.1 {
+      BChunkType::Auto
+    } else if noise_val > 0.05 {
+      BChunkType::History
+    } else {
+      BChunkType::Manually
+    }
   }
-  */
 
   /// Get overlay value (used for customizing the noise)
   fn get_overlay_value(&self, x: i64, y: i64) -> f64 {
