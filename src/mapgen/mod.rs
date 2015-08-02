@@ -33,10 +33,10 @@ enum BChunkType {
 impl<'a> MapGenerator<'a> {
   /// Creates a new map
   pub fn new(seed: &'a Seed) -> MapGenerator<'a> {
-     MapGenerator {
-       seed: seed,
-     }
-   }
+    MapGenerator {
+      seed: seed,
+    }
+  }
 
   // TODO: Add some sort of cache
 
