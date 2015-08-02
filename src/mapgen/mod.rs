@@ -19,20 +19,20 @@ pub struct MapGenerator<'a> {
 }
 
 /// Types of big chunks
-enum BChunkType {
+pub enum BChunkType {
   /// Reserved for history, empty per default, but gets opened as the game is played. Manually designed.
   History,
   /// Automatic map generated chunk
   Auto,
   /// Manually random generated chunk
   Manually,
-  /// Empty chunck
+  /// Empty chunk
   Empty,
 }
 
 // TODO: Find out how to prevent double islands (manually generated islands)
 
-impl<'a> MapGenerator<'a> {
+impl<'a> MapGenerator<'a> { 
   /// Creates a new map
   pub fn new(seed: &'a Seed) -> MapGenerator<'a> {
     MapGenerator {
@@ -43,19 +43,19 @@ impl<'a> MapGenerator<'a> {
   // TODO: Add some sort of cache
 
   /// Get the noise value at a given point
-  fn get_noise_value(&self, x: i64, y: i64) -> f64 {
+  pub fn get_noise_value(&self, x: i64, y: i64) -> f64 {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
     noise.apply(&self.seed, &[x as f64, y as f64])
   }
 
   /// Get big chunk coordinates
-  fn get_bchunk(x: i64, y: i64) -> (i64, i64) {
+  pub fn get_bchunk(x: i64, y: i64) -> (i64, i64) {
     // TODO: Chunk size 64?
     (((x as f64) / 64.0).floor() as i64, ((y as f64) / 64.0).floor() as i64)
   }
 
   /// Get the chunk type of the big chunk at (x, y)
-  fn get_bchunk_type(&self, x: i64, y: i64) -> BChunkType {
+  pub fn get_bchunk_type(&self, x: i64, y: i64) -> BChunkType {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
     let noise_val = noise.apply(&self.seed, &[x as f64, y as f64]);
     if noise_val > 0.3 {
@@ -70,10 +70,27 @@ impl<'a> MapGenerator<'a> {
   }
 
   /// Get overlay value (used for customizing the noise)
-  fn get_overlay_value(&self, x: i64, y: i64) -> f64 {
-    // TODO
-    // Stuff here
-    1.0
+  pub fn get_overlay_value(&self, x: i64, y: i64) -> f64 { 
+    let (cx, cy) = MapGenerator::get_bchunk(x, y);
+    let chunk_type = self.get_bchunk_type(cx, cy);
+    match chunk_type {
+      BChunkType::Empty => 0.0,
+      BChunkType::Auto => {
+        // This is why we need vector math, kids.
+
+        // TODO: Make more shapes.
+        let elip_dist = (((cx - x) * (cx - x) + (cy - y) * (cy - y)) as f64).sqrt(); 
+        
+        let res = 25.0 - elip_dist;
+
+        if res > 0.0 {
+          res
+        } else {
+          0.0
+        }
+      },
+      _ => 0.0,
+    }
   }
 }
 
