@@ -53,15 +53,13 @@ pub trait Movable: Positioned {
       match dir {
         Dir::Left => 1,
         Dir::Right => -1,
-        Dir::Up => 0,
-        Dir::Down => 0,
+        _ => 0,
       },
 
       match dir {
-        Dir::Left => 0,
-        Dir::Right => 0,
         Dir::Up => 1,
         Dir::Down => -1,
+        _ => 0,
       }
 
     );
