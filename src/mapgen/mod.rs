@@ -11,20 +11,20 @@ use traits::{Tile, TileMap};
 
 /// A map
 ///
-/// Note: It's chuncked into big chuncks and small chuncks.
-///       Small chuncks keeps the noise data. Big chuncks
+/// Note: It's chunked into big chunks and small chunks.
+///       Small chunks keeps the noise data. Big chunks
 ///       determines the overlay layer.
 pub struct MapGenerator<'a> {
   seed: &'a Seed,
 }
 
-/// Types of big chuncks
-enum BChunckType {
+/// Types of big chunks
+enum BChunkType {
   /// Reserved for history, empty per default, but gets opened as the game is played. Manually designed.
   History,
-  // Automatic map generated chunck
+  // Automatic map generated chunk
   Auto,
-  // Manually random generated chunck
+  // Manually random generated chunk
   Manually,
 }
 
@@ -46,14 +46,14 @@ impl<'a> MapGenerator<'a> {
     noise.apply(&self.seed, &[x as f64, y as f64])
   }
 
-  /// Get big chunck coordinates
-  fn get_bchunck(x: i64, y: i64) -> (i64, i64) {
-    // TODO: Chunck size 64?
+  /// Get big chunk coordinates
+  fn get_bchunk(x: i64, y: i64) -> (i64, i64) {
+    // TODO: Chunk size 64?
     (((x as f64) / 64.0).floor() as i64, ((y as f64) / 64.0).floor() as i64)
   }
 
   /* TODO: Finish this:
-  fn get_bchunck_type(x: i64, y: i64) -> BChunckType {
+  fn get_bchunk_type(x: i64, y: i64) -> BChunkType {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
     noise.apply(&self.seed, &[x as f64, y as f64])
   }
