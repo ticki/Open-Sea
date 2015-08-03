@@ -32,6 +32,7 @@ pub enum BChunkType {
 
 // TODO: Find out how to prevent double islands (manually generated islands)
 
+// TODO: Use Vec2 in this methods:
 impl<'a> MapGenerator<'a> { 
   /// Creates a new map
   pub fn new(seed: &'a Seed) -> MapGenerator<'a> {

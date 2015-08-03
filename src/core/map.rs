@@ -9,6 +9,8 @@ struct Player;
 // TODO also remove; I stubbed this out because it doesn't exist yet
 struct Object;
 
+use core::Vec2;
+
 
 /// The tiles
 pub enum Tile {
@@ -45,5 +47,6 @@ pub struct Map<'a> {
 // Todo add layers
 /// A tiled map
 pub trait TileMap {
-  fn get_tile(&self, x: i64, i64) -> Block;
+  /// Get the tile on this given coordinate
+  fn get_tile(&self, coord: Vec2<i64>) -> Block;
 }
