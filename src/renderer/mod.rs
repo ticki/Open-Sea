@@ -21,7 +21,7 @@ impl Renderer {
   pub fn new() -> Renderer {
     Renderer {
       font: GlyphCache::new(Path::new("./assets/MathJax.otf")).unwrap(),
-      text: graphics::text::Text::new(10)
+      text: graphics::text::Text::new(20)
     }
   }
 
