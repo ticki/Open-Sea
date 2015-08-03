@@ -1,12 +1,16 @@
 //! Traits, structs, and other objects for the game
 
+mod angle;
 mod game_view;
 pub mod view;
 mod map;
+mod vec2;
 
+pub use self::angle::Angle;
 pub use self::game_view::GameView;
 pub use self::view::View;
 pub use self::map::*;
+pub use self::vec2::Vec2;
 
 
 /// A trait for positioned objects
