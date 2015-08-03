@@ -33,7 +33,7 @@ impl Block {
       background: background,
       ground: ground,
       foreground: foreground,
-    } 
+    }
   }
 }
 

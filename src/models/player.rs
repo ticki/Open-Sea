@@ -1,4 +1,4 @@
-use core::*;
+use core::{Dir, Movable, Positioned, Vec2};
 
 /// A player
 pub struct Player {

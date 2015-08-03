@@ -8,7 +8,6 @@ use opengl_graphics::GlGraphics;
 use opengl_graphics::glyph_cache::GlyphCache;
 
 use graphics;
-use graphics::Transformed;
 
 
 pub struct Renderer {
@@ -26,10 +25,11 @@ impl Renderer {
   }
 
   pub fn draw_text(&mut self, args: &RenderArgs, gl: &mut GlGraphics, s: &str) {
+    use graphics::*;
     gl.draw(args.viewport(), |c, gl| {
       self.text.draw(s,
                      &mut self.font,
-                     graphics::default_draw_state(),
+                     default_draw_state(),
                      c.trans(10.0, 20.0).transform,
                      gl );
     });

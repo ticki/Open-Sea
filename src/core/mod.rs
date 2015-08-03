@@ -9,7 +9,7 @@ mod vec2;
 pub use self::angle::Angle;
 pub use self::game_view::GameView;
 pub use self::view::View;
-pub use self::map::*;
+pub use self::map::{Block, Map, Tile, TileMap};
 pub use self::vec2::Vec2;
 
 
@@ -41,7 +41,8 @@ pub trait Movable: Positioned {
   fn set_dir(&mut self, new_dir: Dir);
   /// Move the object
   fn move_obj(&mut self, mov: Vec2<i64>) {
-    self.set_coord(self.get_coord() + mov) 
+    let coord = self.get_coord();
+    self.set_coord(coord + mov);
   }
   /// Take a step in the current direction
   fn take_step(&mut self) {

@@ -7,7 +7,7 @@ use core::Angle;
 
 #[derive(Clone, Copy, Debug)]
 /// Vector struct, implements vector operations
-pub struct Vec2<T>(T, T)
+pub struct Vec2<T>(pub T, pub T)
   where T: Add<Output=T>
          + Sub<Output=T>
          + Mul<Output=T>

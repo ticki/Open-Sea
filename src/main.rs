@@ -22,7 +22,7 @@ pub mod core;
 pub mod models;
 pub mod renderer;
 
-use core::*;
+use core::View;
 
 use renderer::Renderer;
 

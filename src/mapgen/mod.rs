@@ -45,7 +45,7 @@ impl<'a> MapGenerator<'a> {
   /// Get the noise value at a given point
   pub fn get_noise_value(&self, coord: Vec2<i64>) -> f64 {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
-    noise.apply(&self.seed, &[coord.x() as f64, coord.y as f64])
+    noise.apply(&self.seed, &[coord.x() as f64, coord.y() as f64])
     // Todo: Add some sort of converter method
   }
 
@@ -80,9 +80,14 @@ impl<'a> MapGenerator<'a> {
         // This is why we need vector math, kids.
 
         // TODO: Make more shapes.
-        let elip_dist = (((cx - x) * (cx - x) + (cy - y) * (cy - y)) as f64).sqrt(); 
-        
+
+        /* TODO: Uncomment all this. I don't know what you're doing but I want
+                 the code to compile.
+        let elip_dist = (((cx - x) * (cx - x) + (cy - y) * (cy - y)) as f64).sqrt();
         let res = 25.0 - elip_dist;
+        */
+        // TODO: Also remove this next line. See above.
+        let res = 25.0;
 
         if res > 0.0 {
           res
@@ -99,7 +104,7 @@ impl<'a> TileMap for MapGenerator<'a> {
 
   // Add foreground/background
   /// Get the tile at a given point
-  fn get_tile(&self, coord: Vec<i64>) -> Block {
+  fn get_tile(&self, coord: Vec2<i64>) -> Block {
     let val = (self.get_noise_value(coord)
                + self.get_overlay_value(coord)) / 2.0;
 
