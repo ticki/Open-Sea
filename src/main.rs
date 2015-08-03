@@ -44,7 +44,7 @@ fn main() {
 
   // This is the object used for drawing
   let mut gl = GlGraphics::new(gl_context);
-  let renderer = Renderer::new();
+  let mut renderer = Renderer::new();
 
   for event in window.events() {
     match event {
@@ -59,7 +59,7 @@ fn main() {
         gl.draw(args.viewport(), |c, gl| {
           clear([1.0, 1.0, 1.0, 1.0], gl);
 
-          view.render(&args, gl, &renderer);
+          view.render(&args, gl, &mut renderer);
 
           image.draw(&texture, default_draw_state(), c.transform, gl);
         });

@@ -5,14 +5,14 @@ use std::path::Path;
 use piston::event::RenderArgs;
 
 use opengl_graphics::GlGraphics;
+use opengl_graphics::glyph_cache::GlyphCache;
 
 use graphics;
-
-mod font;
+use graphics::Transformed;
 
 
 pub struct Renderer {
-  font: font::Font,
+  font: GlyphCache<'static>,
   text: graphics::text::Text,
 }
 
@@ -20,17 +20,17 @@ pub struct Renderer {
 impl Renderer {
   pub fn new() -> Renderer {
     Renderer {
-      font: font::Font::new(Path::new("./assets/font-8x8.png")),
+      font: GlyphCache::new(Path::new("./assets/MathJax.otf")).unwrap(),
       text: graphics::text::Text::new(10)
     }
   }
 
-  pub fn draw_text(&self, args: &RenderArgs, gl: &GlGraphics, s: &str) {
+  pub fn draw_text(&mut self, args: &RenderArgs, gl: &mut GlGraphics, s: &str) {
     gl.draw(args.viewport(), |c, gl| {
       self.text.draw(s,
-                     &mut self.font.texture,
+                     &mut self.font,
                      graphics::default_draw_state(),
-                     c.transform,
+                     c.trans(10.0, 20.0).transform,
                      gl );
     });
   }
