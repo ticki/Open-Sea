@@ -5,9 +5,8 @@ use noise::{Brownian2, Seed, open_simplex2};
 // TODO pick:
 // use core::*;
 // use core::{Map, Tile, TileMap};
-use core::{Block, Tile, TileMap};
+use core::*;
 
-// Probably really buggy code...
 
 /// A map
 ///
@@ -53,7 +52,7 @@ impl<'a> MapGenerator<'a> {
   /// Get big chunk coordinates
   pub fn get_bchunk(coord: Vec2<i64>) -> Vec2<i64> {
     // TODO: Chunk size 64?
-    vec2(((coord.x() as f64) / 64.0).floor() as i64, ((coord.y() as f64) / 64.0).floor() as i64)
+    Vec2(((coord.x() as f64) / 64.0).floor() as i64, ((coord.y() as f64) / 64.0).floor() as i64)
   }
 
   /// Get the chunk type of the big chunk at (x, y)
@@ -73,8 +72,8 @@ impl<'a> MapGenerator<'a> {
 
   /// Get overlay value (used for customizing the noise)
   pub fn get_overlay_value(&self, coord: Vec2<i64>) -> f64 { 
-    let Vec2(cx, cy) = MapGenerator::get_bchunk(vec2(x, y));
-    let chunk_type = self.get_bchunk_type(vec2(cx, cy));
+    let Vec2(cx, cy) = MapGenerator::get_bchunk(coord);
+    let chunk_type = self.get_bchunk_type(Vec2(cx, cy));
     match chunk_type {
       BChunkType::Empty => 0.0,
       BChunkType::Auto => {
@@ -101,8 +100,8 @@ impl<'a> TileMap for MapGenerator<'a> {
   // Add foreground/background
   /// Get the tile at a given point
   fn get_tile(&self, coord: Vec<i64>) -> Block {
-    let Vec2(x, y) = coord;
-    let val = (self.get_noise_value(x, y) + self.get_overlay_value(x, y)) / 2.0;
+    let val = (self.get_noise_value(coord)
+               + self.get_overlay_value(coord)) / 2.0;
 
     // Temporary map gen. Proof of concept.
     if val > 0.9 {

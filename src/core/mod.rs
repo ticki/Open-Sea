@@ -16,9 +16,9 @@ pub use self::vec2::Vec2;
 /// A trait for positioned objects
 pub trait Positioned {
   /// Get the x coordinate
-  fn get_coord(&self) -> Vec<i64>;
+  fn get_coord(&self) -> Vec2<i64>;
   /// Set the Vec coordinate
-  fn set_coord(&mut self, coord: Vec<i64>);
+  fn set_coord(&mut self, coord: Vec2<i64>);
 }
 
 /// The direction of a given object
@@ -40,7 +40,7 @@ pub trait Movable: Positioned {
   /// Set the direction
   fn set_dir(&mut self, new_dir: Dir);
   /// Move the object
-  fn move_obj(&mut self, mov: Vec<i64>) {
+  fn move_obj(&mut self, mov: Vec2<i64>) {
     self.set_coord(self.get_coord() + mov) 
   }
   /// Take a step in the current direction

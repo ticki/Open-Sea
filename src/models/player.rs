@@ -8,10 +8,10 @@ pub struct Player {
 
 
 impl Positioned for Player {
-  fn get_coord(&self) -> i64 {
+  fn get_coord(&self) -> Vec2<i64> {
     self.coord
   }
-  fn set_coord(&mut self, coord: i64) {
+  fn set_coord(&mut self, coord: Vec2<i64>) {
     self.coord = coord;
   }
 }
