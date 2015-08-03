@@ -44,21 +44,22 @@ impl<'a> MapGenerator<'a> {
   // TODO: Add some sort of cache
 
   /// Get the noise value at a given point
-  pub fn get_noise_value(&self, x: i64, y: i64) -> f64 {
+  pub fn get_noise_value(&self, coord: Vec2<i64>) -> f64 {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
-    noise.apply(&self.seed, &[x as f64, y as f64])
+    noise.apply(&self.seed, &[coord.x() as f64, coord.y as f64])
+    // Todo: Add some sort of converter method
   }
 
   /// Get big chunk coordinates
-  pub fn get_bchunk(x: i64, y: i64) -> (i64, i64) {
+  pub fn get_bchunk(coord: Vec2<i64>) -> Vec2<i64> {
     // TODO: Chunk size 64?
-    (((x as f64) / 64.0).floor() as i64, ((y as f64) / 64.0).floor() as i64)
+    vec2(((coord.x() as f64) / 64.0).floor() as i64, ((coord.y() as f64) / 64.0).floor() as i64)
   }
 
   /// Get the chunk type of the big chunk at (x, y)
-  pub fn get_bchunk_type(&self, x: i64, y: i64) -> BChunkType {
+  pub fn get_bchunk_type(&self, coord: Vec2<i64>) -> BChunkType {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
-    let noise_val = noise.apply(&self.seed, &[x as f64, y as f64]);
+    let noise_val = noise.apply(&self.seed, &[coord.x() as f64, coord.y() as f64]);
     if noise_val > 0.3 {
       BChunkType::Empty // Too many too few? 
     } else if noise_val > 0.1 {
@@ -71,9 +72,9 @@ impl<'a> MapGenerator<'a> {
   }
 
   /// Get overlay value (used for customizing the noise)
-  pub fn get_overlay_value(&self, x: i64, y: i64) -> f64 { 
-    let (cx, cy) = MapGenerator::get_bchunk(x, y);
-    let chunk_type = self.get_bchunk_type(cx, cy);
+  pub fn get_overlay_value(&self, coord: Vec2<i64>) -> f64 { 
+    let Vec2(cx, cy) = MapGenerator::get_bchunk(vec2(x, y));
+    let chunk_type = self.get_bchunk_type(vec2(cx, cy));
     match chunk_type {
       BChunkType::Empty => 0.0,
       BChunkType::Auto => {
@@ -99,7 +100,8 @@ impl<'a> TileMap for MapGenerator<'a> {
 
   // Add foreground/background
   /// Get the tile at a given point
-  fn get_tile(&self, x: i64, y: i64) -> Block {
+  fn get_tile(&self, coord: Vec<i64>) -> Block {
+    let Vec2(x, y) = coord;
     let val = (self.get_noise_value(x, y) + self.get_overlay_value(x, y)) / 2.0;
 
     // Temporary map gen. Proof of concept.

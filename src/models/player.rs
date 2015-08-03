@@ -2,24 +2,17 @@ use core::*;
 
 /// A player
 pub struct Player {
-  x: i64,
-  y: i64,
+  coord: Vec2<i64>,
   dir: Dir,
 }
 
 
 impl Positioned for Player {
-  fn get_x(&self) -> i64 {
-    self.x
+  fn get_coord(&self) -> i64 {
+    self.coord
   }
-  fn get_y(&self) -> i64 {
-    self.y
-  }
-  fn set_x(&mut self, new_x: i64) {
-    self.x = new_x;
-  }
-  fn set_y(&mut self, new_y: i64) {
-    self.y = new_y;
+  fn set_coord(&mut self, coord: i64) {
+    self.coord = coord;
   }
 }
 
