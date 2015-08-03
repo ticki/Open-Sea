@@ -28,7 +28,7 @@ impl Renderer {
   pub fn draw_text(&self, args: &RenderArgs, gl: &GlGraphics, s: &str) {
     gl.draw(args.viewport(), |c, gl| {
       self.text.draw(s,
-                     &mut self.font,
+                     &mut self.font.texture,
                      graphics::default_draw_state(),
                      c.transform,
                      gl );
