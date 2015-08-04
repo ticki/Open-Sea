@@ -8,7 +8,9 @@ use renderer::Renderer;
 /// A view
 pub trait View {
   /// Render the view.
-  fn render(&self, args: &RenderArgs, gl: &mut GlGraphics, renderer: &mut Renderer);
+  fn render(&self, args: &RenderArgs,
+            gl: &mut GlGraphics,
+            renderer: &mut Renderer);
 
   /// This gets called when the view starts
   fn start(&mut self) {}

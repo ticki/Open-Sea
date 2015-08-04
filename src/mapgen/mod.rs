@@ -19,7 +19,8 @@ pub struct MapGenerator<'a> {
 
 /// Types of big chunks
 pub enum BChunkType {
-  /// Reserved for history, empty per default, but gets opened as the game is played. Manually designed.
+  /// Reserved for history, empty per default, but gets opened as the game is
+  /// played. Manually designed.
   History,
   /// Automatic map generated chunk
   Auto,
@@ -52,13 +53,15 @@ impl<'a> MapGenerator<'a> {
   /// Get big chunk coordinates
   pub fn get_bchunk(coord: Vec2<i64>) -> Vec2<i64> {
     // TODO: Chunk size 64?
-    Vec2(((coord.x() as f64) / 64.0).floor() as i64, ((coord.y() as f64) / 64.0).floor() as i64)
+    Vec2(((coord.x() as f64) / 64.0).floor() as i64,
+         ((coord.y() as f64) / 64.0).floor() as i64)
   }
 
   /// Get the chunk type of the big chunk at (x, y)
   pub fn get_bchunk_type(&self, coord: Vec2<i64>) -> BChunkType {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
-    let noise_val = noise.apply(&self.seed, &[coord.x() as f64, coord.y() as f64]);
+    let noise_val =
+      noise.apply(&self.seed, &[coord.x() as f64, coord.y() as f64]);
     if noise_val > 0.3 {
       BChunkType::Empty // Too many too few? 
     } else if noise_val > 0.1 {
