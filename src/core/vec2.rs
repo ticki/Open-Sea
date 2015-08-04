@@ -1,5 +1,4 @@
 use std::fmt::Debug;
-use std::f64;
 use std::ops::{Add, Sub, Mul, Div};
 
 use num::{Float, Num};

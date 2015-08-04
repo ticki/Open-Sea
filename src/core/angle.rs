@@ -1,7 +1,7 @@
 use std::fmt::Debug;
 use std::f32;
 use std::f64;
-use std::ops::{Add, Sub, Mul, Div, Rem};
+use std::ops::{Add, Sub};
 
 use num::Float;
 
