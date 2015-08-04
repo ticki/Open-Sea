@@ -2,9 +2,9 @@ use std::fmt::Debug;
 use std::f64;
 use std::ops::{Add, Sub, Mul, Div};
 
-use num::Num;
+use num::{Float, Num};
 
-use core::Angle;
+use core::angle::{Angle, AngleDatum};
 
 
 #[derive(Clone, Copy, Debug)]
@@ -27,23 +27,12 @@ impl<T> Vec2<T>
 }
 
 
-// TODO: Implement this for Float instead of for f32 and for f64
-impl Vec2<f32> {
+impl<F: AngleDatum> Vec2<F> {
   /// Convert polar form to Vec2
-  pub fn from_magnitude(magnitude: f32, direction: Angle<f32>) -> Vec2<f32> {
+  pub fn from_magnitude(magnitude: F, direction: Angle<F>) -> Vec2<F> {
     Vec2(
-      f32::cos(direction.as_radians()) * magnitude,
-      f32::sin(direction.as_radians()) * magnitude
-    )
-  }
-}
-
-
-impl Vec2<f64> {
-  pub fn from_magnitude(magnitude: f64, direction: Angle<f64>) -> Vec2<f64> {
-    Vec2(
-      f64::cos(direction.as_radians()) * magnitude,
-      f64::sin(direction.as_radians()) * magnitude
+      F::cos(direction.as_radians()) * magnitude,
+      F::sin(direction.as_radians()) * magnitude
     )
   }
 }

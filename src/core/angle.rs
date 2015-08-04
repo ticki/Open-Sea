@@ -3,17 +3,10 @@ use std::f32;
 use std::f64;
 use std::ops::{Add, Sub, Mul, Div, Rem};
 
+use num::Float;
 
-pub trait AngleDatum
-  : Add<Output=Self>
-  + Sub<Output=Self>
-  + Mul<Self, Output=Self>
-  + Div<Self, Output=Self>
-  + Rem<Output=Self>
-  + PartialOrd
-  + Clone + Copy + Debug {
 
-  fn zero() -> Self;
+pub trait AngleDatum : Copy + Debug + Float {
   fn pi() -> Self;
   fn pi_2() -> Self;
   fn _180_degrees() -> Self;
@@ -21,7 +14,6 @@ pub trait AngleDatum
 
 
 impl AngleDatum for f32 {
-  fn zero() -> Self { 0.0 }
   fn pi() -> Self { f32::consts::PI }
   fn pi_2() -> Self { f32::consts::PI * 2.0 }
   fn _180_degrees() -> Self { 180.0 }
@@ -29,7 +21,6 @@ impl AngleDatum for f32 {
 
 
 impl AngleDatum for f64 {
-  fn zero() -> Self { 0.0 }
   fn pi() -> Self { f64::consts::PI }
   fn pi_2() -> Self { f64::consts::PI * 2.0 }
   fn _180_degrees() -> Self { 180.0 }
