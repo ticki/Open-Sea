@@ -1,6 +1,8 @@
 use std::fmt::Debug;
 use std::f64;
-use std::ops::{ Add, Sub, Mul, Div };
+use std::ops::{Add, Sub, Mul, Div};
+
+use num::Num;
 
 use core::Angle;
 
@@ -8,19 +10,12 @@ use core::Angle;
 #[derive(Clone, Copy, Debug)]
 /// Vector struct, implements vector operations
 pub struct Vec2<T>(pub T, pub T)
-  where T: Add<Output=T>
-         + Sub<Output=T>
-         + Mul<Output=T>
-         + Div<Output=T>
-         + Clone + Copy + Debug;
+  where T: Copy + Debug + Num;
 
 
 impl<T> Vec2<T>
-  where T: Add<Output=T>
-         + Sub<Output=T>
-         + Mul<Output=T>
-         + Div<Output=T>
-         + Clone + Copy + Debug {
+  where T: Copy + Debug + Num {
+
   /// Get x component
   pub fn x(&self) -> T { self.0 }
   /// Get y component
@@ -31,7 +26,8 @@ impl<T> Vec2<T>
   }
 }
 
-// Question for the blue_deref: Why implement this for f32 and f64 and not just Float
+
+// TODO: Implement this for Float instead of for f32 and for f64
 impl Vec2<f32> {
   /// Convert polar form to Vec2
   pub fn from_magnitude(magnitude: f32, direction: Angle<f32>) -> Vec2<f32> {
@@ -54,11 +50,7 @@ impl Vec2<f64> {
 
 
 impl<T> Add for Vec2<T>
-  where T: Add<Output=T>
-         + Sub<Output=T>
-         + Mul<Output=T>
-         + Div<Output=T>
-         + Clone + Copy + Debug {
+  where T: Copy + Debug + Num {
 
   type Output = Vec2<T>;
 
@@ -69,11 +61,7 @@ impl<T> Add for Vec2<T>
 
 
 impl<T> Sub for Vec2<T>
-  where T: Add<Output=T>
-         + Sub<Output=T>
-         + Mul<Output=T>
-         + Div<Output=T>
-         + Clone + Copy + Debug {
+  where T: Copy + Debug + Num {
 
   type Output = Vec2<T>;
 
@@ -84,11 +72,7 @@ impl<T> Sub for Vec2<T>
 
 
 impl<T> Mul<T> for Vec2<T>
-  where T: Add<Output=T>
-         + Sub<Output=T>
-         + Mul<Output=T>
-         + Div<Output=T>
-         + Clone + Copy + Debug {
+  where T: Copy + Debug + Num {
 
   type Output = Vec2<T>;
 
@@ -99,11 +83,7 @@ impl<T> Mul<T> for Vec2<T>
 
 
 impl<T> Div<T> for Vec2<T>
-  where T: Add<Output=T>
-         + Sub<Output=T>
-         + Mul<Output=T>
-         + Div<Output=T>
-         + Clone + Copy + Debug {
+  where T: Copy + Debug + Num {
 
   type Output = Vec2<T>;
 

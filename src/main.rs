@@ -3,6 +3,7 @@ extern crate graphics;
 extern crate glutin_window;
 extern crate opengl_graphics;
 extern crate noise;
+extern crate num;
 
 use std::path::Path;
 

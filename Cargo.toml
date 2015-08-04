@@ -8,6 +8,7 @@ authors = ["Adam Badawy <adambada@buffalo.edu>",
 name = "open-sea"
 
 [dependencies]
+num = "0.1.25"
 piston = "0.1.4"
 piston2d-graphics = "0.1.4"
 pistoncore-glutin_window = "0.1.0"
