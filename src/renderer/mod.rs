@@ -24,7 +24,10 @@ impl Renderer {
     }
   }
 
-  pub fn draw_text(&mut self, args: &RenderArgs, gl: &mut GlGraphics, s: &str) {
+  pub fn draw_text(&mut self,
+                   args: &RenderArgs,
+                   gl: &mut GlGraphics,
+                   s: &str ) {
     use graphics::*;
     gl.draw(args.viewport(), |c, gl| {
       self.text.draw(s,

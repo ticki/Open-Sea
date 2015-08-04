@@ -17,7 +17,9 @@ impl GameView {
 }
 
 impl View for GameView {
-  fn render(&self, args: &RenderArgs, gl: &mut GlGraphics, renderer: &mut Renderer) {
+  fn render(&self, args: &RenderArgs,
+            gl: &mut GlGraphics,
+            renderer: &mut Renderer) {
     renderer.draw_text(args, gl, "Test");
   }
 }
