@@ -92,8 +92,8 @@ impl<T> Mul<T> for Vec2<T>
 
   type Output = Vec2<T>;
 
-  fn mul(self, other: T) -> Self::Output {
-    Vec2(self.0 * other, self.1 * other)
+  fn mul(self, scalar: T) -> Self::Output {
+    Vec2(self.0 * scalar, self.1 * scalar)
   }
 }
 
@@ -107,7 +107,7 @@ impl<T> Div<T> for Vec2<T>
 
   type Output = Vec2<T>;
 
-  fn div(self, other: T) -> Self::Output {
-    Vec2(self.0 / other, self.1 / other)
+  fn div(self, scalar: T) -> Self::Output {
+    Vec2(self.0 / scalar, self.1 / scalar)
   }
 }
