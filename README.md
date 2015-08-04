@@ -1,6 +1,6 @@
 ## Open Sea ##
 
-[Open Sea](/assets/logo_scaled.png)
+![Open Sea](/assets/logo_scaled.png)
 
 **Open Sea** is a sandbox RPG written in Rust using the Piston library. Sail the open sea, explore
 the world, and play together with your friends.
