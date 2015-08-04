@@ -8,22 +8,22 @@ use num::Float;
 
 pub trait AngleDatum : Copy + Debug + Float {
   fn pi() -> Self;
-  fn pi_2() -> Self;
-  fn _180_degrees() -> Self;
+  fn _2_pi() -> Self;
+  fn _180() -> Self;
 }
 
 
 impl AngleDatum for f32 {
   fn pi() -> Self { f32::consts::PI }
-  fn pi_2() -> Self { f32::consts::PI * 2.0 }
-  fn _180_degrees() -> Self { 180.0 }
+  fn _2_pi() -> Self { f32::consts::PI * 2.0 }
+  fn _180() -> Self { 180.0 }
 }
 
 
 impl AngleDatum for f64 {
   fn pi() -> Self { f64::consts::PI }
-  fn pi_2() -> Self { f64::consts::PI * 2.0 }
-  fn _180_degrees() -> Self { 180.0 }
+  fn _2_pi() -> Self { f64::consts::PI * 2.0 }
+  fn _180() -> Self { 180.0 }
 }
 
 
@@ -45,18 +45,18 @@ impl<T: AngleDatum> Angle<T> {
   pub fn as_radians(&self) -> T { self.radians }
   pub fn as_degrees(&self) -> T { Self::rad_to_deg(self.radians) }
 
-  fn rad_to_deg(rad: T) -> T { (rad * T::_180_degrees()) / T::pi() }
-  fn deg_to_rad(deg: T) -> T { (deg * T::pi()) / T::_180_degrees() }
+  fn rad_to_deg(rad: T) -> T { (rad * T::_180()) / T::pi() }
+  fn deg_to_rad(deg: T) -> T { (deg * T::pi()) / T::_180() }
 
   /// Return an equivalent radian value on the interval [-PI, PI)
   fn normalize(radians: T) -> T {
     let mut normalized = radians;
     let zero = T::zero();
-    let pi_2 = T::pi_2();
+    let _2_pi = T::_2_pi();
     while normalized < zero {
-      normalized = normalized + pi_2;
+      normalized = normalized + _2_pi;
     }
-    normalized % pi_2
+    normalized % _2_pi
   }
 }
 
