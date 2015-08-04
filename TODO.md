@@ -1,6 +1,16 @@
 ## TODO
 
-* Just get it working
+* Just get it working: Have a player moving around, and a camera following it.
 * Implement server side
-* Subtiles
+* Tiles:
+  - Add Tiled support
+  - Add sub-tiles
 * Animations
+* Clean up docs.
+* Make more variance in the island generation.
+* Add more sprites
+  - Player
+  - Animals? (Pets?)
+* Project management?
+* Clean up naming in the core library.
+
