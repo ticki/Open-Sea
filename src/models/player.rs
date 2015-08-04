@@ -1,9 +1,10 @@
-use core::{Dir, Movable, Positioned, Vec2};
+use core::*;
 
 /// A player
 pub struct Player {
   coord: Vec2<i64>,
   dir: Dir,
+  trans: f64,
 }
 
 
@@ -23,5 +24,11 @@ impl Movable for Player {
   }
   fn set_dir(&mut self, new_dir: Dir) {
     self.dir = new_dir;
+  }
+}
+
+impl Animated for Player {
+  fn get_trans_state(&self) -> f64 {
+    self.trans
   }
 }
