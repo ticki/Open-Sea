@@ -39,6 +39,7 @@ impl Animated for Player {
 
 impl Sprited for Player {
   fn get_sprite(&self) -> &Texture {
+    unimplemented!();
     // TODO: Sprite here
   }
   fn get_width(&self) -> i16 {
