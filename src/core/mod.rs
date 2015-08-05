@@ -54,7 +54,7 @@ impl Dir {
 // TODO: Implement two directions at once.
 // TODO: Make drawable trait
 
-// A movable object
+/// A movable object
 pub trait Movable: Positioned {
   /// Get the direction
   fn get_dir(&self) -> Dir;
@@ -90,7 +90,7 @@ pub trait Sprited: Animated {
   /// Get current sprite
   fn get_sprite(&self) -> &Texture;
   /// Get width, not neccesarily the width of the sprite, but rather the space
-  /// the given object occupies.
+  /// the given object occupies. Given in fields.
   fn get_width(&self) -> i16;
   /// Get height, see note above
   fn get_height(&self) -> i16;
@@ -103,7 +103,7 @@ pub trait Sprited: Animated {
 // TODO: Add event trait, for objects you can click on etc.
 
 /// Entity ID type
-pub struct ID(i64);
+pub struct ID(pub i64);
 
 /// An entity
 pub trait Entity: Sprited {

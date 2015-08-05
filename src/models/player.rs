@@ -36,4 +36,27 @@ impl Animated for Player {
     self.frame
   }
 }
-// TODO: Implement other traits
+
+impl Sprited for Player {
+  fn get_sprite(&self) -> &Texture {
+    // TODO: Sprite here
+  }
+  fn get_width(&self) -> i16 {
+    1
+  }
+  fn get_height(&self) -> i16 {
+    1
+  }
+  fn get_opacity(&self) -> f64 {
+    1.0
+  }
+}
+
+impl Entity for Player {
+  fn ID(&self) -> ID {
+    ID(0) // NOTE: Player's ID is always 0
+  }
+  fn is_solid(&self, x: i16, y: i16) -> bool {
+    false // TODO: Should it be solid?
+  }
+}
