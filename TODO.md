@@ -1,5 +1,7 @@
 ## TODO
 
+[Link to inline TODOs](https://github.com/Ticki/Open-Sea/search?utf8=%E2%9C%93&q=TODO)
+
 * Just get it working: Have a player moving around, and a camera following it.
 * Implement server side
 * Tiles:
