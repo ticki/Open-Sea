@@ -75,23 +75,33 @@ impl<'a> MapGenerator<'a> {
 
   /// Get overlay value (used for customizing the noise)
   pub fn get_overlay_value(&self, coord: Vec2<i64>) -> f64 { 
-    let Vec2(cx, cy) = MapGenerator::get_bchunk(coord);
+    let Vec2(x, y) = coord;
+
+    // Center chunk coordinate
+    let Vec2(cx, cy) = MapGenerator::get_bchunk(coord) + Vec2(32, 32);
     let chunk_type = self.get_bchunk_type(Vec2(cx, cy));
+    let chunk_int = self.seed.get2([cx, cy]);
+    let chunk_value = (chunk_int as f64) / (usize::max_value() as f64);
     match chunk_type {
       BChunkType::Empty => 0.0,
       BChunkType::Auto => {
         // This is why we need vector math, kids.
+        // TODO: Use vec math here
+
+        use std::f64;
 
         // TODO: Make more shapes.
+        let elip_dist = (((cx - x) * (cx - x) + (cy - y) * (cy - y)) as f64)
+                        .sqrt();
+        let angle = chunk_value * f64::consts::PI * 2.0;
+        let (cirx, ciry) = (angle.sin() + cx as f64,
+                            angle.cos() + cy as f64);
+        let sec_dist = ((cirx - x as f64) * (cirx - x as f64)
+                       + (ciry - y as f64) * (ciry - y as f64)).sqrt();
+        let dist = sec_dist.max(elip_dist);
 
-        /* TODO: Uncomment all this. I don't know what you're doing but I want
-                 the code to compile.
-        let elip_dist = (((cx - x) * (cx - x) + (cy - y) * (cy - y)) as f64).sqrt();
-        let res = 25.0 - elip_dist;
-        */
-        // TODO: Also remove this next line. See above.
-        let res = 25.0;
-
+        let res = 1.0 - dist / 25.0;
+        
         if res > 0.0 {
           res
         } else {
