@@ -1,12 +1,14 @@
 //! Traits, structs, and other objects for the game
 
 mod angle;
+mod config;
 mod game_view;
 pub mod view;
 mod map;
 mod vec2;
 
 pub use self::angle::Angle;
+pub use self::config::Config;
 pub use self::game_view::GameView;
 pub use self::view::View;
 pub use self::map::{Block, Map, Tile, TileMap};
