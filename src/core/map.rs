@@ -1,10 +1,8 @@
 // Todo: Add tile metadata
 
 // use models::*;
-use core::{Vec2};
-
-struct Entity;
-struct Player;
+use core::{Vec2, Entity};
+use models::{Player};
 
 /// The tiles
 pub enum Tile {
@@ -33,7 +31,7 @@ impl Block {
 
 /// A map
 pub struct Map<'a> {
-  objects: Vec<Entity>,
+  objects: Vec<&'a Entity>,
   player: &'a Player,
   tile_map: &'a TileMap,
 }
