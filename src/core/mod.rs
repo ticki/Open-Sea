@@ -87,8 +87,28 @@ pub trait Animated: Movable {
 pub trait Sprited: Animated {
   /// Get current sprite
   fn get_sprite(&self) -> &Texture;
+  /// Get width, not neccesarily the width of the sprite, but rather the space
+  /// the given object occupies.
+  fn get_width(&self) -> i16;
+  /// Get height, see note above
+  fn get_height(&self) -> i16;
+  /// Get the opacity of the object
+  fn get_opacity(&self) -> f64;
+
+  // TODO: Add draw method.
 }
 
-pub trait Entity: Animated {
-  // ?
+// TODO: Add event trait, for objects you can click on etc.
+
+/// Entity ID type
+pub struct ID(i64);
+
+/// An entity
+pub trait Entity: Sprited {
+  /// Get the ID of the given entity
+  fn ID(&self) -> ID;
+  /// Is the entity solid at point (x, y) relative to the position?
+  fn is_solid(&self, x: i16, y: i16) -> bool;
+
+  // Probably need more methods.
 }
