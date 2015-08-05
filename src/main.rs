@@ -4,6 +4,7 @@ extern crate glutin_window;
 extern crate opengl_graphics;
 extern crate noise;
 extern crate num;
+extern crate rustc_serialize;
 
 use std::path::Path;
 
@@ -23,7 +24,7 @@ pub mod core;
 pub mod models;
 pub mod renderer;
 
-use core::View;
+use core::{Config, View};
 
 use renderer::Renderer;
 
@@ -35,8 +36,12 @@ fn main() {
 
   let gl_context = OpenGL::_2_1;
 
-  let window = Window::new(gl_context,
-               WindowSettings::new(TITLE, [800, 600]).exit_on_esc(true));
+  let config = Config::load().unwrap();
+
+  let window_settings =
+    WindowSettings::new(config.game_title().clone(),
+                        config.window_size() ).exit_on_esc(true);
+  let window = Window::new(gl_context, window_settings);
 
   // Create the image object and attach a square Rectangle object inside.
   let image = Image::new().rect(square(100.0, 10.0, 200.0));
