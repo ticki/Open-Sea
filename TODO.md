@@ -17,4 +17,6 @@
 * [ ] Clean up naming in the core library.
 * [ ] Consider only using piston-graphics
 * [x] Make the use of 'use' more consistent (use ...::* vs use ...::{... , ... , ...}
-* [ ] Make use of Core in map.rs    
+* [ ] Make use of Core in map.rs
+* [ ] Discuss long term goal
+* [ ] Return more pointers?
