@@ -13,4 +13,6 @@
   - Animals? (Pets?)
 * Project management?
 * Clean up naming in the core library.
-
+* Consider only using piston-graphics
+* Make the use of 'use' more consistent (use ...::* vs use ...::{... , ... , ...}
+* Make use of Core in map.rs    

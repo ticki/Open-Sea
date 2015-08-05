@@ -1,16 +1,10 @@
 // Todo: Add tile metadata
 
-// TODO: uncomment
 // use models::*;
+use core::{Vec2};
 
-
-// TODO remove
+struct Entity;
 struct Player;
-// TODO also remove; I stubbed this out because it doesn't exist yet
-struct Object;
-
-use core::Vec2;
-
 
 /// The tiles
 pub enum Tile {
@@ -39,7 +33,7 @@ impl Block {
 
 /// A map
 pub struct Map<'a> {
-  objects: Vec<Object>,
+  objects: Vec<Entity>,
   player: &'a Player,
   tile_map: &'a TileMap,
 }

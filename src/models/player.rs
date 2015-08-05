@@ -5,6 +5,7 @@ pub struct Player {
   pos: Vec2<i64>,
   dir: Dir,
   trans: f64,
+  frame: i16,
 }
 
 
@@ -31,4 +32,8 @@ impl Animated for Player {
   fn get_trans_state(&self) -> f64 {
     self.trans
   }
+  fn get_animation_frame(&self) -> i16 {
+    self.frame
+  }
 }
+// TODO: Implement other traits

@@ -11,6 +11,7 @@ pub use self::game_view::GameView;
 pub use self::view::View;
 pub use self::map::{Block, Map, Tile, TileMap};
 pub use self::vec2::Vec2;
+pub use opengl_graphics::*;
 
 // TODO: Rename coord to pos
 
@@ -74,7 +75,20 @@ pub trait Movable: Positioned {
   }
 }
 
+/// Trait for animated objects
 pub trait Animated: Movable {
   /// Get transitition point, which is in the interval [0,1]
   fn get_trans_state(&self) -> f64;
+  /// Get animation frame
+  fn get_animation_frame(&self) -> i16;
+}
+
+/// Trait for sprited objects
+pub trait Sprited: Animated {
+  /// Get current sprite
+  fn get_sprite(&self) -> &Texture;
+}
+
+pub trait Entity: Animated {
+  // ?
 }
