@@ -31,6 +31,15 @@ impl Movable for Player {
     // TODO: Code here.
     true
   }
+  fn get_last_move(&self) -> f64 {
+    self.last_move
+  }
+  fn set_last_move(&mut self, new: &f64) {
+    self.last_move = *new;
+  }
+  fn get_speed(&self) -> f64 {
+    1.0
+  }
 }
 
 impl Animated for Player {
@@ -66,11 +75,6 @@ impl Entity for Player {
     false // TODO: Should it be solid?
   }
   fn update(&mut self, dt: f64) {
-    // TODO: Following shall be integrated in core (last move)
-    if self.is_moving() && self.last_move > 1.0 {
-      self.move_obj_dir()
-    } else {
-      self.last_move += dt;
-    }
+    self.move_reg();
   }
 }
