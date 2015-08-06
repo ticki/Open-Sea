@@ -5,6 +5,7 @@ mod config;
 mod game_view;
 pub mod view;
 mod map;
+pub mod util;
 mod vec2;
 
 pub use self::angle::Angle;

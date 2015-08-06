@@ -4,6 +4,8 @@ use std::io::Read;
 
 use rustc_serialize::{Decoder, json};
 
+use super::util;
+
 
 #[derive(RustcDecodable, RustcEncodable)]
 pub struct Config {
@@ -14,11 +16,7 @@ pub struct Config {
 
 impl Config {
   pub fn load() -> Result<Config, <json::Decoder as Decoder>::Error> {
-    let mut f = File::open("./assets/config.json").unwrap();
-    let mut buffer = Vec::new();
-    let _ = f.read_to_end(&mut buffer).unwrap();
-    let s = String::from_utf8(buffer).unwrap();
-    json::decode(&s)
+    json::decode(&util::read_file("./assets/config.json").unwrap())
   }
 
   pub fn game_title(&self) -> &String {

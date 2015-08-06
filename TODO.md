@@ -21,3 +21,4 @@
 * [ ] Discuss long term goal
 * [ ] Return more pointers?
 * [ ] Make big chunks bigger? (for more variance in island generation + more flexebility)
+* [ ] Handle errors in Config and Model loader
