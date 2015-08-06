@@ -1,3 +1,3 @@
-mod read_file;
+mod read_utf8_file;
 
-pub use self::read_file::{ReadFileError, read_file};
+pub use self::read_utf8_file::{ReadUtf8FileError, read_utf8_file};
