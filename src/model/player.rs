@@ -6,6 +6,7 @@ pub struct Player {
   dir: Dir,
   trans: f64,
   frame: i16,
+  last_move: f64,
 }
 
 
@@ -25,6 +26,10 @@ impl Movable for Player {
   }
   fn set_dir(&mut self, new_dir: Dir) {
     self.dir = new_dir;
+  }
+  fn is_moving(&self) -> bool {
+    // TODO: Code here.
+    true
   }
 }
 
@@ -59,5 +64,13 @@ impl Entity for Player {
   }
   fn is_solid(&self, x: i16, y: i16) -> bool {
     false // TODO: Should it be solid?
+  }
+  fn update(&mut self, dt: f64) {
+    // TODO: Following shall be integrated in core (last move)
+    if self.is_moving() && self.last_move > 1.0 {
+      self.move_obj_dir()
+    } else {
+      self.last_move += dt;
+    }
   }
 }

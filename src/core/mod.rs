@@ -62,6 +62,8 @@ pub trait Movable: Positioned {
   fn get_dir(&self) -> Dir;
   /// Set the direction
   fn set_dir(&mut self, new_dir: Dir);
+  /// Is the object moving?
+  fn is_moving(&self) -> bool;
   /// Move the object
   fn move_obj(&mut self, mov: Vec2<i64>) {
     let coord = self.get_pos();
@@ -113,6 +115,7 @@ pub trait Entity: Sprited {
   fn id(&self) -> Id;
   /// Is the entity solid at point (x, y) relative to the position?
   fn is_solid(&self, x: i16, y: i16) -> bool;
-
+  /// Update the entity
+  fn update(&mut self, dt: f64);
   // Probably need more methods.
 }
