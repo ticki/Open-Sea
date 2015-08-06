@@ -54,8 +54,8 @@ impl Sprited for Player {
 }
 
 impl Entity for Player {
-  fn ID(&self) -> ID {
-    ID(0) // NOTE: Player's ID is always 0
+  fn id(&self) -> Id {
+    Id(0) // NOTE: Player's ID is always 0
   }
   fn is_solid(&self, x: i16, y: i16) -> bool {
     false // TODO: Should it be solid?

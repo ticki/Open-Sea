@@ -103,12 +103,12 @@ pub trait Sprited: Animated {
 // TODO: Add event trait, for objects you can click on etc.
 
 /// Entity ID type
-pub struct ID(pub i64);
+pub struct Id(pub i64);
 
 /// An entity
 pub trait Entity: Sprited {
   /// Get the ID of the given entity
-  fn ID(&self) -> ID;
+  fn id(&self) -> Id;
   /// Is the entity solid at point (x, y) relative to the position?
   fn is_solid(&self, x: i16, y: i16) -> bool;
 
