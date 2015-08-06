@@ -1,9 +1,17 @@
 ## TODO
 
+### In-line TODO (Todos in the codebase, often smaller tasks)
+
 [Link to inline TODOs](https://github.com/Ticki/Open-Sea/search?utf8=%E2%9C%93&q=TODO)
+
+### Generic TODO
 
 * [ ] Just get it working: Have a player moving around, and a camera following it.
 * [ ] Implement server side
+* [ ] Discuss naming conventitions of traits, structs. In ALL modules, particularly the Core module.
+* [ ] Make a roadmap
+* [ ] Make a codebase introduction (for new contributors)
+* [ ] Make a event handeler (possibly also a method to be called when the object is clicked etc.)
 * [ ] Tiles:
   - Add Tiled support
   - Add sub-tiles
