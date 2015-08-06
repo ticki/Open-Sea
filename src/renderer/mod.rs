@@ -19,7 +19,7 @@ pub struct Renderer {
 impl Renderer {
   pub fn new() -> Renderer {
     Renderer {
-      font: GlyphCache::new(Path::new("./assets/MathJax.otf")).unwrap(),
+      font: GlyphCache::new(Path::new("...../data/font.ttf")).unwrap(),
       text: graphics::text::Text::new(20)
     }
   }
