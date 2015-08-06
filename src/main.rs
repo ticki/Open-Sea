@@ -29,8 +29,6 @@ use core::{Config, View};
 use renderer::Renderer;
 
 
-const TITLE: &'static str = "Open Sea";
-
 fn main() {
   let view = core::GameView::new();
 
