@@ -6,6 +6,7 @@ use std::fs::File;
 use std::string::FromUtf8Error;
 
 
+/// Wraps a couple types of errors for `read_file`.
 #[derive(Debug)]
 pub enum ReadFileError {
   IoError(io::Error),
@@ -37,6 +38,9 @@ impl From<FromUtf8Error> for ReadFileError {
 }
 
 
+/// An easy function to quickly read a whole file.
+///
+/// The price you pay is that errors are wrapped a bit.
 pub fn read_file(path: &str) -> Result<String, ReadFileError> {
   let mut f = try!(File::open(path));
   let mut buffer = Vec::new();
