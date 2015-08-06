@@ -21,7 +21,7 @@ use graphics::rectangle::square;
 // Why pub? Because that makes the docs work.
 pub mod mapgen;
 pub mod core;
-pub mod models;
+pub mod model;
 pub mod renderer;
 
 use core::{Config, View};

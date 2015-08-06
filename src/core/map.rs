@@ -2,13 +2,15 @@
 
 // use models::*;
 use core::{Vec2, Entity};
-use models::{Player};
+use model::{Player};
 
 /// The tiles
 pub enum Tile {
   Water,
   Grass,
   Tree,
+  // Consider using Option where applicable; is it always valid for there to be
+  // no tile at all?
   None,
 }
 
