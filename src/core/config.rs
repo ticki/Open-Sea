@@ -1,6 +1,4 @@
 use std::error::Error;
-use std::fs::File;
-use std::io::Read;
 
 use rustc_serialize::{Decoder, json};
 
