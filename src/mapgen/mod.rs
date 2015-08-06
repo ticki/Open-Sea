@@ -7,6 +7,8 @@ use noise::{Brownian2, Seed, open_simplex2};
 // use core::{Map, Tile, TileMap};
 use core::*;
 
+pub const CHUNK_SIZE: i64 = 64;
+
 
 /// A map
 ///
@@ -53,8 +55,8 @@ impl<'a> MapGenerator<'a> {
   /// Get big chunk coordinates
   pub fn get_bchunk(coord: Vec2<i64>) -> Vec2<i64> {
     // TODO: Chunk size 64?
-    Vec2(((coord.x() as f64) / 64.0).floor() as i64,
-         ((coord.y() as f64) / 64.0).floor() as i64)
+    Vec2(((coord.x() as f64) / (CHUNK_SIZE as f64)).floor() as i64,
+         ((coord.y() as f64) / (CHUNK_SIZE as f64)).floor() as i64)
   }
 
   /// Get the chunk type of the big chunk at (x, y)
@@ -115,7 +117,7 @@ impl<'a> MapGenerator<'a> {
 
 impl<'a> TileMap for MapGenerator<'a> {
 
-  // Add foreground/background
+  // TODO: Rename to get block?
   /// Get the tile at a given point
   fn get_tile(&self, coord: Vec2<i64>) -> Block {
     let val = (self.get_noise_value(coord)
