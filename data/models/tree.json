@@ -1,0 +1,13 @@
+{
+  "name": "Tree",
+  "size": [2,2],
+  "sprite_data": [
+    {
+      "file": "tree.png",
+      "size": [2,2]
+    }
+  ],
+  "occupied_tiles": [
+    { "individual": [ [0,1], [1,1] ] }
+  ]
+}
