@@ -8,6 +8,7 @@ authors = ["Adam Badawy <adambada@buffalo.edu>",
 name = "open-sea"
 
 [dependencies]
+time = "0.1"
 noise = "0.1.5"
 num = "0.1.25"
 piston = "0.1.4"

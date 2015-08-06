@@ -1,3 +1,4 @@
+use time;
 use opengl_graphics::*;
 use core::{Vec2};
 
@@ -38,6 +39,7 @@ impl Dir {
 // TODO: Implement two directions at once.
 // TODO: Make drawable trait
 
+// TODO: Movable is a bad naming. Consider renaming it, moving.
 /// A movable object
 pub trait Movable: Positioned {
   /// Get the direction
@@ -60,6 +62,20 @@ pub trait Movable: Positioned {
   fn move_obj_dir(&mut self) {
     let new_coord = self.get_new_pos();
     self.set_pos(new_coord)
+  }
+  /// Get the timestamp of the last move
+  fn get_last_move(&self) -> f64;
+  /// Set the timestamp of the last move
+  fn set_last_move(&mut self, new: &f64);
+  /// Get the speed of the object
+  fn get_speed(&self) -> f64;
+  /// Moves regularly
+  fn move_reg(&mut self) {
+    let now = &time::precise_time_s();
+    if self.is_moving() && self.get_last_move() - now > 1.0 / self.get_speed() {
+      self.set_last_move(now);
+      self.move_obj_dir();
+    }
   }
 }
 
@@ -97,7 +113,13 @@ pub trait Entity: Sprited {
   fn id(&self) -> Id;
   /// Is the entity solid at point (x, y) relative to the position?
   fn is_solid(&self, x: i16, y: i16) -> bool;
+  /// The default update method
+  fn def_update(&mut self, dt: f64) {
+    self.move_reg();
+  }
   /// Update the entity
-  fn update(&mut self, dt: f64);
+  fn update(&mut self, dt: f64) {
+    self.def_update(dt);
+  }
   // Probably need more methods.
 }

@@ -5,6 +5,7 @@ extern crate opengl_graphics;
 extern crate noise;
 extern crate num;
 extern crate rustc_serialize;
+extern crate time;
 
 use std::path::Path;
 

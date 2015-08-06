@@ -12,7 +12,7 @@ struct Cam<'a> {
 
 // TODO: Make the camera locked to the player? (Or is this a bad idea?)
 
-const VELOCITY: f64 = 0.1;
+const CAM_VELOCITY: f64 = 0.1;
 
 impl<'a> Cam<'a> {
   /// Creates a new Cam
@@ -25,7 +25,7 @@ impl<'a> Cam<'a> {
   }
   /// Updates the Cam
   fn update(&mut self, dt: f64) {
-    self.trans_state += dt * VELOCITY;
+    self.trans_state += dt * CAM_VELOCITY;
     if self.trans_state > 1.0 {
       self.trans_state = 0.0;
       self.former_pos = self.in_focus.get_pos();
