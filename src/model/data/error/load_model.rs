@@ -61,3 +61,8 @@ impl From<ReadUtf8FileError> for LoadModelError {
 impl From<json::ParserError> for LoadModelError {
   fn from(e: json::ParserError) -> LoadModelError { LoadModelError::JsonError(e) }
 }
+
+
+impl From<ModelError> for LoadModelError {
+  fn from(e: ModelError) -> LoadModelError { LoadModelError::ModelError(e) }
+}

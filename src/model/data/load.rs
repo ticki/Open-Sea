@@ -21,8 +21,8 @@ impl ModelData {
     let sprite_data;
     match obj.get("sprite_data") {
       Some(&Json::Array(ref raw_sprite_data)) =>
-        sprite_data = ModelData::parse_sprite_data(raw_sprite_data,
-                                                   SpriteDataDefaults::new() ),
+        sprite_data = try!(ModelData::parse_sprite_data(raw_sprite_data,
+                                                  SpriteDataDefaults::new() )),
 
       Some(_) => return Err(LoadModelError::ModelError(
                                ModelError::TypeError { key: "sprite_data",
@@ -36,7 +36,7 @@ impl ModelData {
     match obj.get("occupied_tiles") {
       Some(&Json::Array(ref raw_occupied_tile_data)) =>
         occupied_tile_data =
-          ModelData::parse_occupied_tile_data(raw_occupied_tile_data),
+          try!( ModelData::parse_occupied_tile_data(raw_occupied_tile_data) ),
 
       Some(_) => return Err(LoadModelError::ModelError(
                                 ModelError::TypeError { key: "occupied_tiles",
@@ -46,12 +46,8 @@ impl ModelData {
                                     ModelError::MissingKey("occupied_tiles")))
     };
 
-    Ok(
-      ModelData {
-        sprite_data: BTreeMap::new(),
-        occupied_tiles: Vec::new()
-      }
-    )
+    Ok(ModelData { sprite_data: sprite_data,
+                   occupied_tiles: occupied_tile_data })
   }
 
   fn load_json(path: &str) -> Result<BTreeMap<String, Json>, LoadModelError> {
@@ -59,31 +55,31 @@ impl ModelData {
     let json_obj = try!(Json::from_str(&file_contents));
     match json_obj {
       Json::Object(data) => Ok(data),
-      _ => Err(LoadModelError::ModelError(
-                         ModelError::Other("Model file must be JSON object") ))
+      _ => try!(Err( ModelError::TopLevelNotObject ))
     }
   }
 
-  fn parse_sprite_data(
-    data: &Vec<Json>,
-    defaults: SpriteDataDefaults ) -> BTreeMap<String, Sprite> {
+  fn parse_sprite_data(data: &Vec<Json>,
+                       defaults: SpriteDataDefaults )
+                          -> Result<BTreeMap<String, Sprite>, LoadModelError> {
 
     for obj in data {
       match obj {
         &Json::Object(ref map) => {
           if map.contains_key("with") {
             if map.len() > 1 {
-              //return Err()
+              return Err(LoadModelError::ModelError(ModelError::MultiKeyWith));
             }
           }
         },
         _ => {} // return Err()
       }
     }
-    BTreeMap::new()
+    unimplemented!()
   }
 
-  fn parse_occupied_tile_data(data: &Vec<Json>) -> Vec<Vec2<u8>> {
-    Vec::new()
+  fn parse_occupied_tile_data(data: &Vec<Json>)
+                                     -> Result<Vec<Vec2<u8>>, LoadModelError> {
+    unimplemented!()
   }
 }
