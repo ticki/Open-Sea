@@ -7,6 +7,7 @@ pub mod view;
 mod map;
 pub mod util;
 mod vec2;
+pub mod cam;
 
 pub use self::angle::Angle;
 pub use self::config::Config;
