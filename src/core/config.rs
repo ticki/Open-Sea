@@ -14,7 +14,7 @@ pub struct Config {
 
 impl Config {
   pub fn load() -> Result<Config, <json::Decoder as Decoder>::Error> {
-    json::decode(&util::read_file("./assets/config.json").unwrap())
+    json::decode(&util::read_utf8_file("./assets/config.json").unwrap())
   }
 
   pub fn game_title(&self) -> &String {
