@@ -1,6 +1,5 @@
 {
   "name": "Tree",
-  "size": [2,2],
   "sprite_data": [
     {
       "file": "tree.png",
