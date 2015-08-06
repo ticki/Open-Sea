@@ -7,9 +7,9 @@
 * [ ] Tiles:
   - Add Tiled support
   - Add sub-tiles
-* [ ] Animations
+* [x] Animations
 * [ ] Clean up docs.
-* [ ] Make more variance in the island generation.
+* [x] Make more variance in the island generation.
 * [ ] Add more sprites
   - Player
   - Animals? (Pets?)
@@ -17,8 +17,9 @@
 * [ ] Clean up naming in the core library.
 * [ ] Consider only using piston-graphics
 * [x] Make the use of 'use' more consistent (use ...::* vs use ...::{... , ... , ...}
-* [ ] Make use of Core in map.rs
+* [x] Make use of Core in map.rs
 * [ ] Discuss long term goal
 * [ ] Return more pointers?
 * [ ] Make big chunks bigger? (for more variance in island generation + more flexebility)
 * [ ] Handle errors in Config and Model loader
+* [ ] Find a good font for the game (Could be nice if it was MIT-licensed)
