@@ -30,3 +30,11 @@
 * [ ] Make big chunks bigger? (for more variance in island generation + more flexebility)
 * [ ] Handle errors in Config and Model loader
 * [x] Find a good font for the game (Could be nice if it was MIT-licensed)
+
+
+
+#### Naming review
+
+* [ ] core
+  * [x] object.rs
+  * [ ] map.rs
