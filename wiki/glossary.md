@@ -3,14 +3,13 @@
 Tag        | Meaning
 -----------|--------
 :mag:      | This term needs to be discussed due to inconsistency or some other issue.
-:question: | This term needs a definition.
+:question: | This term needs to be defined, or its definition needs to be verified.
 
 
 
 Term      | Tags       | Meaning
 ----------|------------|--------
-`BChunk`  | :question: |
-`Chunk`   | :question: |
+`BChunk`  | :question: | A square of tiles, 32 tiles wide, and 32 tiles high.
 entity    |            | Basically, anything in the game world other than a tile. Examples: trees, players, enemies, chests, and signs.
 `Map`     | :mag:      | A collection of tiles and entities.
 model     | :mag:      | Data for describing a class of game objects, sometimes shared by many instances.
