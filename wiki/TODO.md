@@ -6,27 +6,62 @@
 
 ### Generic TODO
 
-* [ ] ! Just get it working: Have a player moving around, and a camera following it.
-* [ ] Implement server side
-* [ ] ! Discuss naming conventitions of traits, structs. In ALL modules, particularly the Core module.
-* [ ] ! Make sure the core module is actually used, where it could be.
-* [ ] Make a roadmap
-* [ ] Make a codebase introduction (for new contributors)
-* [ ] ! Make a event handeler (possibly also a method to be called when the object is clicked etc.)
-* [ ] Tiles:
+- [ ] ! Just get it working: Have a player moving around, and a camera following it.
+- [ ] Implement server side
+- [ ] ! Discuss naming conventitions of traits, structs. In ALL modules, particularly the Core module.
+- [ ] ! Make sure the core module is actually used, where it could be.
+- [ ] Make a roadmap
+- [ ] Make a codebase introduction (for new contributors)
+- [ ] ! Make a event handeler (possibly also a method to be called when the object is clicked etc.)
+- [ ] Tiles:
   - Add Tiled support
-* [x] Animations
-* [ ] ! Clean up docs.
-* [x] Make more variance in the island generation.
-* [ ] ! Add more sprites
+- [x] Animations
+- [ ] ! Clean up docs.
+- [x] Make more variance in the island generation.
+- [ ] ! Add more sprites
   - Player
   - Animals? (Pets?)
-* [ ] Project management?
-* [ ] ! Consider only using piston-graphics
-* [x] Make the use of 'use' more consistent (use ...::* vs use ...::{... , ... , ...}
-* [x] Make use of Core in map.rs
-* [ ] Discuss long term goal
-* [ ] Return more pointers?
-* [ ] Make big chunks bigger? (for more variance in island generation + more flexebility)
-* [ ] Handle errors in Config and Model loader
-* [x] Find a good font for the game (Could be nice if it was MIT-licensed)
+- [ ] Project management?
+- [ ] ! Consider only using piston-graphics
+- [x] Make the use of 'use' more consistent (use ...::* vs use ...::{... , ... , ...}
+- [x] Make use of Core in map.rs
+- [ ] Discuss long term goal
+- [ ] Return more pointers?
+- [ ] Make big chunks bigger? (for more variance in island generation + more flexebility)
+- [ ] Handle errors in Config and Model loader
+- [x] Find a good font for the game (Could be nice if it was MIT-licensed)
+
+
+
+#### Naming review
+
+- [ ] core
+  - [ ] mod.rs
+  - [ ] angle.rs
+  - [ ] cam.rs
+  - [ ] config.rs
+  - [ ] game_view.rs
+  - [ ] map.rs
+  - [x] object.rs
+  - [ ] vec2.rs
+  - [ ] view.rs
+  - [ ] util
+    - [ ] mod.rs
+    - [ ] read_utf8_file.rs
+- [ ] mapgen
+  - [ ] mod.rs
+- [ ] model
+  - [ ] mod.rs
+  - [ ] player.rs
+  - [ ] data
+    - [ ] load.rs
+    - [ ] mod.rs
+    - [ ] sprite_data.rs
+    - [ ] error
+      - [ ] load_model.rs
+      - [ ] mod.rs
+      - [ ] model.rs
+- [ ] renderer
+  - [ ] mod.rs
+  - [ ] cache.rs
+- [ ] main.rs
