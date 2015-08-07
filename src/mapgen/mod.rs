@@ -7,7 +7,7 @@ use noise::{Brownian2, Seed, open_simplex2};
 // use core::{Map, Tile, TileMap};
 use core::*;
 
-pub const CHUNK_SIZE: i64 = 64;
+pub const CHUNK_SIZE: i64 = 128;
 
 
 /// A map
@@ -102,7 +102,7 @@ impl<'a> MapGenerator<'a> {
                        + (ciry - y as f64) * (ciry - y as f64)).sqrt();
         let dist = sec_dist.max(elip_dist);
 
-        let res = 1.0 - dist / 25.0;
+        let res = 1.0 - dist / 50.0;
         
         if res > 0.0 {
           res
