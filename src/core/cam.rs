@@ -33,7 +33,7 @@ impl<'a> Cam<'a> {
   }
   /// Get position
   fn get_pos(&self) -> Vec2<f64> {
-    let pos = Vec2(self.get_pos().x() as f64, self.get_pos().y() as f64);
+    let pos = self.get_pos() as Vec2<f64>;
     pos * self.trans_state
     + pos * (1.0 - self.trans_state)
   }

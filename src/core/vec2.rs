@@ -79,3 +79,10 @@ impl<T> Div<T> for Vec2<T>
     Vec2(self.0 / scalar, self.1 / scalar)
   }
 }
+
+impl From<Vec2<i64>> for Vec2<f64> {
+  #[inline] 
+  fn from(old: Vec2<i64>) -> Self {
+    Vec2(old.x() as f64, old.y() as f64)
+  } // TODO: USE THIS!
+}
