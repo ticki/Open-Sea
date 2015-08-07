@@ -10,7 +10,7 @@ pub struct Player {
 }
 
 
-impl Positioned for Player {
+impl Position for Player {
   fn get_pos(&self) -> Vec2<i64> {
     self.pos
   }
@@ -20,7 +20,7 @@ impl Positioned for Player {
 }
 
 
-impl Movable for Player {
+impl Move for Player {
   fn get_dir(&self) -> Dir {
     self.dir
   }
@@ -42,7 +42,7 @@ impl Movable for Player {
   }
 }
 
-impl Animated for Player {
+impl Animate for Player {
   fn get_trans_state(&self) -> f64 {
     self.trans
   }
@@ -51,7 +51,7 @@ impl Animated for Player {
   }
 }
 
-impl Sprited for Player {
+impl Sprite for Player {
   fn get_sprite(&self) -> &Texture {
     unimplemented!();
     // TODO: Sprite here

@@ -10,7 +10,7 @@ mod vec2;
 pub mod cam;
 pub mod object;
 
-pub use self::object::{Animated, Entity, Movable, Sprited, Positioned, Dir, Id};
+pub use self::object::{Animate, Entity, Move, Sprite, Position, Dir, Id};
 pub use self::angle::Angle;
 pub use self::config::Config;
 pub use self::game_view::GameView;

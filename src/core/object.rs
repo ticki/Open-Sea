@@ -3,7 +3,7 @@ use opengl_graphics::*;
 use core::{Vec2};
 
 /// A trait for positioned objects
-pub trait Positioned {
+pub trait Position {
   /// Get the x coordinate
   fn get_pos(&self) -> Vec2<i64>;
   /// Set the Vec coordinate
@@ -41,7 +41,7 @@ impl Dir {
 
 // TODO: Movable is a bad naming. Consider renaming it, moving.
 /// A movable object
-pub trait Movable: Positioned {
+pub trait Move: Position {
   /// Get the direction
   fn get_dir(&self) -> Dir;
   /// Set the direction
@@ -80,7 +80,8 @@ pub trait Movable: Positioned {
 }
 
 /// Trait for animated objects
-pub trait Animated: Movable {
+// TODO: Merge with move?
+pub trait Animate: Move {
   /// Get transitition point, which is in the interval [0,1]
   fn get_trans_state(&self) -> f64;
   /// Get animation frame
@@ -88,7 +89,7 @@ pub trait Animated: Movable {
 }
 
 /// Trait for sprited objects
-pub trait Sprited: Animated {
+pub trait Sprite: Animate {
   /// Get current sprite
   fn get_sprite(&self) -> &Texture;
   /// Get width, not neccesarily the width of the sprite, but rather the space
@@ -108,7 +109,7 @@ pub trait Sprited: Animated {
 pub struct Id(pub i64);
 
 /// An entity
-pub trait Entity: Sprited {
+pub trait Entity: Sprite {
   /// Get the ID of the given entity
   fn id(&self) -> Id;
   /// Is the entity solid at point (x, y) relative to the position?
