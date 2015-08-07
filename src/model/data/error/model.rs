@@ -5,11 +5,10 @@ use std::fmt;
 #[derive(Debug)]
 pub enum ModelError {
   TopLevelNotObject,
-  MissingKey(&'static str),
-  TypeError { key: &'static str, expected: &'static str },
+  MissingKey { key: &'static str, context: &'static str },
+  TypeError { obj: &'static str, expected: &'static str },
+  InvalidKey { key: String, context: &'static str },
   MultiKeyWith,
-  WithMissingKey(&'static str),
-  WithTypeError { key: &'static str, expected: &'static str },
 }
 
 
@@ -19,26 +18,21 @@ impl fmt::Display for ModelError {
       &ModelError::TopLevelNotObject =>
         f.write_str("Model file must be JSON object"),
 
-      &ModelError::MissingKey(ref key) =>
-        f.write_fmt(format_args!("Model data is missing key {:?}", key)),
+      &ModelError::MissingKey { ref key, ref context } =>
+        f.write_fmt(format_args!("{} is missing key {:?}", context, key)),
 
-      &ModelError::TypeError { ref key, ref expected } =>
+      &ModelError::TypeError { ref obj, ref expected } =>
         f.write_fmt(
-          format_args!("Type error: expected JSON {} for model key {:?}",
+          format_args!("Type error: expected value of type `JSON {}` for {}",
                        expected,
-                       key )),
+                       obj )),
+
+      &ModelError::InvalidKey { ref key, ref context } =>
+        f.write_fmt(
+          format_args!("found unexpected key {:?} in {}", key, context) ),
 
       &ModelError::MultiKeyWith =>
         f.write_str("Object containing \"with\" also contains other keys."),
-
-      &ModelError::WithMissingKey(ref key) =>
-        f.write_fmt(format_args!("\"with\" value is missing key {:?}", key)),
-
-      &ModelError::WithTypeError { ref key, ref expected } =>
-        f.write_fmt(
-          format_args!("Type error: expected JSON {} for \"with\" key {:?}",
-                       expected,
-                       key )),
     }
   }
 }
