@@ -3,44 +3,31 @@
 // use models::*;
 use core::{Vec2, Entity};
 use model::{Player};
+use opengl_graphics::{Texture};
 
-/// The tiles
-pub enum Tile {
-  Water,
-  Grass,
-  Tree,
-  // Consider using Option where applicable; is it always valid for there to be
-  // no tile at all?
-  None,
+/// Props, i.e. non dynamic objects
+pub trait Prop {
+  fn get_sprite(&self) -> &Texture;
+  // TODO: Make a trait with the following methods, called Matter. Implement this for entity too.
+  fn is_solid(&self) -> bool;
+  fn is_destroyable(&self) -> bool;
+  fn get_hardness(&self) -> i32;
 }
 
 /// A block: a field consisting of three layers, containing tiles.
-pub struct Block {
-  background: Tile,
-  ground: Tile,
-  foreground: Tile,
-}
-
-impl Block {
-  pub fn new(background: Tile, ground: Tile, foreground: Tile) -> Block {
-    Block {
-      background: background,
-      ground: ground,
-      foreground: foreground,
-    }
-  }
+pub struct Tile<'a> {
+  layers: Vec<&'a Prop>,
 }
 
 /// A map
 pub struct Map<'a> {
-  objects: Vec<&'a Entity>,
+  entities: Vec<&'a Entity>,
   player: &'a Player,
   tile_map: &'a TileMap,
 }
 
-// Todo add layers
 /// A tiled map
 pub trait TileMap {
   /// Get the tile on this given coordinate
-  fn get_tile(&self, coord: Vec2<i64>) -> Block;
+  fn get_tile(&self, coord: Vec2<i64>) -> Tile;
 }

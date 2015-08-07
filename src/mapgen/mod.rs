@@ -119,15 +119,10 @@ impl<'a> TileMap for MapGenerator<'a> {
 
   // TODO: Rename to get block?
   /// Get the tile at a given point
-  fn get_tile(&self, coord: Vec2<i64>) -> Block {
+  fn get_tile(&self, coord: Vec2<i64>) -> Tile {
     let val = (self.get_noise_value(coord)
                + self.get_overlay_value(coord)) / 2.0;
 
-    // Temporary map gen. Proof of concept.
-    if val > 0.9 {
-      Block::new(Tile::Water, Tile::Grass, Tile::Tree)
-    } else {
-      Block::new(Tile::Water, Tile::None, Tile::None)
-    }
+    unimplemented!();
   }
 }
