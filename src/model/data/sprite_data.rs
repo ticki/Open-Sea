@@ -6,6 +6,19 @@ use super::Sprite;
 use super::error::{LoadModelError, ModelError};
 
 
+/// The `sprite_data` keys
+const KEYS: &'static [&'static str] = &[
+  "cut_from",
+  "cut_offset",
+  "file",
+  "frame",
+  "pin_offset",
+  "pin_to",
+  "size",
+  "sprite",
+];
+
+
 /// This struct simplifies the implementation of `parse`
 #[derive(Clone, Debug)]
 struct SpriteDataDefaults {
