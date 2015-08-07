@@ -108,7 +108,7 @@ pub trait Sprite: Animate {
 /// Entity ID type
 pub struct Id(pub i64);
 
-/// An entity
+/// An entity, a dynamic in-game object with non-trivial functionality
 pub trait Entity: Sprite {
   /// Get the ID of the given entity
   fn id(&self) -> Id;
