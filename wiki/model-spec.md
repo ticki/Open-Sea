@@ -1,3 +1,5 @@
+# Model File Specification
+
 This is the specification for model files. (`data/models/*.json`) All units are
 tiles (16x16 pixels) unless specified otherwise.
 

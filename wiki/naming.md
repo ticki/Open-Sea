@@ -1,0 +1,32 @@
+# Naming review
+
+- [ ] main.rs
+- [ ] core
+  - [ ] mod.rs
+  - [ ] angle.rs
+  - [ ] cam.rs
+  - [ ] config.rs
+  - [ ] game_view.rs
+  - [ ] map.rs
+  - [x] object.rs
+  - [ ] vec2.rs
+  - [ ] view.rs
+  - [ ] util
+    - [ ] mod.rs
+    - [ ] read_utf8_file.rs
+- [ ] mapgen
+  - [ ] mod.rs
+- [ ] model
+  - [ ] mod.rs
+  - [ ] player.rs
+  - [ ] data
+    - [ ] load.rs
+    - [ ] mod.rs
+    - [ ] sprite_data.rs
+    - [ ] error
+      - [ ] load_model.rs
+      - [ ] mod.rs
+      - [ ] model.rs
+- [ ] renderer
+  - [ ] mod.rs
+  - [ ] cache.rs
