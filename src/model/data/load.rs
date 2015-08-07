@@ -4,8 +4,9 @@ use rustc_serialize::json::Json;
 
 use core::{Vec2, util};
 
-use super::{ModelData, Sprite, SpriteDataDefaults};
+use super::{ModelData, Sprite};
 use super::error::{LoadModelError, ModelError};
+use super::sprite_data;
 
 
 impl ModelData {
@@ -15,43 +16,40 @@ impl ModelData {
     match obj.get("name") {
       Some(name) => println!("Loading model {}...", name),
       None =>
-        return Err(LoadModelError::ModelError(ModelError::MissingKey("name")))
+        return try!(Err(ModelError::MissingKey { key: "name",
+                                                 context: "model data" }))
     };
 
     let sprite_data;
     match obj.get("sprite_data") {
       Some(&Json::Array(ref raw_sprite_data)) =>
-        sprite_data = ModelData::parse_sprite_data(raw_sprite_data,
-                                                   SpriteDataDefaults::new() ),
+        sprite_data = try!(sprite_data::parse(raw_sprite_data)),
 
       Some(_) => return Err(LoadModelError::ModelError(
-                               ModelError::TypeError { key: "sprite_data",
-                                                       expected: "array" })),
+                            ModelError::TypeError { obj: "key \"sprite_data\"",
+                                                    expected: "array" })),
 
-      None => return Err(LoadModelError::ModelError(
-                                        ModelError::MissingKey("sprite_data")))
+      None => return try!(Err(ModelError::MissingKey { key: "sprite_data",
+                                                       context: "model data" }))
     };
 
     let occupied_tile_data;
     match obj.get("occupied_tiles") {
       Some(&Json::Array(ref raw_occupied_tile_data)) =>
         occupied_tile_data =
-          ModelData::parse_occupied_tile_data(raw_occupied_tile_data),
+          try!( ModelData::parse_occupied_tile_data(raw_occupied_tile_data) ),
 
       Some(_) => return Err(LoadModelError::ModelError(
-                                ModelError::TypeError { key: "occupied_tiles",
-                                                        expected: "array" })),
+                         ModelError::TypeError { obj: "key \"occupied_tiles\"",
+                                                 expected: "array" })),
 
-      None => return Err(LoadModelError::ModelError(
-                                    ModelError::MissingKey("occupied_tiles")))
+      None =>
+        return try!(Err(ModelError::MissingKey { key: "occupied_tiles",
+                                                 context: "model data" }))
     };
 
-    Ok(
-      ModelData {
-        sprite_data: BTreeMap::new(),
-        occupied_tiles: Vec::new()
-      }
-    )
+    Ok(ModelData { sprite_data: sprite_data,
+                   occupied_tiles: occupied_tile_data })
   }
 
   fn load_json(path: &str) -> Result<BTreeMap<String, Json>, LoadModelError> {
@@ -59,31 +57,12 @@ impl ModelData {
     let json_obj = try!(Json::from_str(&file_contents));
     match json_obj {
       Json::Object(data) => Ok(data),
-      _ => Err(LoadModelError::ModelError(
-                         ModelError::Other("Model file must be JSON object") ))
+      _ => try!(Err( ModelError::TopLevelNotObject ))
     }
   }
 
-  fn parse_sprite_data(
-    data: &Vec<Json>,
-    defaults: SpriteDataDefaults ) -> BTreeMap<String, Sprite> {
-
-    for obj in data {
-      match obj {
-        &Json::Object(ref map) => {
-          if map.contains_key("with") {
-            if map.len() > 1 {
-              //return Err()
-            }
-          }
-        },
-        _ => {} // return Err()
-      }
-    }
-    BTreeMap::new()
-  }
-
-  fn parse_occupied_tile_data(data: &Vec<Json>) -> Vec<Vec2<u8>> {
-    Vec::new()
+  fn parse_occupied_tile_data(data: &Vec<Json>)
+                                     -> Result<Vec<Vec2<u8>>, LoadModelError> {
+    unimplemented!()
   }
 }

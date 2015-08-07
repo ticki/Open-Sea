@@ -4,25 +4,35 @@ use std::fmt;
 
 #[derive(Debug)]
 pub enum ModelError {
-  MissingKey(&'static str),
-  TypeError { key: &'static str, expected: &'static str },
-  Other(&'static str),
+  TopLevelNotObject,
+  MissingKey { key: &'static str, context: &'static str },
+  TypeError { obj: &'static str, expected: &'static str },
+  InvalidKey { key: String, context: &'static str },
+  MultiKeyWith,
 }
 
 
 impl fmt::Display for ModelError {
   fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::Error> {
     match self {
-      &ModelError::MissingKey(ref key) =>
-        f.write_fmt(format_args!("model data is missing key {:?}", key)),
+      &ModelError::TopLevelNotObject =>
+        f.write_str("Model file must be JSON object"),
 
-      &ModelError::TypeError { ref key, ref expected } =>
+      &ModelError::MissingKey { ref key, ref context } =>
+        f.write_fmt(format_args!("{} is missing key {:?}", context, key)),
+
+      &ModelError::TypeError { ref obj, ref expected } =>
         f.write_fmt(
-          format_args!("type error: expected JSON {} for model key {:?}",
+          format_args!("Type error: expected value of type `JSON {}` for {}",
                        expected,
-                       key )),
+                       obj )),
 
-      &ModelError::Other(message) => f.write_str(message)
+      &ModelError::InvalidKey { ref key, ref context } =>
+        f.write_fmt(
+          format_args!("found unexpected key {:?} in {}", key, context) ),
+
+      &ModelError::MultiKeyWith =>
+        f.write_str("Object containing \"with\" also contains other keys."),
     }
   }
 }
