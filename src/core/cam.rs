@@ -33,7 +33,7 @@ impl<'a> Cam<'a> {
   }
   /// Get position
   fn get_pos(&self) -> Vec2<f64> {
-    let pos = self.in_focus.get_pos() as Vec2<f64>;
+    let pos: Vec2<f64> = Vec2::from(self.in_focus.get_pos());
     pos * self.trans_state
     + pos * (1.0 - self.trans_state)
   }
