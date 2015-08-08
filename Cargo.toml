@@ -1,5 +1,5 @@
 [package]
-name = "Open Sea"
+name = "open_sea"
 version = "0.1.0"
 authors = ["Adam Badawy <adambada@buffalo.edu>",
            "Ticki <ticki@users.noreply.github.com>"]
