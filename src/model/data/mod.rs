@@ -4,6 +4,7 @@ use core::Vec2;
 
 mod error;
 mod load;
+mod occupied_tile_data;
 mod sprite_data;
 
 pub use self::error::{LoadModelError, ModelError};
@@ -36,5 +37,5 @@ impl Sprite {
 #[derive(Debug)]
 pub struct ModelData {
   sprite_data: BTreeMap<String, Sprite>,
-  occupied_tiles: Vec<Vec2<u8>>,
+  occupied_tiles: Vec<Vec2<i8>>,
 }
