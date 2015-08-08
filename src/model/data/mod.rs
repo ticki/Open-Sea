@@ -1,8 +1,4 @@
-#![allow(dead_code)] // TODO remove
-
 use std::collections::BTreeMap;
-// TODO remove:
-// use std::path::Path;
 
 use core::Vec2;
 
@@ -13,25 +9,32 @@ mod sprite_data;
 pub use self::error::{LoadModelError, ModelError};
 
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Frame {
-  texture: u16,
   cut_from: (u16, u16),
   cut_offset: (i8, i8),
   size: (u16, u16),
-  pin_to: (i32, i32),
+  pin_to: (i16, i16),
   pin_offset: (i8, i8),
 }
 
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Sprite {
-  frames: Vec<Frame>
+  resource: usize,
+  frames: Vec<Frame>,
+}
+
+
+impl Sprite {
+  pub fn new(resource: usize, frames: Vec<Frame>) -> Sprite {
+    Sprite { resource: resource, frames: frames }
+  }
 }
 
 
 #[derive(Debug)]
 pub struct ModelData {
   sprite_data: BTreeMap<String, Sprite>,
-  occupied_tiles: Vec<Vec2<u8>>
+  occupied_tiles: Vec<Vec2<u8>>,
 }

@@ -4,7 +4,7 @@ use rustc_serialize::json::Json;
 
 use core::{Vec2, util};
 
-use super::{ModelData, Sprite};
+use super::ModelData;
 use super::error::{LoadModelError, ModelError};
 use super::sprite_data;
 

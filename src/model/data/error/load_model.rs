@@ -22,9 +22,9 @@ pub enum LoadModelError {
 impl fmt::Display for LoadModelError {
   fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::Error> {
     match self {
-      &LoadModelError::IoError(ref e) => f.write_fmt(format_args!("{}", e)),
-      &LoadModelError::Utf8Error(ref e) => f.write_fmt(format_args!("{}", e)),
-      &LoadModelError::JsonError(ref e) => f.write_fmt(format_args!("{}", e)),
+      &LoadModelError::IoError(ref e)    => f.write_fmt(format_args!("{}", e)),
+      &LoadModelError::Utf8Error(ref e)  => f.write_fmt(format_args!("{}", e)),
+      &LoadModelError::JsonError(ref e)  => f.write_fmt(format_args!("{}", e)),
       &LoadModelError::ModelError(ref e) => f.write_fmt(format_args!("{}", e)),
     }
   }
