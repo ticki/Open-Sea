@@ -27,6 +27,7 @@ pub mod renderer;
 
 use core::{Config};
 use core::state;
+use core::state::State;
 
 use renderer::Renderer;
 
