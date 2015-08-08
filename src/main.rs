@@ -25,13 +25,14 @@ pub mod core;
 pub mod model;
 pub mod renderer;
 
-use core::{Config, View};
+use core::{Config};
+use core::state;
 
 use renderer::Renderer;
 
 
 fn main() {
-  let view = core::GameView::new();
+  let state = state::game_state::Game::new();
 
   let gl_context = OpenGL::_2_1;
 
@@ -64,7 +65,7 @@ fn main() {
         gl.draw(args.viewport(), |c, gl| {
           clear([1.0, 1.0, 1.0, 1.0], gl);
 
-          view.render(&args, gl, &mut renderer);
+          state.render(&args, gl, &mut renderer);
 
           image.draw(&texture, default_draw_state(), c.transform, gl);
         });
