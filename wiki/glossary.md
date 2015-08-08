@@ -17,3 +17,4 @@ prop      |            | An entity that doesn't do anything. Not a tile. Example
 `Tile`    |            | A graphic that is drawn as part of the background. The tilemap is made of these, and has exactly one every 16x16 pixels.
 `TileMap` |            | The tile data for a map.
 `View`    |            | A game state, like the main menu, or exploring the world.
+object    |            | Basically just a unified term for both props and entities.
