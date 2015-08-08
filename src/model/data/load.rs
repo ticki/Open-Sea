@@ -4,10 +4,13 @@ use rustc_serialize::json::Json;
 
 use core::{Vec2, util};
 
-use super::{ModelData, Sprite};
+use super::ModelData;
 use super::error::{LoadModelError, ModelError};
+use super::occupied_tile_data;
 use super::sprite_data;
 
+
+// TODO make functions Result<_, ModelError> where appropriate
 
 impl ModelData {
   pub fn load(path: &str) -> Result<ModelData, LoadModelError> {
@@ -37,7 +40,7 @@ impl ModelData {
     match obj.get("occupied_tiles") {
       Some(&Json::Array(ref raw_occupied_tile_data)) =>
         occupied_tile_data =
-          try!( ModelData::parse_occupied_tile_data(raw_occupied_tile_data) ),
+          try!( occupied_tile_data::parse(raw_occupied_tile_data) ),
 
       Some(_) => return Err(LoadModelError::ModelError(
                          ModelError::TypeError { obj: "key \"occupied_tiles\"",
@@ -59,10 +62,5 @@ impl ModelData {
       Json::Object(data) => Ok(data),
       _ => try!(Err( ModelError::TopLevelNotObject ))
     }
-  }
-
-  fn parse_occupied_tile_data(data: &Vec<Json>)
-                                     -> Result<Vec<Vec2<u8>>, LoadModelError> {
-    unimplemented!()
   }
 }

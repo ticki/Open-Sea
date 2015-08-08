@@ -1,3 +1,5 @@
+# Model File Specification
+
 This is the specification for model files. (`data/models/*.json`) All units are
 tiles (16x16 pixels) unless specified otherwise.
 
@@ -17,13 +19,13 @@ This list contains the data for the sprites of the model.
 
 Key          | Default?        | Type        | Description
 -------------|-----------------|-------------|------------
-`cut_from`   | `[0,0]`         | `[u32,u32]` | Where from the image to cut the graphic
+`cut_from`   | `[0,0]`         | `[u16,u16]` | Where from the image to cut the graphic
 `cut_offset` | `[0,0]`         | `[i8,i8]`   | The *pixel* offset of the graphic in the source image
 `file`       | `"tileset.png"` | `string`    | The path to the image, relative to `data/graphics`
 `frame`      | `0`             | `u32`       | The `frame` the graphic belongs to
 `pin_offset` | `[0,0]`         | `[i8,i8]`   | The *pixel* offset of the graphic on the model
-`pin_to`     | `[0,0]`         | `[i32,i32]` | Where the graphic should be drawn relative to the model
-`size`       | `[1,1]`         | `[u32,u32]` | The size of the rectangle cut from the image
+`pin_to`     | `[0,0]`         | `[i16,i16]` | Where the graphic should be drawn relative to the model
+`size`       | `[1,1]`         | `[u16,u16]` | The size of the rectangle cut from the image
 `sprite`     | `"default"`     | `string`    | The sprite of the model that this graphic belongs to
 `with`       | N/A             | `structure` | A set of graphic structures containing different defaults
 

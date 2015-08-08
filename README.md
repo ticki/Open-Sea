@@ -9,3 +9,7 @@ the open sea, explore the world, and play together with your friends.
 
 Open an issue, or fork the repo and send a pull request. Contributions are much
 appreciated.
+
+
+
+[wiki](wiki/index.md)

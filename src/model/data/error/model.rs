@@ -8,7 +8,9 @@ pub enum ModelError {
   MissingKey { key: &'static str, context: &'static str },
   TypeError { obj: &'static str, expected: &'static str },
   InvalidKey { key: String, context: &'static str },
-  MultiKeyWith,
+  ExcessKeys { context: &'static str },
+  InvalidFrames { sprite_name: String, length: usize, max_index: usize },
+  FrameRedef { sprite_name: String, frame_index: usize },
 }
 
 
@@ -31,8 +33,22 @@ impl fmt::Display for ModelError {
         f.write_fmt(
           format_args!("found unexpected key {:?} in {}", key, context) ),
 
-      &ModelError::MultiKeyWith =>
-        f.write_str("Object containing \"with\" also contains other keys."),
+      &ModelError::ExcessKeys { ref context } =>
+        f.write_fmt(
+          format_args!("Expected to find only one key in {}", context) ),
+
+      &ModelError::InvalidFrames { ref sprite_name, length, max_index } =>
+        f.write_fmt(format_args!(
+          "Missing frame definitions in sprite {:?} ({} frames found, but max index is {})",
+          sprite_name,
+          length,
+          max_index )),
+
+      &ModelError::FrameRedef { ref sprite_name, frame_index } =>
+        f.write_fmt(format_args!(
+                      "Multiple definitions found for frame {} of sprite {:?}",
+                      frame_index,
+                      sprite_name )),
     }
   }
 }
