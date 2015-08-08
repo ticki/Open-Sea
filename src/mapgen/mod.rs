@@ -59,6 +59,8 @@ impl<'a> MapGenerator<'a> {
          ((coord.y() as f64) / (CHUNK_SIZE as f64)).floor() as i64)
   }
 
+  // TODO: Don't use noise for qunaities that doesn't have to be continious.
+
   /// Get the chunk type of the big chunk at (x, y)
   pub fn get_bchunk_type(&self, coord: Vec2<i64>) -> BChunkType {
     let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);

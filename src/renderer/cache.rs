@@ -1,8 +1,8 @@
 use mapgen::*;
-use core::{Vec2, Block};
+use core::{Vec2, Tile};
 
 /// A chunk grid, i.e. a grid of chunk size cotaining Block
-type ChunkGrid = [[&Block; CHUNK_SIZE]; CHUNK_SIZE];
+type ChunkGrid = [[&Tile; CHUNK_SIZE]; CHUNK_SIZE];
 /// A cache of the relevant chunks
 ///
 /// The ordering of the chunks are as follows.

@@ -1,4 +1,5 @@
 use core::*;
+use opengl_graphics::{Texture};
 
 /// A player
 pub struct Player {
