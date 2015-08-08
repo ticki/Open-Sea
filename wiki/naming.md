@@ -7,7 +7,7 @@
   - [ ] cam.rs
   - [ ] config.rs
   - [ ] game_view.rs
-  - [ ] map.rs
+  - [x] map.rs
   - [x] object.rs
   - [ ] vec2.rs
   - [ ] view.rs
