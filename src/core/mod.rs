@@ -11,6 +11,7 @@ pub mod cam;
 pub mod object;
 mod prop;
 mod entity;
+mod matter;
 
 pub use self::object::{Animate, Move, Sprite, Position, Dir};
 pub use self::angle::Angle;
@@ -21,4 +22,5 @@ pub use self::map::{Map, Tile, TileMap};
 pub use self::vec2::Vec2;
 pub use self::prop::{Prop};
 pub use self::entity::{Entity, Id};
+pub use self::matter::{Matter};
 

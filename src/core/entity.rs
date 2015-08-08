@@ -1,10 +1,10 @@
-use core::{Sprite};
+use core::{Sprite, Matter};
 
 /// Entity ID type
 pub struct Id(pub i64);
 
 /// An entity, a dynamic in-game object with non-trivial functionality
-pub trait Entity: Sprite {
+pub trait Entity: Sprite + Matter {
   /// Get the ID of the given entity
   fn id(&self) -> Id;
   /// Is the entity solid at point (x, y) relative to the position?

@@ -68,6 +68,8 @@ impl Sprite for Player {
   }
 }
 
+impl Matter for Player {}
+
 impl Entity for Player {
   fn id(&self) -> Id {
     Id(0) // NOTE: Player's ID is always 0

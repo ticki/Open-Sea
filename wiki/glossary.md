@@ -18,3 +18,4 @@ prop      |            | An entity that doesn't do anything. Not a tile. Example
 `TileMap` |            | The tile data for a map.
 `View`    |            | A game state, like the main menu, or exploring the world.
 object    |            | Basically just a unified term for both props and entities.
+`Matter`  |            | A object with certain matterial descriptors, i.e. properties such as solidness, hardness, destroyability.
