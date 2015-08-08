@@ -44,10 +44,10 @@ fn parse_element(elem: &Json,
           try!(extract_i8(&tile[0], type_err_obj, type_err_exp)),
           try!(extract_i8(&tile[1], type_err_obj, type_err_exp)) );
       ret.push(v);
+      Ok(())
     },
-    _ => return Err(type_err)
+    _ => Err(type_err)
   }
-  Ok(())
 }
 
 

@@ -8,7 +8,7 @@ pub enum ModelError {
   MissingKey { key: &'static str, context: &'static str },
   TypeError { obj: &'static str, expected: &'static str },
   InvalidKey { key: String, context: &'static str },
-  ExcessKeys { context: &'static str },
+  WrongNumKeys { expected: usize, context: &'static str },
   InvalidFrames { sprite_name: String, length: usize, max_index: usize },
   FrameRedef { sprite_name: String, frame_index: usize },
 }
@@ -33,9 +33,9 @@ impl fmt::Display for ModelError {
         f.write_fmt(
           format_args!("found unexpected key {:?} in {}", key, context) ),
 
-      &ModelError::ExcessKeys { ref context } =>
+      &ModelError::WrongNumKeys { expected, ref context } =>
         f.write_fmt(
-          format_args!("Expected to find only one key in {}", context) ),
+          format_args!("Expected to find exactly {} key(s) in {}", expected, context) ),
 
       &ModelError::InvalidFrames { ref sprite_name, length, max_index } =>
         f.write_fmt(format_args!(

@@ -73,7 +73,8 @@ fn process_2(obj: &BTreeMap<String, Json>,
   if obj.contains_key("with") {
     if obj.len() > 1 {
       return try!(Err(
-            ModelError::ExcessKeys { context: "object containing \"with\"" }));
+            ModelError::WrongNumKeys { expected: 1,
+                                     context: "object containing \"with\"" }));
     }
     try!(process_with(obj, settings, ret));
   }
