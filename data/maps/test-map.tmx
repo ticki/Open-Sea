@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16">
+  <image source="../Programming/resources/graphics/bb/tileset.png" width="128" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2FsKgzAUQMG02v1vuQgVbEhsfOYWZuB+CH55MDGmBAAARPYsDP1Mz/+xGD360iOW6fmPi9GjLz1i0eNev76b9LjXvF/rEYMesczPW48Y9IhhuY+P2XU+eQ//Ts63PHeP6fsMns/wuWdIzupX2dKjdo8e58nXoT2jR5u1vSDfF15Jj6vl/2TX1qDStDbSo83RHt6Pc5X2hiPrkh7H5D22tNjyLunR5shaVKPHfnrE0rKX16ZGj1j0iEWPWPSIRY9Y9IildL5c+x7jWrWzPH1sPa8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8ozd1gwR1
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2DEKgDAMQNFCQV0dpVvvf0h36SASGgvvbQkZ/pxSAAAAAOJc2QEAAAtp2QEAL9WgG2Lsg93xmLcZIXzidzLHmR0AAADAL/XsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlnIDbi0AnA==
+  </data>
+ </layer>
+</map>
