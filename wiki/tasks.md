@@ -31,4 +31,4 @@
 - [x] Handle errors in Config and Model loader
 - [x] Find a good font for the game (Could be nice if it was MIT-licensed)
 - [ ] Finish [naming review](wiki/naming.md)
-- [ ] Make glossary
+- [x] Make glossary
