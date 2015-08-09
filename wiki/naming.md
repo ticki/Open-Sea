@@ -1,32 +1,47 @@
 # Naming review
 
 - [ ] main.rs
-- [ ] core
+- [ ] **core**
   - [ ] mod.rs
   - [ ] angle.rs
   - [ ] cam.rs
   - [ ] config.rs
-  - [ ] game_view.rs
   - [x] map.rs
   - [x] object.rs
+  - [x] prop.rs
   - [ ] vec2.rs
-  - [ ] view.rs
-  - [ ] util
+  - [x] **state**
+    - [x] mod.rs
+    - [x] game.rs
+  - [ ] **util**
     - [ ] mod.rs
     - [ ] read_utf8_file.rs
-- [ ] mapgen
+- [ ] **mapgen**
   - [ ] mod.rs
-- [ ] model
+- [ ] **model**
   - [ ] mod.rs
   - [ ] player.rs
-  - [ ] data
-    - [ ] load.rs
+  - [ ] **data**
     - [ ] mod.rs
-    - [ ] sprite_data.rs
-    - [ ] error
-      - [ ] load_model.rs
+    - [ ] load.rs
+    - [ ] **error**
       - [ ] mod.rs
+      - [ ] load_model.rs
       - [ ] model.rs
-- [ ] renderer
+    - [ ] **occupied_tile_data**
+      - [ ] mod.rs
+      - [ ] individual.rs
+      - [ ] rectangle.rs
+    - [ ] **sprite_data**
+      - [ ] mod.rs
+      - [ ] sprite_builder.rs
+      - [ ] **settings**
+        - [ ] mod.rs
+        - [ ] modify.rs
+    - [ ] **error**
+      - [ ] mod.rs
+      - [ ] load_model.rs
+      - [ ] model.rs
+- [ ] **renderer**
   - [ ] mod.rs
   - [ ] cache.rs
