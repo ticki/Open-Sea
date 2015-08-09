@@ -49,6 +49,8 @@ pub trait Move: Position {
   fn set_dir(&mut self, new_dir: Dir);
   /// Is the object moving?
   fn is_moving(&self) -> bool;
+  /// Can the object move? Or is it blocked?
+  fn can_move(&self) -> bool;
   /// Move the object
   fn move_obj(&mut self, mov: Vec2<i64>) {
     let coord = self.get_pos();
@@ -73,7 +75,8 @@ pub trait Move: Position {
   /// Moves regularly
   fn move_reg(&mut self) {
     let now = &time::precise_time_s();
-    if self.is_moving() && self.get_last_move() - now > 1.0 / self.get_speed() {
+    if self.is_moving() && self.can_move()
+       && self.get_last_move() - now > 1.0 / self.get_speed() {
       self.set_last_move(now);
       self.move_obj_dir();
     }

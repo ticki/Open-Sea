@@ -4,7 +4,7 @@
 mod angle;
 mod config;
 pub mod state;
-mod map;
+pub mod map;
 pub mod util;
 mod vec2;
 pub mod cam;

@@ -5,6 +5,7 @@ use noise::{Brownian2, Seed, open_simplex2};
 use core::{Map, Tile, TileMap, Vec2};
 
 pub const CHUNK_SIZE: i64 = 128;
+pub const CHUNK_SIZE_usize: usize = 128usize;
 
 
 /// A map
@@ -114,11 +115,11 @@ impl<'a> MapGenerator<'a> {
   }
 }
 
-impl<'a> TileMap for MapGenerator<'a> {
+impl<'a> TileMap<'a> for MapGenerator<'a> {
 
   // TODO: Rename to get block?
   /// Get the tile at a given point
-  fn get_tile(&self, coord: Vec2<i64>) -> Tile {
+  fn get_tile(&self, coord: Vec2<i64>) -> Tile<'a> {
     let val = (self.get_noise_value(coord)
                + self.get_overlay_value(coord)) / 2.0;
 

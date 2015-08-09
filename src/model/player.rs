@@ -32,6 +32,10 @@ impl Move for Player {
     // TODO: Code here.
     unimplemented!()
   }
+  fn can_move(&self) -> bool {
+    // TODO: Check if the way is blocked, using the cache.
+    unimplemented!()
+  }
   fn get_last_move(&self) -> f64 {
     self.last_move
   }

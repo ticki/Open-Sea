@@ -9,6 +9,9 @@ use opengl_graphics::glyph_cache::GlyphCache;
 
 use graphics;
 
+pub mod cache;
+pub use self::cache::*;
+
 
 pub struct Renderer {
   font: GlyphCache<'static>,
