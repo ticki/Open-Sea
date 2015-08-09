@@ -12,4 +12,4 @@ appreciated.
 
 
 
-[wiki](wiki/index.md)
+[wiki](wiki/readme.md)
