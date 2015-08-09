@@ -18,5 +18,5 @@ pub trait State {
   fn end(&mut self) {}
 }
 
-pub mod game_state;
-pub use self::game_state::Game;
+mod game;
+pub use self::game::Game;

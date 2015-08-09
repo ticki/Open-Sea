@@ -33,7 +33,7 @@ use renderer::Renderer;
 
 
 fn main() {
-  let state = state::game_state::Game::new();
+  let state = state::Game::new();
 
   let gl_context = OpenGL::_2_1;
 
