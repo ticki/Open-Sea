@@ -2,7 +2,7 @@ use std::collections::BTreeMap;
 
 use rustc_serialize::json::Json;
 
-use core::{Vec2, util};
+use core::util;
 
 use super::ModelData;
 use super::error::{LoadModelError, ModelError};

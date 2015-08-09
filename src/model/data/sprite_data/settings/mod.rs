@@ -1,5 +1,3 @@
-use model::data::Sprite;
-
 mod modify;
 pub use self::modify::modify;
 
