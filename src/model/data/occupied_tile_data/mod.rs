@@ -8,7 +8,7 @@ use core::Vec2;
 mod individual;
 mod rectangle;
 
-
+/// Parse data about occupied tiles
 pub fn parse(data: &Vec<Json>) -> Result<Vec<Vec2<i8>>, LoadModelError> {
   let mut ret = Vec::new();
   try!(parse_2(data, &mut ret));

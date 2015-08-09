@@ -6,7 +6,7 @@ use core::Vec2;
 
 use model::data::error::{LoadModelError, ModelError};
 
-
+/// Parse occupied_tiles given by a rectangle
 pub fn parse(block: &Json,
              ret: &mut Vec<Vec2<i8>> ) -> Result<(), LoadModelError> {
 
@@ -22,7 +22,7 @@ pub fn parse(block: &Json,
   }
 }
 
-
+/// Parse from binary tree
 fn parse_2(obj: &BTreeMap<String, Json>,
            ret: &mut Vec<Vec2<i8>> ) -> Result<(), LoadModelError> {
 
@@ -80,7 +80,7 @@ fn parse_2(obj: &BTreeMap<String, Json>,
   Ok(())
 }
 
-
+// TODO: document these, not sure about their functionality
 fn extract_i8_pair(value: &Json) -> Result<(i8, i8), ()> {
   match value {
     &Json::Array(ref arr) => {

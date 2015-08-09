@@ -8,6 +8,13 @@ mod error;
 pub use self::error::LoadConfigError;
 
 
+<<<<<<< HEAD
+const CONFIG_PATH: &'static str = "./data/config.json";
+
+
+/// The configuration of the window
+=======
+>>>>>>> parent of cfa072d... Documented the whole core module, TODO: Document the rest
 #[derive(RustcDecodable, RustcEncodable)]
 pub struct Config {
   title: String,
@@ -17,7 +24,7 @@ pub struct Config {
 
 impl Config {
   pub fn load() -> Result<Config, LoadConfigError> {
-    let config_contents = try!(util::read_utf8_file("./assets/config.json"));
+    let config_contents = try!(util::read_utf8_file(CONFIG_PATH));
     // See self::error source for why try! isn't used here.
     match json::decode(&config_contents) {
       Ok(config) => Ok(config),

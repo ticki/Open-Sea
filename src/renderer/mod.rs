@@ -11,7 +11,11 @@ use graphics;
 
 pub use core::cache::*;
 
+mod texture_manager;
+pub use self::texture_manager::{LoadTextureError, TextureManager};
 
+
+/// The renderer
 pub struct Renderer {
   font: GlyphCache<'static>,
   text: graphics::text::Text,
@@ -19,6 +23,7 @@ pub struct Renderer {
 
 
 impl Renderer {
+  /// Create a new renderer
   pub fn new() -> Renderer {
     Renderer {
       font: GlyphCache::new(Path::new("./data/font.ttf")).unwrap(),
@@ -26,6 +31,7 @@ impl Renderer {
     }
   }
 
+  /// Draw text
   pub fn draw_text(&mut self,
                    args: &RenderArgs,
                    gl: &mut GlGraphics,

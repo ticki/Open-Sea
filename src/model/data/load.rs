@@ -15,6 +15,7 @@ use super::sprite_data;
 impl ModelData {
   // TODO remove dead_code permit as soon as we start loading ModelData
   #[allow(dead_code)]
+  /// Load model data
   pub fn load(path: &str) -> Result<ModelData, LoadModelError> {
     let obj = try!(ModelData::load_json(path));
 
@@ -56,7 +57,7 @@ impl ModelData {
     Ok(ModelData { sprite_data: sprite_data,
                    occupied_tiles: occupied_tile_data })
   }
-
+  /// Load json
   fn load_json(path: &str) -> Result<BTreeMap<String, Json>, LoadModelError> {
     let file_contents = try!(util::read_utf8_file(path));
     let json_obj = try!(Json::from_str(&file_contents));

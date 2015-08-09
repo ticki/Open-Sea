@@ -4,7 +4,7 @@ use core::Vec2;
 
 use model::data::error::{LoadModelError, ModelError};
 
-
+/// Parse individual occupied tiles
 pub fn parse(block: &Json,
              ret: &mut Vec<Vec2<i8>> ) -> Result<(), LoadModelError> {
 

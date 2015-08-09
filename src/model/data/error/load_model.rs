@@ -9,7 +9,7 @@ use core::util::ReadUtf8FileError;
 
 use super::ModelError;
 
-
+/// A load model error
 #[derive(Debug)]
 pub enum LoadModelError {
   IoError(io::Error),
@@ -17,7 +17,6 @@ pub enum LoadModelError {
   JsonError(json::ParserError),
   ModelError(ModelError),
 }
-
 
 impl fmt::Display for LoadModelError {
   fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::Error> {

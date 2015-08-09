@@ -7,14 +7,12 @@ extern crate num;
 extern crate rustc_serialize;
 extern crate time;
 
-use std::path::Path;
-
 use piston::window::WindowSettings;
 use piston::event::{Event, Events};
 use piston::input::{Button, Input, Key};
 
 use glutin_window::GlutinWindow as Window;
-use opengl_graphics::{OpenGL, GlGraphics, Texture};
+use opengl_graphics::{OpenGL, GlGraphics};
 
 use graphics::Image;
 use graphics::rectangle::square;
@@ -29,7 +27,7 @@ use core::Config;
 use core::state;
 use core::state::State;
 
-use renderer::Renderer;
+use renderer::{Renderer, TextureManager};
 
 
 fn main() {
@@ -37,17 +35,32 @@ fn main() {
 
   let gl_context = OpenGL::_2_1;
 
-  let config = Config::load().unwrap();
+  let config = match Config::load() {
+    Ok(config) => config,
+    Err(e) => {
+      println!("Couldn't load config:");
+      println!("  {:?}", e);
+      return;
+    }
+  };
 
   let window_settings =
     WindowSettings::new(config.game_title().clone(),
                         config.window_size() ).exit_on_esc(true);
   let window = Window::new(gl_context, window_settings);
 
-  // Create the image object and attach a square Rectangle object inside.
-  let image = Image::new().rect(square(100.0, 10.0, 200.0));
-  // A texture to use with the image
-  let texture = Texture::from_path(Path::new("./assets/stamos.png")).unwrap();
+  let mut tex_mgr = TextureManager::new();
+
+  let image = Image::new().rect(square(100.0, 10.0, 64.0));
+  let path_to_stamos = "./data/graphics/stamos.png";
+  let texture = match tex_mgr.get(path_to_stamos) {
+    Ok(john) => john,
+    Err(e) => {
+      println!("Couldn't load John Stamos:");
+      println!("  {:?}", e);
+      return;
+    }
+  };
 
   // This is the object used for drawing
   let mut gl = GlGraphics::new(gl_context);
@@ -68,7 +81,7 @@ fn main() {
 
           state.render(&args, gl, &mut renderer);
 
-          image.draw(&texture, default_draw_state(), c.transform, gl);
+          image.draw(texture, default_draw_state(), c.transform, gl);
         });
       },
 

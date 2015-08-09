@@ -3,13 +3,21 @@ use std::fmt;
 
 
 #[derive(Debug)]
+/// An error when loading a model
 pub enum ModelError {
+  /// Toplevel, not object (brackets needed)
   TopLevelNotObject,
+  /// Missing keys
   MissingKey { key: &'static str, context: &'static str },
+  /// Type error
   TypeError { obj: &'static str, expected: &'static str },
+  /// Invalid key
   InvalidKey { key: String, context: &'static str },
+  /// Unexpected number of keys
   WrongNumKeys { expected: usize, context: &'static str },
+  /// Invalid frames
   InvalidFrames { sprite_name: String, length: usize, max_index: usize },
+  /// Redefinition of frames (i.e. duplicates or overlaps)
   FrameRedef { sprite_name: String, frame_index: usize },
 }
 
