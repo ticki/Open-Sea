@@ -10,8 +10,8 @@ extern crate time;
 use std::path::Path;
 
 use piston::window::WindowSettings;
-use piston::event::{ Event, Events };
-use piston::input::{ Button, Input, Key };
+use piston::event::{Event, Events};
+use piston::input::{Button, Input, Key};
 
 use glutin_window::GlutinWindow as Window;
 use opengl_graphics::{OpenGL, GlGraphics, Texture};
@@ -25,7 +25,7 @@ pub mod core;
 pub mod model;
 pub mod renderer;
 
-use core::{Config};
+use core::Config;
 use core::state;
 use core::state::State;
 
