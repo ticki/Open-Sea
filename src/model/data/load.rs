@@ -13,6 +13,8 @@ use super::sprite_data;
 // TODO make functions Result<_, ModelError> where appropriate
 
 impl ModelData {
+  // TODO remove dead_code permit as soon as we start loading ModelData
+  #[allow(dead_code)]
   pub fn load(path: &str) -> Result<ModelData, LoadModelError> {
     let obj = try!(ModelData::load_json(path));
 
