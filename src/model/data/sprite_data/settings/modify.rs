@@ -89,7 +89,7 @@ fn get_pair<T, F>(value: &Json,
 }
 
 
-// TODO: generalize these `extract...` methods
+// TODO: generalize these `extract...` methods (use num crate)
 
 /// This is only to be used with `get_pair`
 fn extract_i8(key: &'static str,
