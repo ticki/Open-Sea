@@ -62,17 +62,32 @@ fn parse_2(obj: &BTreeMap<String, Json>,
                       context: "\"rectangle\" object in \"occupied_tiles\"" }))
     };
   }
+
+  // Push all the occupied tiles into `ret`
+  let (left, top) = start.unwrap();
+  let (w, h) = size.unwrap();
+  let (right, bottom) = (left + w, top + h);
+  let mut y = top;
+  while y < bottom {
+    let mut x = left;
+    while x < right {
+      ret.push(Vec2(x, y));
+      x += 1;
+    }
+    y += 1;
+  }
+
   Ok(())
 }
 
 
-fn extract_i8_pair(value: &Json) -> Result<Vec2<i8>, ()> {
+fn extract_i8_pair(value: &Json) -> Result<(i8, i8), ()> {
   match value {
     &Json::Array(ref arr) => {
       if arr.len() != 2 {
         return Err(());
       }
-      Ok(Vec2( try!(extract_i8(&arr[0])), try!(extract_i8(&arr[1])) ))
+      Ok(( try!(extract_i8(&arr[0])), try!(extract_i8(&arr[1])) ))
     },
     _ => Err(())
   }
