@@ -82,6 +82,25 @@ impl<'a> Cache<'a> {
       }
     }
     self.offset = new_offset;
+    for i in collision_map {
+      if (i - self.offset).x() < CHUNK_SIZE
+         && (i - self.offset).y() < CHUNK_SIZE {
+        let coord = i - self.offset;
+        self.chunk1[coord.y() as usize][coord.x() as usize].solid = true;
+      } else if (i - self.offset).x() >= CHUNK_SIZE
+         && (i - self.offset).y() < CHUNK_SIZE {
+        let coord = i - self.offset - Vec2(0, CHUNK_SIZE);
+        self.chunk2[coord.y() as usize][coord.x() as usize].solid = true;
+      } else if (i - self.offset).x() < CHUNK_SIZE
+         && (i - self.offset).y() >= CHUNK_SIZE {
+        let coord = i - self.offset - Vec2(CHUNK_SIZE, 0);
+        self.chunk3[coord.y() as usize][coord.x() as usize].solid = true;
+      } else if (i - self.offset).x() >= CHUNK_SIZE
+         && (i - self.offset).y() >= CHUNK_SIZE {
+        let coord = i - self.offset - Vec2(CHUNK_SIZE, CHUNK_SIZE);
+        self.chunk3[coord.y() as usize][coord.x() as usize].solid = true;
+      }
+    }
   }
 
   fn get_block(&self) -> Tile {

@@ -7,7 +7,7 @@ use model::{Player};
 /// A block: a field consisting of three layers, containing tiles.
 pub struct Tile<'a> {
   pub layers: Vec<&'a Prop>,
-  solid: bool, // NOTE: When a tile load it's occupied_tiles should be set
+  pub solid: bool, // NOTE: When a tile load it's occupied_tiles should be set
                //       to have solid = true (This is sorta a todo)
 }
 // TODO: Make load_also, for the sprites which occupies more than one field.
