@@ -11,7 +11,7 @@ mod rectangle;
 
 pub fn parse(data: &Vec<Json>) -> Result<Vec<Vec2<i8>>, LoadModelError> {
   let mut ret = Vec::new();
-  parse_2(data, &mut ret);
+  try!(parse_2(data, &mut ret));
   Ok(ret)
 }
 
