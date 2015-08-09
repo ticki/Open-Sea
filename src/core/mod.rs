@@ -12,6 +12,7 @@ pub mod object;
 mod prop;
 mod entity;
 pub mod matter;
+pub mod cache;
 
 pub use self::object::{Move, Sprite, Position, Dir};
 pub use self::angle::Angle;

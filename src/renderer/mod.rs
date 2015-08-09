@@ -9,8 +9,7 @@ use opengl_graphics::glyph_cache::GlyphCache;
 
 use graphics;
 
-pub mod loader;
-pub use self::loader::*;
+pub use core::cache::*;
 
 
 pub struct Renderer {
