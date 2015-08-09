@@ -11,7 +11,7 @@ pub mod cam;
 pub mod object;
 mod prop;
 mod entity;
-mod matter;
+pub mod matter;
 
 pub use self::object::{Move, Sprite, Position, Dir};
 pub use self::angle::Angle;

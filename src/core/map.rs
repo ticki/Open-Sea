@@ -6,7 +6,7 @@ use model::{Player};
 
 /// A block: a field consisting of three layers, containing tiles.
 pub struct Tile<'a> {
-  layers: Vec<&'a Prop>,
+  pub layers: Vec<&'a Prop>,
   solid: bool, // NOTE: When a tile load it's occupied_tiles should be set
                //       to have solid = true (This is sorta a todo)
 }
@@ -30,4 +30,10 @@ pub trait TileMap<'a> {
     //       variable to true. And push the prop to the tile.
   }
   fn set_tile(&mut self, new_tile: Tile) {}
+  fn get_solid(&self) -> bool {
+    false
+  }
+  fn set_solid(&mut self, new: bool) {
+    unimplemented!()
+  }
 }
