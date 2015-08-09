@@ -2,10 +2,7 @@
 
 use noise::{Brownian2, Seed, open_simplex2};
 
-// TODO pick:
-// use core::*;
-// use core::{Map, Tile, TileMap};
-use core::*;
+use core::{Map, Tile, TileMap, Vec2};
 
 pub const CHUNK_SIZE: i64 = 128;
 

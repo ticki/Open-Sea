@@ -84,5 +84,5 @@ impl From<Vec2<i64>> for Vec2<f64> {
   #[inline] 
   fn from(old: Vec2<i64>) -> Vec2<f64> {
     Vec2(old.x() as f64, old.y() as f64)
-  } // TODO: USE THIS!
+  }
 }

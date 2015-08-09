@@ -30,7 +30,7 @@ impl Move for Player {
   }
   fn is_moving(&self) -> bool {
     // TODO: Code here.
-    true
+    unimplemented!()
   }
   fn get_last_move(&self) -> f64 {
     self.last_move

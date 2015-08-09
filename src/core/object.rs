@@ -41,7 +41,6 @@ impl Dir {
 // TODO: Implement two directions at once.
 // TODO: Make drawable trait
 
-// TODO: Movable is a bad naming. Consider renaming it, moving.
 /// A movable object
 pub trait Move: Position {
   /// Get the direction
