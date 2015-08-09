@@ -13,7 +13,7 @@ mod prop;
 mod entity;
 mod matter;
 
-pub use self::object::{Animate, Move, Sprite, Position, Dir};
+pub use self::object::{Move, Sprite, Position, Dir};
 pub use self::angle::Angle;
 pub use self::config::Config;
 pub use self::map::{Map, Tile, TileMap};

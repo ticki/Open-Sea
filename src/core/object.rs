@@ -79,11 +79,6 @@ pub trait Move: Position {
       self.move_obj_dir();
     }
   }
-}
-
-/// Trait for animated objects
-// TODO: Merge with move?
-pub trait Animate: Move {
   /// Get transitition point, which is in the interval [0,1]
   fn get_trans_state(&self) -> f64;
   /// Get animation frame
@@ -91,7 +86,7 @@ pub trait Animate: Move {
 }
 
 /// Trait for sprited objects
-pub trait Sprite: Animate {
+pub trait Sprite: Move {
   /// Get current sprite
   fn get_sprite(&self) -> &Texture;
   /// Get width, not neccesarily the width of the sprite, but rather the space

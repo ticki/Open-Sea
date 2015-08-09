@@ -41,9 +41,6 @@ impl Move for Player {
   fn get_speed(&self) -> f64 {
     1.0
   }
-}
-
-impl Animate for Player {
   fn get_trans_state(&self) -> f64 {
     self.trans
   }
