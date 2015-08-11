@@ -10,4 +10,4 @@ matrix:
   allow_failure:
     - rust: nightly
 after_success:
-  - curl https://raw.githubusercontent.com/kmcallister/travis-doc-upload/master/travis-doc-upload.sh | sh
+  - curl https://ticki.github.io/Open-Sea/docupload.sh | sh
