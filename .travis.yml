@@ -4,11 +4,14 @@ env:
   - secure: I/STbGO2INleHxPXmQ01dzF3+M3NGa/dicSOld7mf1J2aB4fWb+nVl8LCMlIdLs4Q+70Ge8DSADTnyaFCDwG5W+rPAs+kL2ZyfaZa95FRjCwT6+NU3hxrKCyHTluflE9KybcoSms2C2V39qe7oFm++yJEBKu5UMfESjtOdk43wkg3lqZr/q/2dkfYZ05t7I54iJXK1d25tMsVySFKQzB4V0k167sdwfcIIk1O1HESzYVJmXAG8TjZJBwOU5faS2s38t2SsPATFB5FbnI3C1hA3vbkpdYJJLNJ+LbpsQqgz5Sg1D1pVU5pidBKKQG54KQZzqOz9JH0GKVPxg65IEXCQHRssO+L3X6CLo2t4QT/kr26ZXzI/1ec+iSC1PPbSpK7l245p5dtDGKdF12xdXAoEgpFJu+7OUzT+jXMJYBaQknE2f4iZrPqxYg3TvlXcK+9sKeUZqiuNG4f6yldrd3OugUefnsbrzXO6ZppQuulnetaeD/zru2lLcRneyVHcJZmGo2TZ1/77zullMRDefyybI+djruX+PtzISW1/WvlBjy8uzu0W3rUaVwGhj0U5qQXde5Jxu+o2Ocu9JkaB2IhA/xTnj7CSl8EbN8dxNdyLW25gaiPyvLWgnT3LOMad98XZQHFNlPSHawaqzrKkV0lLwVRzHxLv7uCvNHOziG8d8=
 language: rust
 rust:
-- stable
-- beta
-- nightly
+  - stable
+  - beta
+  - nightly
+script:
+  - cargo build -v
+  - cargo doc -v
 matrix:
   allow_failure:
-  - rust: nightly
-after_script:
-- curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
+    - rust: nightly
+after_success:
+  - curl https://ticki.github.io/Open-Sea/docupload.sh | sh
