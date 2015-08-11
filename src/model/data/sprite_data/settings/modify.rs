@@ -5,7 +5,7 @@ use num::Num;
 
 use rustc_serialize::json::Json;
 
-use model::data::error::{LoadModelError, ModelError};
+use model::data::error::ModelError;
 use super::SpriteDataSettings;
 
 use core::Vec2;

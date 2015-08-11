@@ -4,7 +4,7 @@ use rustc_serialize::json::Json;
 
 use core::Vec2;
 
-use model::data::error::{LoadModelError, ModelError};
+use model::data::error::ModelError;
 
 /// Parse occupied_tiles given by a rectangle
 pub fn parse(block: &Json,
