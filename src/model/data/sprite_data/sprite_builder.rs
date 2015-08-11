@@ -2,7 +2,7 @@ use std::cmp::max;
 use std::collections::BTreeMap;
 
 use model::data::{Frame, Sprite};
-use model::data::error::{LoadModelError, ModelError};
+use model::data::error::ModelError;
 
 
 #[derive(Clone, Debug)]
@@ -17,7 +17,7 @@ impl SpriteBuilder {
     SpriteBuilder { resource: None, frames: BTreeMap::new() }
   }
 
-  pub fn build(mut self, name: &String) -> Result<Sprite, LoadModelError> {
+  pub fn build(mut self, name: &String) -> Result<Sprite, ModelError> {
     let resource;
     if let Some(r) = self.resource {
       resource = r;
@@ -37,9 +37,9 @@ impl SpriteBuilder {
       actual_max = max(*key, actual_max);
     }
     if actual_max != expected_max {
-      return try!(Err(ModelError::InvalidFrames { sprite_name: name.clone(),
-                                                  length: expected_max,
-                                                  max_index: actual_max }));
+      return Err(ModelError::InvalidFrames { sprite_name: name.clone(),
+                                             length: expected_max,
+                                             max_index: actual_max });
     }
 
     let mut frames = Vec::with_capacity(expected_max);

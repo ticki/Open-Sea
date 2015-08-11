@@ -12,11 +12,11 @@ pub use self::error::{LoadModelError, ModelError};
 /// A frame, i.e. a sprite cutted out of a sprite sheet.
 #[derive(Clone, Debug)]
 pub struct Frame {
-  cut_from: (u16, u16),
-  cut_offset: (i8, i8),
-  size: (u16, u16),
-  pin_to: (i16, i16),
-  pin_offset: (i8, i8),
+  cut_from: Vec2<u16>,
+  cut_offset: Vec2<i8>,
+  size: Vec2<u16>,
+  pin_to: Vec2<i16>,
+  pin_offset: Vec2<i8>,
 }
 
 /// A sprite

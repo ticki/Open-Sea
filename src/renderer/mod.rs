@@ -35,13 +35,15 @@ impl Renderer {
   pub fn draw_text(&mut self,
                    args: &RenderArgs,
                    gl: &mut GlGraphics,
-                   s: &str ) {
+                   s: &str,
+                   pos: Vec2<f64> ) {
     use graphics::*;
     gl.draw(args.viewport(), |c, gl| {
+      let Vec2(x, y) = pos;
       self.text.draw(s,
                      &mut self.font,
                      default_draw_state(),
-                     c.trans(10.0, 20.0).transform,
+                     c.trans(x, y).transform,
                      gl );
     });
   }
