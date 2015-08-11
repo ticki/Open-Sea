@@ -98,6 +98,7 @@ pub trait Sprite: Move {
   fn get_height(&self) -> i16;
   /// Get the opacity of the object
   fn get_opacity(&self) -> f64;
+  fn draw(&self, c: &Context, gl: &mut GlGraphics);
 
   // TODO: Add draw method.
 }
