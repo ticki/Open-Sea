@@ -12,5 +12,5 @@ script:
 matrix:
   allow_failure:
     - rust: nightly
-after_success:
-  - curl https://ticki.github.io/Open-Sea/docupload.sh | sh
+after_success: |
+  curl https://ticki.github.io/Open-Sea/docupload.sh | sh
