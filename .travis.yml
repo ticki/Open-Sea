@@ -9,7 +9,6 @@ rust:
   - nightly
 script:
   - cargo build -v
-  - cargo doc -v
 matrix:
   allow_failure:
     - rust: nightly
