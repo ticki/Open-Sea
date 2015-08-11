@@ -6,6 +6,7 @@
 
 ### Generic TODO
 
+- [ ] ! (Easy) Remove unused piston depedencies
 - [ ] ! Just get it working: Have a player moving around, and a camera following it.
 - [ ] Implement server side
 - [ ] ! Discuss naming conventitions of traits, structs. In ALL modules, particularly the Core module.
