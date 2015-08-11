@@ -6,7 +6,7 @@ use model::data::error::{LoadModelError, ModelError};
 
 /// Parse individual occupied tiles
 pub fn parse(block: &Json,
-             ret: &mut Vec<Vec2<i8>> ) -> Result<(), LoadModelError> {
+             ret: &mut Vec<Vec2<i8>> ) -> Result<(), ModelError> {
 
   match block {
     &Json::Array(ref arr) => {
@@ -17,9 +17,9 @@ pub fn parse(block: &Json,
                            "[i8, i8]" ));
       }
     },
-    _ => try!(Err(ModelError::TypeError
+    _ => return Err(ModelError::TypeError
                            { obj: "\"individual\" block in \"occupied_tiles\"",
-                             expected: "array" }))
+                             expected: "array" })
   }
   Ok(())
 }
@@ -28,12 +28,10 @@ pub fn parse(block: &Json,
 fn parse_element(elem: &Json,
                  ret: &mut Vec<Vec2<i8>>,
                  type_err_obj: &'static str,
-                 type_err_exp: &'static str ) -> Result<(), LoadModelError> {
+                 type_err_exp: &'static str ) -> Result<(), ModelError> {
 
-  let type_err =
-    LoadModelError::ModelError(
-      ModelError::TypeError { obj: type_err_obj,
-                              expected: type_err_exp });
+  let type_err = ModelError::TypeError { obj: type_err_obj,
+                                         expected: type_err_exp };
 
   match elem {
     &Json::Array(ref tile) => {
@@ -53,11 +51,11 @@ fn parse_element(elem: &Json,
 
 fn extract_i8(value: &Json,
               type_err_obj: &'static str,
-              type_err_exp: &'static str ) -> Result<i8, LoadModelError> {
+              type_err_exp: &'static str ) -> Result<i8, ModelError> {
   match value {
     &Json::I64(n) => Ok(n as i8),
     &Json::U64(n) => Ok(n as i8),
-    _ => try!(Err(ModelError::TypeError { obj: type_err_obj,
-                                          expected: type_err_exp }))
+    _ => Err(ModelError::TypeError { obj: type_err_obj,
+                                     expected: type_err_exp })
   }
 }

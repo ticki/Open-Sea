@@ -8,28 +8,25 @@ use model::data::error::{LoadModelError, ModelError};
 
 /// Parse occupied_tiles given by a rectangle
 pub fn parse(block: &Json,
-             ret: &mut Vec<Vec2<i8>> ) -> Result<(), LoadModelError> {
+             ret: &mut Vec<Vec2<i8>> ) -> Result<(), ModelError> {
 
   match block {
-    &Json::Object(ref obj) => {
-      try!(parse_2(obj, ret));
-      Ok(())
-    },
+    &Json::Object(ref obj) => parse_2(obj, ret),
 
-    _ => try!(Err(ModelError::TypeError
+    _ => Err(ModelError::TypeError
                               { obj: "\"rectangle\" key in \"occupied_tiles\"",
-                                expected: "object" }))
+                                expected: "object" })
   }
 }
 
 /// Parse from binary tree
 fn parse_2(obj: &BTreeMap<String, Json>,
-           ret: &mut Vec<Vec2<i8>> ) -> Result<(), LoadModelError> {
+           ret: &mut Vec<Vec2<i8>> ) -> Result<(), ModelError> {
 
   if obj.len() != 2 {
-    return try!(Err(ModelError::WrongNumKeys
-                   { expected: 2,
-                     context: "\"rectangle\" object in \"occupied_tiles\"" }));
+    return Err(ModelError::WrongNumKeys
+                    { expected: 2,
+                      context: "\"rectangle\" object in \"occupied_tiles\"" });
   }
 
   let type_err = |key| Err(ModelError::TypeError { obj: key,
@@ -42,8 +39,8 @@ fn parse_2(obj: &BTreeMap<String, Json>,
       "start" => {
         let extract_result = extract_i8_pair(val);
         if let Err(()) = extract_result {
-          return try!(type_err(
-               "\"start\" key in \"rectangle\" object in \"occupied_tiles\""));
+          return type_err(
+                "\"start\" key in \"rectangle\" object in \"occupied_tiles\"");
         }
         start = Some(extract_result.unwrap());
       },
@@ -51,15 +48,15 @@ fn parse_2(obj: &BTreeMap<String, Json>,
       "size" => {
         let extract_result = extract_i8_pair(val);
         if let Err(()) = extract_result {
-          return try!(type_err(
-                "\"size\" key in \"rectangle\" object in \"occupied_tiles\""));
+          return type_err(
+                 "\"size\" key in \"rectangle\" object in \"occupied_tiles\"");
         }
         size = Some(extract_result.unwrap());
       },
 
-      other => try!(Err(ModelError::InvalidKey
-                    { key: other.to_string(),
-                      context: "\"rectangle\" object in \"occupied_tiles\"" }))
+      other => return Err(ModelError::InvalidKey
+                     { key: other.to_string(),
+                       context: "\"rectangle\" object in \"occupied_tiles\"" })
     };
   }
 

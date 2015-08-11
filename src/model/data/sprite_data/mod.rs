@@ -14,7 +14,7 @@ use self::sprite_builder::SpriteBuilder;
 
 /// Process sprite data.
 pub fn parse(data: &Vec<Json>)
-                          -> Result<BTreeMap<String, Sprite>, LoadModelError> {
+                              -> Result<BTreeMap<String, Sprite>, ModelError> {
 
   let mut uncompressed: BTreeMap<String, SpriteBuilder> = BTreeMap::new();
   try!(parse_2(data, &SpriteDataSettings::defaults(), &mut uncompressed));
@@ -34,7 +34,7 @@ pub fn parse(data: &Vec<Json>)
 fn parse_2(data: &Vec<Json>,
            settings: &SpriteDataSettings,
            ret: &mut BTreeMap<String, SpriteBuilder> )
-                                                -> Result<(), LoadModelError> {
+                                                    -> Result<(), ModelError> {
 
   for obj in data {
     try!(process(obj, settings, ret));
@@ -47,17 +47,13 @@ fn parse_2(data: &Vec<Json>,
 fn process(json_obj: &Json,
            settings: &SpriteDataSettings,
            ret: &mut BTreeMap<String, SpriteBuilder> )
-                                                -> Result<(), LoadModelError> {
+                                                    -> Result<(), ModelError> {
 
   match json_obj {
-    &Json::Object(ref obj) => {
-      try!(process_2(obj, settings, ret));
-    },
-    _ => return try!(Err(
-                   ModelError::TypeError { obj: "\"sprite_data\" list element",
-                                           expected: "object" }))
-  };
-  Ok(())
+    &Json::Object(ref obj) => process_2(obj, settings, ret),
+    _ => Err(ModelError::TypeError { obj: "\"sprite_data\" list element",
+                                     expected: "object" })
+  }
 }
 
 
@@ -68,29 +64,28 @@ fn process(json_obj: &Json,
 fn process_2(obj: &BTreeMap<String, Json>,
              settings: &SpriteDataSettings,
              ret: &mut BTreeMap<String, SpriteBuilder> )
-                                                -> Result<(), LoadModelError> {
+                                                    -> Result<(), ModelError> {
 
   if obj.contains_key("with") {
     if obj.len() > 1 {
-      return try!(Err(
-            ModelError::WrongNumKeys { expected: 1,
-                                     context: "object containing \"with\"" }));
+      return Err(ModelError::WrongNumKeys
+                                    { expected: 1,
+                                      context: "object containing \"with\"" });
     }
-    try!(process_with(obj, settings, ret));
+    process_with(obj, settings, ret)
   }
   else {
     let mut final_settings = settings.clone();
     try!(settings::modify(&mut final_settings, obj));
-    try!(insert_frame(&final_settings, ret));
-  };
-  Ok(())
+    insert_frame(&final_settings, ret)
+  }
 }
 
 
 fn process_with(with_obj: &BTreeMap<String, Json>,
                 settings: &SpriteDataSettings,
                 ret: &mut BTreeMap<String, SpriteBuilder> )
-                                                -> Result<(), LoadModelError> {
+                                                    -> Result<(), ModelError> {
 
   let mut new_settings = settings.clone();
   let mut data = None;
@@ -101,35 +96,32 @@ fn process_with(with_obj: &BTreeMap<String, Json>,
           try!(settings::modify(&mut new_settings, &delta));
         }
         else {
-          return try!(Err(ModelError::TypeError { obj: "\"defaults\"",
-                                                  expected: "object" }));
+          return Err(ModelError::TypeError { obj: "\"defaults\"",
+                                             expected: "object" });
         };
       },
       "data" => {
         match val {
           &Json::Object(ref obj) => data = Some(obj),
-          _ => try!(Err(ModelError::TypeError { obj: "\"data\"",
-                                                expected: "object" }))
+          _ => return Err(ModelError::TypeError { obj: "\"data\"",
+                                                  expected: "object" })
         }
       },
-      other => try!(Err(ModelError::InvalidKey { key: other.to_string(),
-                                                 context: "\"with\" object" }))
+      other => return Err(ModelError::InvalidKey
+                                                { key: other.to_string(),
+                                                  context: "\"with\" object" })
     };
   };
   if let Some(obj) = data {
-    try!(process_2(obj, &new_settings, ret));
+    return process_2(obj, &new_settings, ret);
   }
-  else {
-    return try!(Err(ModelError::MissingKey { key: "data",
-                                             context: "\"with\" object" }));
-  }
-  Ok(())
+  Err(ModelError::MissingKey { key: "data", context: "\"with\" object" })
 }
 
 
 fn insert_frame(settings: &SpriteDataSettings,
                 ret: &mut BTreeMap<String, SpriteBuilder> )
-                                                -> Result<(), LoadModelError> {
+                                                    -> Result<(), ModelError> {
 
   let mut sprite = match ret.get(&settings.sprite_name) {
     Some(sprite) => sprite.clone(),
@@ -137,9 +129,9 @@ fn insert_frame(settings: &SpriteDataSettings,
   };
 
   if let Some(_) = sprite.frames.get(&settings.frame_index) {
-    return try!(Err(
-            ModelError::FrameRedef { sprite_name: settings.sprite_name.clone(),
-                                     frame_index: settings.frame_index }));
+    return Err(ModelError::FrameRedef
+                                   { sprite_name: settings.sprite_name.clone(),
+                                     frame_index: settings.frame_index });
   };
 
   let frame = Frame {
