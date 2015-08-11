@@ -4,7 +4,7 @@ if [ -z "$GH_TOKEN" ]; then
   echo "No token available for pushing the docs."
 elif [ "$TRAVIS_REPO_SLUG" == "$RD_PUSH_REPO" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "$RD_PUSH_BRANCH" ]; then
 
-  echo "Rust doc upload..."
+  echo "Rustdoc upload..."
 
   cargo doc --no-deps
   echo "<meta http-equiv=refresh content=0;url=$RD_INDEX_PAGE>" > target/doc/index.html
