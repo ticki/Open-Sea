@@ -1,9 +1,14 @@
 use std::collections::BTreeMap;
+use std::fmt::Debug;
+
+use num::Num;
 
 use rustc_serialize::json::Json;
 
 use model::data::error::{LoadModelError, ModelError};
 use super::SpriteDataSettings;
+
+use core::Vec2;
 
 
 pub fn modify(settings: &mut SpriteDataSettings,
@@ -71,8 +76,9 @@ fn get_frame_index(value: &Json) -> Result<usize, LoadModelError> {
 fn get_pair<T, F>(value: &Json,
                   key: &'static str,
                   expected: &'static str,
-                  extract: F ) -> Result<(T, T), LoadModelError>
-  where F: Fn(&'static str, &'static str, &Json) -> Result<T, LoadModelError> {
+                  extract: F ) -> Result<Vec2<T>, ModelError>
+  where T: Copy + Debug + Num,
+        F: Fn(&'static str, &'static str, &Json) -> Result<T, ModelError> {
 
   match value {
     &Json::Array(ref arr) => {
@@ -82,7 +88,7 @@ fn get_pair<T, F>(value: &Json,
 
       let a = try!(extract(key, expected, &arr[0]));
       let b = try!(extract(key, expected, &arr[1]));
-      Ok((a, b))
+      Ok(Vec2(a, b))
     },
     _ => Err(type_error(key, expected)),
   }
