@@ -2,6 +2,7 @@ use piston::event::RenderArgs;
 
 use opengl_graphics::GlGraphics;
 
+use core::Vec2;
 use core::state::State;
 
 use renderer::Renderer;
@@ -20,6 +21,6 @@ impl State for Game {
   fn render(&self, args: &RenderArgs,
             gl: &mut GlGraphics,
             renderer: &mut Renderer) {
-    renderer.draw_text(args, gl, "Test");
+    renderer.draw_text(args, gl, "Test", Vec2(10.0, 20.0));
   }
 }
