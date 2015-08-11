@@ -8,13 +8,10 @@ mod error;
 pub use self::error::LoadConfigError;
 
 
-<<<<<<< HEAD
 const CONFIG_PATH: &'static str = "./data/config.json";
 
 
 /// The configuration of the window
-=======
->>>>>>> parent of cfa072d... Documented the whole core module, TODO: Document the rest
 #[derive(RustcDecodable, RustcEncodable)]
 pub struct Config {
   title: String,
