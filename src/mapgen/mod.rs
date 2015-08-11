@@ -2,10 +2,12 @@
 
 use noise::{Brownian2, Seed, open_simplex2};
 
-use core::{Map, Tile, TileMap, Vec2};
+use core::{Tile, TileMap, Vec2};
 
+// TODO: consider just using `usize`. It /is/ an unsigned scalar.
 pub const CHUNK_SIZE: i64 = 128;
-pub const CHUNK_SIZE_usize: usize = 128usize;
+#[allow(non_upper_case_globals)]
+pub const CHUNK_SIZE_usize: usize = 128;
 
 
 /// A map

@@ -3,7 +3,7 @@ use std::collections::BTreeMap;
 use rustc_serialize::json::Json;
 
 use super::{Frame, Sprite};
-use super::error::{LoadModelError, ModelError};
+use super::error::ModelError;
 
 mod settings;
 mod sprite_builder;

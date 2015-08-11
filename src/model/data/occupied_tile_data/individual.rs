@@ -2,7 +2,7 @@ use rustc_serialize::json::Json;
 
 use core::Vec2;
 
-use model::data::error::{LoadModelError, ModelError};
+use model::data::error::ModelError;
 
 /// Parse individual occupied tiles
 pub fn parse(block: &Json,
