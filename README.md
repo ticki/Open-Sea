@@ -3,6 +3,8 @@
 **Open Sea** is a sandbox RPG written in Rust using the Piston library. Sail
 the open sea, explore the world, and play together with your friends.
 
+Open Sea is still in its early stages.
+
 ![TraviCI](https://api.travis-ci.org/Ticki/Open-Sea.svg)
 
 #### Contribute ####
