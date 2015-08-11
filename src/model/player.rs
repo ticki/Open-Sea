@@ -1,5 +1,6 @@
 use core::*;
-use opengl_graphics::{Texture};
+use opengl_graphics::*;
+use graphics::*;
 
 /// A player
 pub struct Player {
@@ -66,6 +67,9 @@ impl Sprite for Player {
   }
   fn get_opacity(&self) -> f64 {
     1.0
+  }
+  fn draw(&self, c: &Context, gl: &mut GlGraphics) {
+     unimplemented!()
   }
 }
 

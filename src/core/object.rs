@@ -2,6 +2,7 @@
 
 use time;
 use opengl_graphics::*;
+use graphics::*;
 use core::{Vec2};
 
 /// A trait for positioned objects
