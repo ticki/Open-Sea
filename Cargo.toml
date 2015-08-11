@@ -13,6 +13,7 @@ piston = "0.1.4"
 piston2d-graphics = "0.1.4"
 pistoncore-glutin_window = "0.1.0"
 piston2d-opengl_graphics = "0.1.0"
-noise = "0.1.5"
 rustc-serialize = "0.3.15"
 time = "0.1"
+noise = "0.1.5"
+
