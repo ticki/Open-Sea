@@ -17,10 +17,15 @@ impl Game {
   }
 }
 
+
 impl State for Game {
   fn render(&self, args: &RenderArgs,
             gl: &mut GlGraphics,
             renderer: &mut Renderer) {
-    renderer.draw_text(args, gl, "Test", Vec2(10.0, 20.0));
+
+    renderer.draw_text(args,
+                       gl,
+                       "Here's a long string of text.",
+                       Vec2(10.0, 30.0) );
   }
 }

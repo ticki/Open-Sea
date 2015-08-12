@@ -13,6 +13,9 @@ pub trait Position {
   fn set_pos(&mut self, new_pos: Vec2<i64>);
 }
 
+// TODO: This should probably just be a Vec2, especially since you're doing
+//       things like Dir::to_vec, and you want to allow two different
+//       directions at once.
 /// The direction of a given object
 #[derive(Clone, Copy)]
 pub enum Dir {
@@ -21,6 +24,7 @@ pub enum Dir {
   Up,
   Down,
 }
+
 impl Dir {
   fn to_vec(&self) -> Vec2<i64> {
     Vec2(
@@ -39,8 +43,7 @@ impl Dir {
   }
 }
 
-// TODO: Implement two directions at once.
-// TODO: Make drawable trait
+// TODO: Implement two directions at once. (See comment above.)
 
 /// A movable object
 pub trait Move: Position {
@@ -99,10 +102,8 @@ pub trait Sprite: Move {
   fn get_height(&self) -> i16;
   /// Get the opacity of the object
   fn get_opacity(&self) -> f64;
+  //
   fn draw(&self, c: &Context, gl: &mut GlGraphics);
-
-  // TODO: Add draw method.
 }
 
 // TODO: Add event trait, for objects you can click on etc.
-

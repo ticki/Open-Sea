@@ -78,10 +78,8 @@ fn main() {
         use graphics::*;
         gl.draw(args.viewport(), |c, gl| {
           clear([1.0, 1.0, 1.0, 1.0], gl);
-
-          state.render(&args, gl, &mut renderer);
-
           image.draw(texture, default_draw_state(), c.transform, gl);
+          state.render(&args, gl, &mut renderer);
         });
       },
 
