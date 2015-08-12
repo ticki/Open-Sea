@@ -21,7 +21,8 @@ impl Position for Player {
   }
 }
 
-
+// TODO: Implement new trait methods for Player
+unimplemented!();
 impl Move for Player {
   fn get_dir(&self) -> Dir {
     self.dir
