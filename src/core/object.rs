@@ -19,59 +19,52 @@ pub trait Position {
 /// The direction of a given object
 #[derive(Clone, Copy)]
 pub enum Dir {
-  Left,
-  Right,
-  Up,
-  Down,
-}
-
-pub struct Movement {
-  dir1: Option<Dir>,
-  dir2: Option<Dir>,
-  state: i64, // This should change every half second
-}
-
-impl Movement {
-  fn to_vec(&self) -> Vec2<i64> {
-    unimplemented!()
-  }
+  N,
+  S,
+  E,
+  W,
+  NE,
+  NW,
+  SE,
+  SW,
 }
 
 impl Dir {
   fn to_vec(self) -> Vec2<i64> {
-    Vec2(
-      match self {
-        Dir::Left => 1,
-        Dir::Right => -1,
-        _ => 0,
-      },
-
-      match self {
-        Dir::Up => 1,
-        Dir::Down => -1,
-      _ => 0,
-      }
-    )
-  }
-  /// Get the dir in the opposite direction
-  fn invert(self) -> Dir {
     match self {
-      Dir::Left => Dir::Right,
-      Dir::Right => Dir::Left,
-      Dir::Up => Dir::Down,
-      Dir::Down => Dir::Up,
+      Dir::N => Vec2(0, 1),
+      Dir::S => Vec2(0, -1),
+      Dir::E => Vec2(1, 0),
+      Dir::W => Vec2(-1, 0),
+      Dir::NE => Vec2(1, 1),
+      Dir::NW => Vec2(1, -1),
+      Dir::SE => Vec2(-1, 1),
+      Dir::SW => Vec2(-1, -1),
+    }
+  }
+  /// Calculate the "locked" direction (i.e. the direction locked to the grid)
+  fn to_locked(self) -> Dir {
+    let mov = time::precise_time_s().round() as i64 % 2;
+    match (self, mov) {
+      (Dir::NE, 0) | (Dir::NW, 0) => Dir::N,
+      (Dir::SE, 0) | (Dir::SW, 0) => Dir::S,
+      (Dir::NE, 1) | (Dir::SE, 1) => Dir::E,
+      (Dir::NW, 1) | (Dir::SW, 1) => Dir::W,
+      _ => self,
     }
   }
 }
 
+// TODO: Dir or direction? For consistency, I temporary chose the short naming. Should we shift to
+//       long names? What's the rust standarts?
 // TODO: Implement two directions at once. (See comment above.)
 
 /// A movable object
 pub trait Move: Position {
   /// Get the direction
-  fn get_movement(&self) -> Movement;
+  fn get_dir(&self) -> Dir;
   /// Set the direction
-  fn set_movement(&mut self, new_dir: Movement);
+  fn set_dir(&mut self, new_dir: Dir);
   /// Is the object moving?
   fn is_moving(&self) -> bool;
   /// Can the object move? Or is it blocked?
@@ -83,7 +76,8 @@ pub trait Move: Position {
   }
   /// Get new coordinate
   fn get_new_pos(&self) -> Vec2<i64> {
-    let mov = self.get_movement();
+    // TODO: This is only temporary. Should diagonal moves be allowed or not?
+    let mov = self.get_dir();
     self.get_pos() + mov.to_vec()
   }
   /// Move object in direction.
