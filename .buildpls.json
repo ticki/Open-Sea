@@ -1,0 +1,19 @@
+{
+    "commands": {
+        "echo_hr": "echo '-------------------------------------------------------------------------------'",
+        "pre":     "echo && echo && echo && clear && <%= commands['echo_hr'] %>",
+        "post":    "<%= commands['echo_hr'] %>",
+        "clean":   "<%= commands['pre'] %> && cargo clean && <%= commands['post'] %>",
+        "build":   "<%= commands['pre'] %> && cargo build && <%= commands['post'] %>",
+        "rebuild":   "<%= commands['pre'] %> && cargo clean && cargo build && <%= commands['post'] %>",
+        "run":   "<%= commands['pre'] %> && cargo run && <%= commands['post'] %>",
+        "status":   "<%= commands['pre'] %> && git status && <%= commands['post'] %>",
+        "diff":   "<%= commands['pre'] %> && git diff && <%= commands['post'] %>"
+    },
+
+    "run_on_changes": "build",
+
+    "run_on_start": "build",
+
+    "watch_pattern": "((^Cargo.toml)|(src/(\\w+/)*\\w+\\.rs))$"
+}
