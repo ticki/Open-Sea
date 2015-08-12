@@ -25,21 +25,42 @@ pub enum Dir {
   Down,
 }
 
-impl Dir {
+pub struct Movement {
+  dir1: Option<Dir>,
+  dir2: Option<Dir>,
+  state: i64, // This should change every half second
+}
+
+impl Movement {
   fn to_vec(&self) -> Vec2<i64> {
+    unimplemented!()
+  }
+}
+
+impl Dir {
+  fn to_vec(self) -> Vec2<i64> {
     Vec2(
-      match *self {
+      match self {
         Dir::Left => 1,
         Dir::Right => -1,
         _ => 0,
       },
 
-      match *self {
+      match self {
         Dir::Up => 1,
         Dir::Down => -1,
       _ => 0,
       }
     )
+  }
+  /// Get the dir in the opposite direction
+  fn invert(self) -> Dir {
+    match self {
+      Dir::Left => Dir::Right,
+      Dir::Right => Dir::Left,
+      Dir::Up => Dir::Down,
+      Dir::Down => Dir::Up,
+    }
   }
 }
 
@@ -48,9 +69,9 @@ impl Dir {
 /// A movable object
 pub trait Move: Position {
   /// Get the direction
-  fn get_dir(&self) -> Dir;
+  fn get_movement(&self) -> Movement;
   /// Set the direction
-  fn set_dir(&mut self, new_dir: Dir);
+  fn set_movement(&mut self, new_dir: Movement);
   /// Is the object moving?
   fn is_moving(&self) -> bool;
   /// Can the object move? Or is it blocked?
@@ -62,8 +83,8 @@ pub trait Move: Position {
   }
   /// Get new coordinate
   fn get_new_pos(&self) -> Vec2<i64> {
-    let dir = self.get_dir();
-    self.get_pos() + dir.to_vec()
+    let mov = self.get_movement();
+    self.get_pos() + mov.to_vec()
   }
   /// Move object in direction.
   fn move_obj_dir(&mut self) {
