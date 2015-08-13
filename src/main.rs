@@ -18,14 +18,14 @@ use graphics::Image;
 use graphics::rectangle::square;
 
 // Why pub? Because that makes the docs work.
-pub mod mapgen;
 pub mod core;
+pub mod mapgen;
 pub mod model;
 pub mod renderer;
+pub mod state;
 
 use core::Config;
-use core::state;
-use core::state::State;
+use state::State;
 
 use renderer::{Renderer, TextureManager};
 

@@ -3,7 +3,6 @@
 // TODO: Make more use of modules here:
 mod angle;
 mod config;
-pub mod state;
 pub mod map;
 pub mod util;
 mod vec2;
@@ -22,4 +21,3 @@ pub use self::vec2::Vec2;
 pub use self::prop::{Prop};
 pub use self::entity::{Entity, Id};
 pub use self::matter::{Matter};
-

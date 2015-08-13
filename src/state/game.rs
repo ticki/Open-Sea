@@ -3,9 +3,9 @@ use piston::event::RenderArgs;
 use opengl_graphics::GlGraphics;
 
 use core::Vec2;
-use core::state::State;
-
 use renderer::Renderer;
+
+use state::State;
 
 
 /// The in-game view
