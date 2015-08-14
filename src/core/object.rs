@@ -74,6 +74,10 @@ pub trait Move: Position {
     let coord = self.get_pos();
     self.set_pos(coord + mov);
   }
+  fn get_cur_pos(&self) -> Vec2<f64> {
+    Vec2::from(self.get_new_pos()) * self.get_trans_state()
+    + Vec2::from(self.get_pos())
+  }
   /// Get new coordinate
   fn get_new_pos(&self) -> Vec2<i64> {
     // TODO: This is only temporary. Should diagonal moves be allowed or not?
