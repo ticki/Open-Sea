@@ -19,5 +19,5 @@ pub use self::config::Config;
 pub use self::map::{Map, Tile, TileMap};
 pub use self::vec2::Vec2;
 pub use self::prop::{Prop};
-pub use self::entity::{Entity, Id};
+pub use self::entity::{Entity, Id, Event};
 pub use self::matter::{Matter};

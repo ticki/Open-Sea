@@ -1,5 +1,18 @@
 use core::{Sprite, Matter};
 
+/// Events.
+pub enum Event {
+  /// When player 'contacts' (press space in front of) the object
+  Contact,
+  /// When the entity move
+  Movement,
+  /// When the entity collides with player
+  PlayerCollision,
+  /// When the entity is destroyed
+  Destroy,
+  // TODO: Add more
+}
+
 /// Entity ID type
 pub struct Id(pub i64);
 
@@ -16,6 +29,13 @@ pub trait Entity: Sprite + Matter {
   /// Update the entity
   fn update(&mut self, dt: f64) {
     self.def_update(dt);
+  }
+
+  /// Should be called when event happens
+  fn on_event(&mut self, event: Event) {
+    match event {
+      _ => {}
+    }
   }
   // Probably need more methods.
 }
