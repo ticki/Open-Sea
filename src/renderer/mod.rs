@@ -9,7 +9,8 @@ use opengl_graphics::glyph_cache::GlyphCache;
 
 use graphics;
 
-pub use core::cache::*;
+use core::cache::*;
+use core::Vec2;
 
 mod texture_manager;
 pub use self::texture_manager::{LoadTextureError, TextureManager};

@@ -1,7 +1,7 @@
 use core::{Entity, Vec2};
 
 /// The camera
-struct Cam<'a> {
+pub struct Cam<'a> {
   /// The entity in focus
   in_focus: &'a Entity,
 }

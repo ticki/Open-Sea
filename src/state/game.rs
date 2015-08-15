@@ -2,26 +2,27 @@ use piston::event::RenderArgs;
 
 use opengl_graphics::GlGraphics;
 
-use core::Vec2;
+use core::{Vec2};
+use core::cache::*;
+use core::cam::*;
 use renderer::Renderer;
 
 use state::State;
 
 
 /// The in-game view
-pub struct Game;
-
-impl Game {
-  pub fn new() -> Game {
-    Game
-  }
+pub struct Game<'a> {
+  cache: Cache<'a>,
+  cam: Cam<'a>, 
 }
 
 
-impl State for Game {
-  fn render(&self, args: &RenderArgs,
+impl<'a> State for Game<'a> {
+  fn render(&self, dt: f64, args: &RenderArgs,
             gl: &mut GlGraphics,
             renderer: &mut Renderer) {
+
+    // TODO: Draw objects here.
 
     renderer.draw_text(args,
                        gl,

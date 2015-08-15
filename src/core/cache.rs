@@ -1,5 +1,5 @@
 use mapgen::{CHUNK_SIZE_usize, CHUNK_SIZE};
-pub use core::{Vec2, Tile, TileMap};
+use core::{Vec2, Tile, TileMap};
 
 /// A chunk grid, i.e. a grid of chunk size cotaining Block
 pub type ChunkGrid<'a> = [[Tile<'a>; CHUNK_SIZE_usize]; CHUNK_SIZE_usize];
@@ -101,10 +101,28 @@ impl<'a> Cache<'a> {
       }
     }
   }
+}
 
-  fn get_block(&self) -> Tile {
-    unimplemented!();
+impl<'a> TileMap<'a> for Cache<'a> {
+  fn get_tile(&self, pos: Vec2<i64>) -> Tile<'a> {
+    let rel_coord = pos - self.offset;
+    // TODO: Handle error cases where requested tile is off cache
+    if rel_coord.x() < CHUNK_SIZE && rel_coord.y() < CHUNK_SIZE {
+      self.chunk1.clone()[rel_coord.y() as usize][rel_coord.x() as usize]
+    } else if rel_coord.x() >= CHUNK_SIZE && rel_coord.y() < CHUNK_SIZE {
+      self.chunk2.clone()[rel_coord.y() as usize][rel_coord.x() as usize]
+    } else if rel_coord.x() < CHUNK_SIZE && rel_coord.y() >= CHUNK_SIZE {
+      self.chunk3.clone()[rel_coord.y() as usize][rel_coord.x() as usize]
+    } else if rel_coord.x() >= CHUNK_SIZE && rel_coord.y() >= CHUNK_SIZE {
+      self.chunk4.clone()[rel_coord.y() as usize][rel_coord.x() as usize]
+    } else {
+      Tile {
+        layers: vec![],
+        solid: false,
+      }
+    }
   }
+  // TODO: Add method which_chunk
 }
 
 // TODO: Implement tilemap for cache.

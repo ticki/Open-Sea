@@ -5,6 +5,7 @@ use core::{Vec2, Entity, Prop};
 use model::{Player};
 
 /// A block: a field consisting of three layers, containing tiles.
+#[derive(Clone)]
 pub struct Tile<'a> {
   pub layers: Vec<&'a Prop>,
   pub solid: bool, // NOTE: When a tile load it's occupied_tiles should be set
