@@ -33,3 +33,8 @@
 - [x] Find a good font for the game (Could be nice if it was MIT-licensed)
 - [ ] Finish [naming review](wiki/naming.md)
 - [x] Make glossary
+- [ ] Event
+  - Pull it up to handle Piston::Event
+  - Event handler trait
+- [ ] Pull out object.rs
+  - maybe entity.rs, too
