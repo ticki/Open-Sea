@@ -17,8 +17,17 @@ pub struct Game<'a> {
 }
 
 
+impl<'a> Game<'a> {
+  pub fn new() -> Game<'a> {
+    unimplemented!()
+  }
+}
+
+
 impl<'a> State for Game<'a> {
-  fn render(&self, dt: f64, args: &RenderArgs,
+  fn render(&self,
+            //dt: f64, // render should not care about dt
+            args: &RenderArgs,
             gl: &mut GlGraphics,
             renderer: &mut Renderer) {
 

@@ -106,6 +106,9 @@ impl<'a> Cache<'a> {
 impl<'a> TileMap<'a> for Cache<'a> {
   fn get_tile(&self, pos: Vec2<i64>) -> Tile<'a> {
     let rel_coord = pos - self.offset;
+    // TODO uncomment all this; had to squelch the errors
+    unimplemented!()
+    /*
     // TODO: Handle error cases where requested tile is off cache
     if rel_coord.x() < CHUNK_SIZE && rel_coord.y() < CHUNK_SIZE {
       self.chunk1.clone()[rel_coord.y() as usize][rel_coord.x() as usize]
@@ -121,6 +124,7 @@ impl<'a> TileMap<'a> for Cache<'a> {
         solid: false,
       }
     }
+    */
   }
   // TODO: Add method which_chunk
 }
