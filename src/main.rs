@@ -1,3 +1,5 @@
+#![feature(rc_weak)]
+
 extern crate piston;
 extern crate graphics;
 extern crate glutin_window;
@@ -19,8 +21,9 @@ use graphics::rectangle::square;
 
 // Why pub? Because that makes the docs work.
 pub mod core;
+pub mod entity;
 pub mod math;
-pub mod mapgen;
+//pub mod mapgen; // TODO uncomment; squelching errors
 pub mod model;
 pub mod renderer;
 pub mod state;

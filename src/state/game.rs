@@ -2,7 +2,7 @@ use piston::event::RenderArgs;
 
 use opengl_graphics::GlGraphics;
 
-use core::cache::*;
+// use core::cache::*; // TODO uncomment. squelching errors
 use core::cam::*;
 use math::Vec2;
 use renderer::Renderer;
@@ -12,7 +12,7 @@ use state::State;
 
 /// The in-game view
 pub struct Game<'a> {
-  cache: Cache<'a>,
+  //cache: Cache<'a>, // TODO uncomment. squelching errors
   cam: Cam<'a>, 
 }
 

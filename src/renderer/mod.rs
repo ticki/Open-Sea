@@ -9,7 +9,7 @@ use opengl_graphics::glyph_cache::GlyphCache;
 
 use graphics;
 
-use core::cache::*;
+//use core::cache::*; // TODO uncomment. squelching errors
 use math::Vec2;
 
 mod texture_manager;
