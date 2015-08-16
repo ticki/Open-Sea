@@ -77,7 +77,7 @@ fn parse_2(obj: &BTreeMap<String, Json>,
   Ok(())
 }
 
-// TODO: document these, not sure about their functionality
+/// Typecheck and extract a pair of 8-bit integers from a JSON value
 fn extract_i8_pair(value: &Json) -> Result<(i8, i8), ()> {
   match value {
     &Json::Array(ref arr) => {
@@ -91,6 +91,7 @@ fn extract_i8_pair(value: &Json) -> Result<(i8, i8), ()> {
 }
 
 
+/// Typecheck and extract an 8-bit integer from a JSON value
 fn extract_i8(value: &Json) -> Result<i8, ()> {
   match value {
     // TODO refactor all these methods into Json extract module or something
