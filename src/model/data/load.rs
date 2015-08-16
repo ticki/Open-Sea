@@ -10,8 +10,6 @@ use super::occupied_tile_data;
 use super::sprite_data;
 
 
-// TODO make functions Result<_, ModelError> where appropriate
-
 impl ModelData {
   // TODO remove dead_code permit as soon as we start loading ModelData
   #[allow(dead_code)]

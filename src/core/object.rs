@@ -13,9 +13,6 @@ pub trait Position {
   fn set_pos(&mut self, new_pos: Vec2<i64>);
 }
 
-// TODO: This should probably just be a Vec2, especially since you're doing
-//       things like Dir::to_vec, and you want to allow two different
-//       directions at once.
 /// The direction of a given object
 #[derive(Clone, Copy)]
 pub enum Dir {
@@ -55,9 +52,6 @@ impl Dir {
   }
 }
 
-// TODO: Dir or direction? For consistency, I temporary chose the short naming. Should we shift to
-//       long names? What's the rust standarts?
-// TODO: Implement two directions at once. (See comment above.)
 
 /// A movable object
 pub trait Move: Position {
