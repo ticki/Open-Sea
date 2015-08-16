@@ -2,9 +2,9 @@ use piston::event::RenderArgs;
 
 use opengl_graphics::GlGraphics;
 
-use core::{Vec2};
 use core::cache::*;
 use core::cam::*;
+use math::Vec2;
 use renderer::Renderer;
 
 use state::State;

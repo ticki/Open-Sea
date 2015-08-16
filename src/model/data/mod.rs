@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-use core::Vec2;
+use math::Vec2;
 
 mod error;
 mod load;

@@ -2,6 +2,8 @@ use core::*;
 use opengl_graphics::*;
 use graphics::*;
 
+use math::Vec2;
+
 /// A player
 pub struct Player {
   pos: Vec2<i64>,

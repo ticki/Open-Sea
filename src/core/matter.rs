@@ -1,4 +1,4 @@
-use core::Vec2;
+use math::Vec2;
 
 /// Matter, a trait carrying information about destroyability, solidness, hardness, and other
 /// properties of matter.

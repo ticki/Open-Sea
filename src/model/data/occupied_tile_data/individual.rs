@@ -1,6 +1,6 @@
 use rustc_serialize::json::Json;
 
-use core::Vec2;
+use math::Vec2;
 
 use model::data::error::ModelError;
 

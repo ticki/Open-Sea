@@ -8,7 +8,7 @@ use rustc_serialize::json::Json;
 use model::data::error::ModelError;
 use super::SpriteDataSettings;
 
-use core::Vec2;
+use math::Vec2;
 
 
 pub fn modify(settings: &mut SpriteDataSettings,

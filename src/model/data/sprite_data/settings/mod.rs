@@ -1,7 +1,7 @@
 mod modify;
 pub use self::modify::modify;
 
-use core::Vec2;
+use math::Vec2;
 
 
 /// This struct simplifies the implementation of `parse`

@@ -1,5 +1,6 @@
 use mapgen::{CHUNK_SIZE_usize, CHUNK_SIZE};
-use core::{Vec2, Tile, TileMap};
+use core::{Tile, TileMap};
+use math::Vec2;
 
 /// A chunk grid, i.e. a grid of chunk size cotaining Block
 pub type ChunkGrid<'a> = [[Tile<'a>; CHUNK_SIZE_usize]; CHUNK_SIZE_usize];

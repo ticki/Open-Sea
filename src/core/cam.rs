@@ -1,4 +1,5 @@
-use core::{Entity, Vec2};
+use core::Entity;
+use math::Vec2;
 
 /// The camera
 pub struct Cam<'a> {

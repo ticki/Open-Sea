@@ -3,7 +3,7 @@ use std::collections::BTreeMap;
 use rustc_serialize::json::Json;
 
 use super::error::ModelError;
-use core::Vec2;
+use math::Vec2;
 
 mod individual;
 mod rectangle;

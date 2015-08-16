@@ -10,7 +10,7 @@ use opengl_graphics::glyph_cache::GlyphCache;
 use graphics;
 
 use core::cache::*;
-use core::Vec2;
+use math::Vec2;
 
 mod texture_manager;
 pub use self::texture_manager::{LoadTextureError, TextureManager};

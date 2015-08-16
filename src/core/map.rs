@@ -1,7 +1,8 @@
 // Todo: Add tile metadata
 
 // use models::*;
-use core::{Vec2, Entity, Prop};
+use core::{Entity, Prop};
+use math::Vec2;
 use model::{Player};
 
 /// A block: a field consisting of three layers, containing tiles.

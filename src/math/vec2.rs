@@ -3,7 +3,7 @@ use std::ops::{Add, Sub, Mul, Div};
 
 use num::{Float, Num};
 
-use core::angle::{Angle, AngleDatum};
+use super::angle::{Angle, AngleDatum};
 
 
 #[derive(Clone, Copy, Debug)]

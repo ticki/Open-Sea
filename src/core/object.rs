@@ -3,7 +3,7 @@
 use time;
 use opengl_graphics::*;
 use graphics::*;
-use core::{Vec2};
+use math::Vec2;
 
 /// A trait for positioned objects
 pub trait Position {
