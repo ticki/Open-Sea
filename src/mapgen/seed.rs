@@ -22,13 +22,13 @@ impl Seed2 {
   }
 
   /// Add information to the seed
-  fn conc(&self, with: i64) -> Seed2 {
+  fn feed(&self, with: i64) -> Seed2 {
     Seed2::new(((self.seed) >> 16) ^ with)
   }
 
   /// Add a vector to the seed
-  fn conc_vec(&self, with: Vec2<i64>) {
-    self.conc(with.x()).conc(with.y())
+  fn feed_vec(&self, with: Vec2<i64>) {
+    self.feed(with.x()).feed(with.y())
   }
  
   /// Get the value of the seed (note: non-continious)

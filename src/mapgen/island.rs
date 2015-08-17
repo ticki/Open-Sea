@@ -28,10 +28,10 @@ impl Island {
     let hills: Vec<Vec2<i64>> = vec![];
     for i in 1..nhills {
       hills.push(Vec2(
-        seed.conc(0).conc(i).conc(num)
-            .conc(chunk.x()).conc(chunk.y()).get(),
-        seed.conc(1).conc(i).conc(num)
-            .conc(chunk.x()).conc(chunk.y()))).get();
+        seed.feed(0).feed(i).feed(num)
+            .feed(chunk.x()).feed(chunk.y()).get(),
+        seed.feed(1).feed(i).feed(num)
+            .feed(chunk.x()).feed(chunk.y()))).get();
     }
 
     Island {

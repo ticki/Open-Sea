@@ -57,7 +57,7 @@ impl MapGenerator {
 
   /// Get the type of the chunk
   fn get_chunk_type(&self, pos: ChunkCoord) -> ChunkType {
-    let val = self.seed.conc_vec(pos).get_f64();
+    let val = self.seed.feed_vec(pos).get_f64();
 
     if val > 0.3 {
       ChunkType::Empty
