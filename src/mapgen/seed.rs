@@ -6,7 +6,7 @@
 
 use noise::*;
 use core::Vec2;
-use std::hash;
+use std::hash::*;
 
 /// A seed
 #[derive(Clone, Hash)]
@@ -27,24 +27,24 @@ impl Seed2 {
   }
 
   /// Add a vector to the seed
-  fn feed_vec(&self, with: Vec2<i64>) {
+  fn feed_vec(&self, with: Vec2<i64>) -> Seed2 {
     self.feed(with.x()).feed(with.y())
   }
  
   /// Get the value of the seed (note: non-continious)
   fn get(&self) -> u64 {
-    let hasher = hash::SipHasher::new();
+    let hasher = SipHasher::new();
     self.hash(&mut hasher);
-    self.finish()
+    hasher.finish()
   }
 
   /// Get a value in the interval [0, 1]
   fn get_f64(&self) -> f64 {
-    (self.get() as f64) / u64::max_value()
+    (self.get() as f64) / (u64::max_value() as f64)
   }
 
   /// Get the continious value of the seed
-  fn noise_get(&self, chunk_size: f64, pos: Vec2<i64>) -> f64 {
+  fn get_noise(&self, chunk_size: f64, pos: Vec2<i64>) -> f64 {
     let noise = Brownian2::new(open_simplex2, 4)
                 .wavelength(chunk_size);
     noise.apply(&self.to_seed(),

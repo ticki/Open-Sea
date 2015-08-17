@@ -19,7 +19,7 @@ pub const CHUNK_SIZE_usize: usize = 128;
 /// Chunk coordinate
 pub type ChunkCoord = Vec2<i64>;
 /// Chunk relative coordinate
-pub type ChunkRelCoord = Vec<i16>;
+pub type ChunkRelCoord = Vec2<i16>;
 
 
 /// A map
@@ -71,15 +71,17 @@ impl MapGenerator {
   }
   
   /// Get the overlay value
-  fn get_overlay_value(&self, pos: ChunkRelCoord) {
+  fn get_overlay_value(&self, pos: Vec2<i64>) -> f64 {
     match self.get_chunk_type(pos) {
       ChunkType::Empty => 0.0,
       ChunkType::Auto => {
         let chunk = Chunk::generate(pos);
 
-        chunk.islands.min_by(|&x| x.get_overlay(pos))
-                     .get_overlay(pos)
-       }
+        match chunk.islands.iter().min_by(|&x| x.get_overlay(pos)) {
+          Some(x) => x.get_overlay(pos),
+          None => 0.0,
+        }
+      }
         _ => 0.0,
     }
   }
@@ -89,7 +91,7 @@ impl<'a> TileMap<'a> for MapGenerator {
 
   /// Get the tile at a given point
   fn get_tile(&self, coord: Vec2<i64>) -> Tile<'a> {
-    let val = (self.get_noise_value(coord)
+    let val = (self.seed.get_noise(CHUNK_SIZE as f64, coord)
                + self.get_overlay_value(coord)) / 2.0;
 
     unimplemented!();
