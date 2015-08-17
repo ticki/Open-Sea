@@ -10,6 +10,7 @@ script:
   - cargo build -v
 matrix:
   allow_failure:
-    - rust: nightly
+    - rust: stable
+    - rust: beta
 after_success: |
   http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
