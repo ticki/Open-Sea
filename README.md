@@ -5,7 +5,7 @@ the open sea, explore the world, and play together with your friends.
 
 Open Sea is still in its early stages.
 
-![TraviCI](https://api.travis-ci.org/Ticki/Open-Sea.svg)
+![TraviCI](https://travis-ci.org/Ticki/Open-Sea.svg?branch=component)
 
 #### Contribute ####
 
