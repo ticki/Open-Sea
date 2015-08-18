@@ -22,10 +22,8 @@ impl Entity {
     Err(())
   }
 
-  fn get_comp(&mut self, comp_type: CompType) -> Option<Weak<Comp>> {
-    if let Some(comp) = self.comps.get(&comp_type) {
-      return Some(comp.downgrade());
-    }
-    None
+  ///
+  fn get_comp(&mut self, comp_type: CompType) -> Option<Rc<Comp>> {
+    self.comps.get(&comp_type).cloned()
   }
 }
