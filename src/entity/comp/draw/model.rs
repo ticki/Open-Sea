@@ -2,16 +2,25 @@ use std::rc::Weak;
 
 use entity::Entity;
 use entity::comp::draw::DrawComp;
+use math::Rect;
+use model;
 
 
-pub struct MultiTexture {
+/// A draw component for an entity with a model
+pub struct Model {
   owner: Option<Weak<Entity>>,
+  model: Weak<model::ModelData>,
 }
 
 
-impl DrawComp for MultiTexture {
+impl DrawComp for Model {
   fn draw(&self) {
-    // get owner's textures (possible downcasting his type) and draw them
+    // TODO implement
+  }
+
+  fn draw_bounds(&self) -> Rect<i64> {
+    // TODO implement
+    unimplemented!()
   }
 
   fn set_owner(&mut self, owner: Weak<Entity>) -> Result<(), ()> {

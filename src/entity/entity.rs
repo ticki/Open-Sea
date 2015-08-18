@@ -1,12 +1,12 @@
 use std::collections::HashMap;
-use std::rc::{Rc, Weak};
+use std::rc::Rc;
 
 use entity::comp::{Comp, CompType};
 use math::Vec2;
 
 
 pub struct Entity {
-  position: Vec2<i64>,
+  pub position: Vec2<i64>,
   comps: HashMap<CompType, Rc<Comp>>,
 }
 

@@ -2,17 +2,17 @@ use std::rc::Weak;
 
 use entity::Entity;
 use entity::comp::{Comp, CompType};
+use math::Rect;
 
 
-mod multi_texture;
-mod one_texture;
+mod model;
 
-pub use self::multi_texture::MultiTexture;
-pub use self::one_texture::OneTexture;
+pub use self::model::Model;
 
 
 pub trait DrawComp {
   fn draw(&self);
+  fn draw_bounds(&self) -> Rect<i64>;
 
   // Comp
   fn set_owner(&mut self, owner: Weak<Entity>) -> Result<(), ()>;

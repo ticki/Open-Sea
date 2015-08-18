@@ -15,8 +15,5 @@ pub trait Comp {
 
 #[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
 pub enum CompType {
-  Battler,
-  Collide,
   Draw,
-  Move,
 }

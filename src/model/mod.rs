@@ -3,4 +3,5 @@
 mod data;
 mod player;
 
+pub use self::data::ModelData;
 pub use self::player::Player;
