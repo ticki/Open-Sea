@@ -16,8 +16,10 @@ impl<T> Vec2<T>
   where T: Copy + Debug + Num {
 
   /// Get x component
+  #[inline]
   pub fn x(&self) -> T { self.0 }
   /// Get y component
+  #[inline]
   pub fn y(&self) -> T { self.1 }
   /// Get norm (i.e. complex absolute value) 
   pub fn norm(&self) -> T {
