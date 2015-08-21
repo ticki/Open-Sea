@@ -31,9 +31,9 @@ impl Island {
     for i in 1..nhills {
       hills.push(Vec2(
         seed.feed(0).feed(i).feed(num)
-            .feed(chunk.x()).feed(chunk.y()).get() as i64,
+            .feed_vec(chunk).get() as i64,
         seed.feed(1).feed(i).feed(num)
-            .feed(chunk.x()).feed(chunk.y()).get() as i64
+            .feed_vec(chunk).get() as i64
       ));
     }
 

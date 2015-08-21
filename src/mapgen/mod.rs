@@ -93,7 +93,9 @@ impl<'a> TileMap<'a> for MapGenerator {
   fn get_tile(&self, coord: Vec2<i64>) -> Tile<'a> {
     let val = (self.seed.get_noise(CHUNK_SIZE as f64, coord)
                + self.get_overlay_value(coord)) / 2.0;
-
+    
+    // TODO! Remember to interpolate between the chunks
+    // TODO: Implement this when the component system is finished
     unimplemented!();
   }
 }
