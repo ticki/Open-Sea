@@ -10,6 +10,9 @@ mod model;
 pub use self::model::Model;
 
 
+// TODO add draw component for characters (players/mobs/living things)
+
+
 pub trait DrawComp {
   fn draw(&self);
   fn draw_bounds(&self) -> Rect<i64>;

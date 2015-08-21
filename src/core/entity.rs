@@ -1,4 +1,4 @@
-use core::{Sprite, Matter};
+//use core::{Sprite, Matter}; TODO uncomment. squelching errors
 
 /// Events.
 pub enum Event {
@@ -17,7 +17,7 @@ pub enum Event {
 pub struct Id(pub i64);
 
 /// An entity, a dynamic in-game object with non-trivial functionality
-pub trait Entity: Sprite + Matter {
+pub trait Entity { //: Sprite + Matter { // TODO uncomment; squelching errors
   /// Get the ID of the given entity
   fn id(&self) -> Id;
   /// Is the entity solid at point (x, y) relative to the position?

@@ -35,7 +35,7 @@ use renderer::{Renderer, TextureManager};
 
 
 fn main() {
-  let state = state::Game::new();
+  //let state = state::Game::new(); // TODO uncomment. squelching errors.
 
   let gl_context = OpenGL::_2_1;
 
@@ -83,7 +83,7 @@ fn main() {
         gl.draw(args.viewport(), |c, gl| {
           clear([1.0, 1.0, 1.0, 1.0], gl);
           image.draw(texture, default_draw_state(), c.transform, gl);
-          state.render(&args, gl, &mut renderer);
+          //state.render(&args, gl, &mut renderer); // TODO uncomment. squelching errors.
         });
       },
 
