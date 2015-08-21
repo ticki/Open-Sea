@@ -16,6 +16,7 @@ pub struct Model {
 impl DrawComp for Model {
   fn draw(&self) {
     // TODO implement
+    unimplemented!();
   }
 
   fn draw_bounds(&self) -> Rect<i64> {

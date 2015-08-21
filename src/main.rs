@@ -29,9 +29,9 @@ pub mod renderer;
 pub mod state;
 
 use core::Config;
-use state::State;
+//use state::State; // TODO uncomment. squelching errors.
 
-use renderer::{Renderer, TextureManager};
+use renderer::{/*Renderer, */TextureManager}; // TODO uncomment. squelching errors.
 
 
 fn main() {
@@ -68,7 +68,7 @@ fn main() {
 
   // This is the object used for drawing
   let mut gl = GlGraphics::new(gl_context);
-  let mut renderer = Renderer::new();
+  //let mut renderer = Renderer::new(); // TODO uncomment. squelching errors.
 
   for event in window.events() {
     match event {

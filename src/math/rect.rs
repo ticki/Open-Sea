@@ -1,6 +1,6 @@
 use std::fmt::Debug;
 
-use num::{Float, Num};
+use num::Num;
 
 use math::Vec2;
 
