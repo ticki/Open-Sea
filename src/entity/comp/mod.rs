@@ -4,6 +4,7 @@ use entity::Entity;
 
 
 pub mod draw;
+pub mod matter;
 
 
 /// The base trait for entity components.
@@ -26,4 +27,6 @@ pub trait Comp {
 pub enum CompType {
   /// The type of components which provide rendering functionality.
   Draw,
+  /// The type of components which provide matter data.
+  Matter,
 }

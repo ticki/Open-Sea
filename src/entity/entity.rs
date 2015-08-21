@@ -22,7 +22,8 @@ impl Entity {
     Err(())
   }
 
-  ///
+  /// Return an `Rc` to a `Comp` of the given `CompType` of the `Entity`, if
+  /// the entity has a component of that type.
   fn get_comp(&mut self, comp_type: CompType) -> Option<Rc<Comp>> {
     self.comps.get(&comp_type).cloned()
   }
