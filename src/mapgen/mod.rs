@@ -75,7 +75,7 @@ impl MapGenerator {
     match self.get_chunk_type(pos) {
       ChunkType::Empty => 0.0,
       ChunkType::Auto => {
-        let chunk = Chunk::generate(pos);
+        let chunk = Chunk::generate(self.seed, pos);
 
         match chunk.islands.iter().min_by(|&x| x.get_overlay(pos)) {
           Some(x) => x.get_overlay(pos),
