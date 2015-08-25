@@ -23,7 +23,7 @@ use graphics::rectangle::square;
 pub mod core;
 pub mod entity;
 pub mod math;
-//pub mod mapgen; // TODO uncomment; squelching errors
+// pub mod mapgen; // TODO uncomment; squelching errors
 pub mod model;
 pub mod renderer;
 pub mod state;

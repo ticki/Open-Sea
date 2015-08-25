@@ -5,10 +5,22 @@ use noise::{Brownian2, Seed, open_simplex2};
 use core::{Tile, TileMap};
 use math::Vec2;
 
+mod island;
+pub use self::island::{Island};
+pub mod seed;
+mod chunk;
+use self::chunk::{Chunk};
+use self::seed::{Seed2};
+
 // TODO: consider just using `usize`. It /is/ an unsigned scalar.
 pub const CHUNK_SIZE: i64 = 128;
 #[allow(non_upper_case_globals)]
 pub const CHUNK_SIZE_usize: usize = 128;
+
+/// Chunk coordinate
+pub type ChunkCoord = Vec2<i64>;
+/// Chunk relative coordinate
+pub type ChunkRelCoord = Vec2<i16>;
 
 
 /// A map
@@ -16,12 +28,12 @@ pub const CHUNK_SIZE_usize: usize = 128;
 /// Note: It's chunked into big chunks and small chunks.
 ///       Small chunks keeps the noise data. Big chunks
 ///       determines the overlay layer.
-pub struct MapGenerator<'a> {
-  seed: &'a Seed,
+pub struct MapGenerator {
+  seed: Seed2, // TODO: Use pointer to seed instead?
 }
 
 /// Types of big chunks
-pub enum BChunkType {
+pub enum ChunkType {
   /// Reserved for history, empty per default, but gets opened as the game is
   /// played. Manually designed.
   History,
@@ -36,96 +48,55 @@ pub enum BChunkType {
 // TODO: Find out how to prevent double islands (manually generated islands)
 
 // TODO: Use Vec2 in this methods:
-impl<'a> MapGenerator<'a> { 
+impl MapGenerator { 
   /// Creates a new map
-  pub fn new(seed: &'a Seed) -> MapGenerator<'a> {
+  pub fn new(seed: Seed2) -> MapGenerator {
     MapGenerator {
       seed: seed,
     }
   }
 
-  // TODO: Add some sort of cache
+  /// Get the type of the chunk
+  fn get_chunk_type(&self, pos: ChunkCoord) -> ChunkType {
+    let val = self.seed.feed_vec(pos).get_f64();
 
-  /// Get the noise value at a given point
-  pub fn get_noise_value(&self, coord: Vec2<i64>) -> f64 {
-    let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
-    noise.apply(&self.seed, &[coord.x() as f64, coord.y() as f64])
-    // Todo: Add some sort of converter method
-  }
-
-  /// Get big chunk coordinates
-  pub fn get_bchunk(coord: Vec2<i64>) -> Vec2<i64> {
-    // TODO: Chunk size 64?
-    Vec2(((coord.x() as f64) / (CHUNK_SIZE as f64)).floor() as i64,
-         ((coord.y() as f64) / (CHUNK_SIZE as f64)).floor() as i64)
-  }
-
-  // TODO: Don't use noise for qunaities that doesn't have to be continious.
-
-  /// Get the chunk type of the big chunk at (x, y)
-  pub fn get_bchunk_type(&self, coord: Vec2<i64>) -> BChunkType {
-    let noise = Brownian2::new(open_simplex2, 4).wavelength(32.0);
-    let noise_val =
-      noise.apply(&self.seed, &[coord.x() as f64, coord.y() as f64]);
-    if noise_val > 0.3 {
-      BChunkType::Empty // Too many too few? 
-    } else if noise_val > 0.1 {
-      BChunkType::Auto
-    } else if noise_val > 0.05 {
-      BChunkType::History
+    if val > 0.3 {
+      ChunkType::Empty
+    } else if val > 0.1 {
+      ChunkType::Auto
+    } else if val > 0.05 {
+      ChunkType::History
     } else {
-      BChunkType::Manually
+      ChunkType::Manually
     }
   }
+  
+  /// Get the overlay value
+  fn get_overlay_value(&self, pos: Vec2<i64>) -> f64 {
+    match self.get_chunk_type(pos) {
+      ChunkType::Empty => 0.0,
+      ChunkType::Auto => {
+        let chunk = Chunk::generate(self.seed, pos);
 
-  /// Get overlay value (used for customizing the noise)
-  pub fn get_overlay_value(&self, coord: Vec2<i64>) -> f64 { 
-    let Vec2(x, y) = coord;
-
-    // Center chunk coordinate
-    let Vec2(cx, cy) = MapGenerator::get_bchunk(coord) + Vec2(32, 32);
-    let chunk_type = self.get_bchunk_type(Vec2(cx, cy));
-    let chunk_int = self.seed.get2([cx, cy]);
-    let chunk_value = (chunk_int as f64) / (usize::max_value() as f64);
-    match chunk_type {
-      BChunkType::Empty => 0.0,
-      BChunkType::Auto => {
-        // This is why we need vector math, kids.
-        // TODO: Use vec math here
-
-        use std::f64;
-
-        // TODO: Make more shapes.
-        let elip_dist = (((cx - x) * (cx - x) + (cy - y) * (cy - y)) as f64)
-                        .sqrt();
-        let angle = chunk_value * f64::consts::PI * 2.0;
-        let (cirx, ciry) = (angle.sin() + cx as f64,
-                            angle.cos() + cy as f64);
-        let sec_dist = ((cirx - x as f64) * (cirx - x as f64)
-                       + (ciry - y as f64) * (ciry - y as f64)).sqrt();
-        let dist = sec_dist.max(elip_dist);
-
-        let res = 1.0 - dist / 50.0;
-        
-        if res > 0.0 {
-          res
-        } else {
-          0.0
+        match chunk.islands.iter().min_by(|&x| x.get_overlay(pos)) {
+          Some(x) => x.get_overlay(pos),
+          None => 0.0,
         }
-      },
-      _ => 0.0,
+      }
+        _ => 0.0,
     }
   }
 }
 
-impl<'a> TileMap<'a> for MapGenerator<'a> {
+impl<'a> TileMap<'a> for MapGenerator {
 
-  // TODO: Rename to get block?
   /// Get the tile at a given point
   fn get_tile(&self, coord: Vec2<i64>) -> Tile<'a> {
-    let val = (self.get_noise_value(coord)
+    let val = (self.seed.get_noise(CHUNK_SIZE as f64, coord)
                + self.get_overlay_value(coord)) / 2.0;
-
+    
+    // TODO! Remember to interpolate between the chunks
+    // TODO: Implement this when the component system is finished
     unimplemented!();
   }
 }
