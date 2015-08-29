@@ -29,74 +29,74 @@ pub type ChunkRelCoord = Vec2<i16>;
 ///       Small chunks keeps the noise data. Big chunks
 ///       determines the overlay layer.
 pub struct MapGenerator {
-  seed: Seed2, // TODO: Use pointer to seed instead?
+    seed: Seed2, // TODO: Use pointer to seed instead?
 }
 
 /// Types of big chunks
 pub enum ChunkType {
-  /// Reserved for history, empty per default, but gets opened as the game is
-  /// played. Manually designed.
-  History,
-  /// Automatic map generated chunk
-  Auto,
-  /// Manually random generated chunk
-  Manually,
-  /// Empty chunk
-  Empty,
+    /// Reserved for history, empty per default, but gets opened as the game is
+    /// played. Manually designed.
+    History,
+    /// Automatic map generated chunk
+    Auto,
+    /// Manually random generated chunk
+    Manually,
+    /// Empty chunk
+    Empty,
 }
 
 // TODO: Find out how to prevent double islands (manually generated islands)
 
 // TODO: Use Vec2 in this methods:
 impl MapGenerator { 
-  /// Creates a new map
-  pub fn new(seed: Seed2) -> MapGenerator {
-    MapGenerator {
-      seed: seed,
-    }
-  }
-
-  /// Get the type of the chunk
-  fn get_chunk_type(&self, pos: ChunkCoord) -> ChunkType {
-    let val = self.seed.feed_vec(pos).get_f64();
-
-    if val > 0.3 {
-      ChunkType::Empty
-    } else if val > 0.1 {
-      ChunkType::Auto
-    } else if val > 0.05 {
-      ChunkType::History
-    } else {
-      ChunkType::Manually
-    }
-  }
-  
-  /// Get the overlay value
-  fn get_overlay_value(&self, pos: Vec2<i64>) -> f64 {
-    match self.get_chunk_type(pos) {
-      ChunkType::Empty => 0.0,
-      ChunkType::Auto => {
-        let chunk = Chunk::generate(self.seed, pos);
-
-        match chunk.islands.iter().min_by(|&x| x.get_overlay(pos)) {
-          Some(x) => x.get_overlay(pos),
-          None => 0.0,
+    /// Creates a new map
+    pub fn new(seed: Seed2) -> MapGenerator {
+        MapGenerator {
+            seed: seed,
         }
-      }
-        _ => 0.0,
     }
-  }
+
+    /// Get the type of the chunk
+    fn get_chunk_type(&self, pos: ChunkCoord) -> ChunkType {
+        let val = self.seed.feed_vec(pos).get_f64();
+
+        if val > 0.3 {
+            ChunkType::Empty
+        } else if val > 0.1 {
+            ChunkType::Auto
+        } else if val > 0.05 {
+            ChunkType::History
+        } else {
+            ChunkType::Manually
+        }
+    }
+
+    /// Get the overlay value
+    fn get_overlay_value(&self, pos: Vec2<i64>) -> f64 {
+        match self.get_chunk_type(pos) {
+            ChunkType::Empty => 0.0,
+            ChunkType::Auto => {
+                let chunk = Chunk::generate(self.seed, pos);
+
+                match chunk.islands.iter().min_by(|&x| x.get_overlay(pos)) {
+                    Some(x) => x.get_overlay(pos),
+                    None => 0.0,
+                }
+            }
+            _ => 0.0,
+        }
+    }
 }
 
 impl<'a> TileMap<'a> for MapGenerator {
 
-  /// Get the tile at a given point
-  fn get_tile(&self, coord: Vec2<i64>) -> Tile<'a> {
-    let val = (self.seed.get_noise(CHUNK_SIZE as f64, coord)
-               + self.get_overlay_value(coord)) / 2.0;
-    
-    // TODO! Remember to interpolate between the chunks
-    // TODO: Implement this when the component system is finished
-    unimplemented!();
-  }
+    /// Get the tile at a given point
+    fn get_tile(&self, coord: Vec2<i64>) -> Tile<'a> {
+        let val = (self.seed.get_noise(CHUNK_SIZE as f64, coord)
+                   + self.get_overlay_value(coord)) / 2.0;
+
+        // TODO! Remember to interpolate between the chunks
+        // TODO: Implement this when the component system is finished
+        unimplemented!();
+    }
 }
